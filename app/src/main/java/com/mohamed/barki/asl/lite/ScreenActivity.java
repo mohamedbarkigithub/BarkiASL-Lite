@@ -56,18 +56,10 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 				Function.saveFromBoolean(this, "song", !Function.getBoolean(this, "song"));
 				recreate();
                 break;
-			case R.id.screenButton1:
-				startSongs(clickScreen);
-				if(Function.getValue(this, "startGame").isEmpty()){
-					Function.saveFromText(this, "startGame", "true");
-				}
-				if(Function.isNetworkConnected(this)) updateReference.removeEventListener(valueEventListener);
-				startActivityFun(intent, "1");
-				break;
 			case R.id.screenButton2:
 				startSongs(clickScreen);
 				if(Function.isNetworkConnected(this)) updateReference.removeEventListener(valueEventListener);
-				startActivityFun(intent, "2"); break;
+				startActivity(intent); break;
 			case R.id.screenButton3:
 				startSongs(clickScreen);
 				if(Function.isNetworkConnected(this)){
@@ -83,11 +75,6 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 				Function.info(ScreenActivity.this, ScreenActivity.this); break;
         }
 	}
-
-	private void startActivityFun(Intent intent, String p1) {
-		Function.saveFromText(this, "intent", p1);
-		startActivity(intent);
-	}
 	@SuppressLint("SuspiciousIndentation")
 	@Override
     protected void onCreate(Bundle savedInstanceState)
@@ -97,15 +84,6 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		if(Function.getBoolean(this, "dark")) Function.setThemeDark(this, R.layout.screen);
 		else Function.setThemeLight(this, R.layout.screen);
 
-		//Function.checkPermission(ScreenActivity.this, ScreenActivity.this);
-
-		if (Function.maxRam(ScreenActivity.this)>=1) {
-			if (Function.getValue(ScreenActivity.this, "numImage").isEmpty()) {
-				String numImage = Function.numIllustrations(this);
-				Function.saveFromText(ScreenActivity.this, "numImage", numImage);
-			}
-		}
-
 		click = MediaPlayer.create(ScreenActivity.this, R.raw.click);
 		clickScreen = MediaPlayer.create(ScreenActivity.this, R.raw.click_screen);
 
@@ -113,9 +91,6 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		
 		intent = new Intent(ScreenActivity.this, ASLActivity.class);
 
-		Button btn_game = findViewById(R.id.screenButton1);
-		btn_game.setOnClickListener(this);
-		btn_game.setBackgroundResource(R.drawable.button_screen);
 		Button btn_search = findViewById(R.id.screenButton2);
 		btn_search.setOnClickListener(this);
 		btn_search.setBackgroundResource(R.drawable.button_screen);

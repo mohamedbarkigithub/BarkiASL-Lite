@@ -125,4 +125,5 @@
 	<string name="btn_info">عرض الاستعلامات</string>
 	<string name="update_app">لتحديث التطبيق :</string>
     <string name="start_update">تحديث</string>
+	<string name="get_app">للحصول على النسخة الكاملة :</string>
 </resources>

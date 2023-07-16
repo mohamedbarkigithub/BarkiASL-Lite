@@ -221,8 +221,10 @@ public class Function extends Activity
 		String v40 = "<font face=\"arial\" color=\"blue\">mohamedbarkimaths@gmail.com</font>";
 		String v33 = getAppContext.getString(R.string.update_app);
 		String v44 = "<a href=\"https://play.google.com/store/apps/details?id="+getAppContext.getPackageName()+"\">"+"Google Play</a>";
+		String v333 = getAppContext.getString(R.string.get_app);
+		String v444 = "<a href=\"https://play.google.com/store/apps/details?id="+getAppContext.getPackageName().replaceAll(".lite", "")+"\">"+"Google Play</a>";
 		String v7 = "(Copyright 2023 M. Barki)";
-		String value1 = "<html><p>"+v3+"</p><p>"+v4+"</p><p>"+v30+"</p><p>"+v40+"</p><p>"+v33+"</p><p>"+v44+"</p><p>"+v7+"</p></html>";
+		String value1 = "<html><p>"+v3+"</p><p>"+v4+"</p><p>"+v30+"</p><p>"+v40+"</p><p>"+v33+"</p><p>"+v44+"</p><p>"+v333+"</p><p>"+v444+"</p><p>"+v7+"</p></html>";
 		((TextView) dialog.findViewById(R.id.dialog_info)).setText(Html.fromHtml(value1));
 		((TextView) dialog.findViewById(R.id.dialog_info)).setMovementMethod(LinkMovementMethod.getInstance());
 		PackageManager manager = getAppContext.getPackageManager();
@@ -241,33 +243,12 @@ public class Function extends Activity
 			title = getApplicationName(getAppContext)+/*" (Pro) "+"["+String.valueOf(VersionCode)+"] "+*/" {v"+VersionName+"}";
 		}
 		((TextView) dialog.findViewById(R.id.dialog_infoo)).setText(Html.fromHtml(title));
-		String numImage;
-		if(Function.getValue(getAppContext, "numImage").isEmpty()){
-			Function.saveFromText(getAppContext, "numImage", numIllustrations(getAppContext));
-		}
-		numImage = Function.getValue(getAppContext, "numImage");
 		String v1 =
 			"</p><p>"+
 			getAppContext.getString(R.string.title_about)
 			+"</p><p>"+
 			getAppContext.getString(R.string.text_about)
 			+"</p>";
-		if (Function.maxRam(myActivity)>=1) {
-			v1 = v1+
-				"<p>"+
-				getAppContext.getString(R.string.contient)+
-				" "+ resList.length +" "+
-				getAppContext.getString(R.string.sign)
-				+"</p><p>"+
-				getAppContext.getString(R.string.contient)+
-				" "+numVideo()+" "+
-				getAppContext.getString(R.string.video)
-				+"</p><p>"+
-				getAppContext.getString(R.string.contient)+
-				" "+numImage+" "+
-				getAppContext.getString(R.string.image)
-				+"</p>";
-		}
 		TextView tv = new TextView(getAppContext);
 		tv.setGravity(Gravity.START);
 		tv.setTextIsSelectable(true);
@@ -362,69 +343,6 @@ public class Function extends Activity
 			Function.saveFromText(getAppContext, "bolref", String.valueOf(!bol));
 		});
 		dialog.show();
-	}
-	private static String numVideo() {
-		int nbr = 0;
-		for(int j=0; j<resList.length; j++){
-			if(!resList[j][1].equals("url")){
-				nbr++;
-			}
-		}
-		return String.valueOf(nbr);
-	}
-	public static String numIllustrations(Context getAppContext) {
-		AssetManager assetManager = getAppContext.getAssets();
-		InputStream inputStream = null;
-		int nbr = 0;
-		for(int j=1; j<resList.length; j++){
-			try {
-				inputStream = assetManager.open(serchFolder(resList[j][0]) + "/" + resList[j][0] + "s" + ".br");
-				if (null != inputStream) {
-					nbr++;
-				}
-			} catch (IOException ignored) {}
-		}
-		if(null != inputStream ) {
-			try {
-				inputStream.close();
-			} catch (IOException ignored) {}
-		}
-		return String.valueOf(nbr);
-	}
-	public static Long maxRam(Activity myActivity){
-		ActivityManager activityManager = (ActivityManager)myActivity. getSystemService(Context.ACTIVITY_SERVICE);
-		ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
-		activityManager.getMemoryInfo(mi);
-		return Function.formatSize(mi.totalMem / 1048576L);
-	}
-	private static Long formatSize(Long size) {
-        if (size >= 1024) {
-            size = size/1024;
-            if (size >= 1024) {
-                size = size/1024;
-            }
-        }
-        StringBuilder resultBuffer = new StringBuilder(Long.toString(size));
-        int commaOffset = resultBuffer.length() - 3;
-        while (commaOffset > 0) {
-            resultBuffer.insert(commaOffset, ',');
-            commaOffset -= 3;
-        }
-        return Long.parseLong(resultBuffer.toString());
-    }
-	public static Drawable getDrawableFromFile(Context getAppContext, String filename) {
-		AssetManager assetManager = getAppContext.getAssets();
-		Drawable d;
-		InputStream in;
-		try {
-			in = assetManager.open(serchFolder(filename)+"/"+filename+".br");
-			d = Drawable.createFromStream(in, null);
-			in.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-			d = null;
-		}
-		return d;
 	}
 	public static String serchFolder(String filename)
 	{

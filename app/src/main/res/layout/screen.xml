@@ -80,21 +80,6 @@
 
 	<Button
 		android:layout_below="@id/screenButton2"
-		android:id="@+id/screenButton1"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_centerInParent="true"
-		android:layout_marginTop="10.0dip"
-		android:layout_marginBottom="10.0dip"
-		android:background="@drawable/button_screen"
-		android:minHeight="48dp"
-		android:text="@string/start_game"
-		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:textColor="@color/colorText"
-		tools:ignore="TextContrastCheck" />
-
-	<Button
-		android:layout_below="@id/screenButton1"
 		android:id="@+id/screenButton3"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"

@@ -126,4 +126,5 @@
 	<string name="btn_info">Afficher les requêtes</string>
 	<string name="update_app">Pour mettre à jour l\'application :</string>
     <string name="start_update">Mettre à jour</string>
+	<string name="get_app">Pour la version complète :</string>
 </resources>

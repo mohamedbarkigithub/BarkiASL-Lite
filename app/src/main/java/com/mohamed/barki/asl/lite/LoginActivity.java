@@ -55,13 +55,7 @@ public class LoginActivity extends AppCompatActivity
 	}
 	private void initialisation() {
 
-		//Glide.with(this).asGif().load(R.raw.gear_duo).into((ImageView) findViewById(R.id.webView));
-
-		Glide.with(this)
-				.load("https://github.com/mohamedbarkigithub/BarkiASL/raw/master/app/src/main/assets/01Couleurs/a0.br")
-				//.placeholder(resImage)
-				//.error(resImage)
-				.into((ImageView) findViewById(R.id.webView));
+		Glide.with(this).asGif().load(R.raw.gear_duo).into((ImageView) findViewById(R.id.webView));
 
 		if(getPackageName().compareTo(str1+str2+str3+str4) != 0){
 			Function.showToastMessage(this, getString(R.string.worng_package));
