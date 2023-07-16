@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BarkiASL Lite</string>
+    <string name="ar_lan">"آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻء١٢٣٤٥٦٧٨٩٠ "</string>
+    <string name="ar_lanf">"abcdefghijklmnopqrstuvwxyzàäâáæèéêùûüîïíìôöóòœ 0123456789 "</string>
+    <string name="ar_lane">"abcdefghijklmnopqrstuvwxyz 0123456789 "</string>
+    <string name="email_lang">"abcdefghijklmnopqrstuvwxyz @"</string>
+    <string name="num_lang">0123456789</string>
+    <string name="ar_lang">آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻءًٌٍَُِّْ، abcdefghijklmnopqrstuvwxyzàäâáæèéêùûüîïíìôöóòœ, -12</string>
+	<string name="drawer_close">غلق</string>
+    <string name="drawer_open">فتح</string>
+	<string name="search">أدخل عبارة للبحث</string>
+	
+	<string name="page_about">صفحة المطور على فيسبوك:</string>
+	<string name="email_about">البريد الإلكتروني للمطور:</string>
+	<string name="site_about">لتحديث التطبيق:</string>
+    <string name="copy_text_to_clip">تم نسخ النص بنجاح!!!</string>
+    <string name="saved_to_folder">تم الحفظ في مجلد</string>
+	<string name="oops_screenshot_file">عذرا!!! حدث خطأ أثناء حفظ ملفك</string>
+	<string name="oops_screenshot">عذرا!!! هاتفك لا يدعم هذه الخاصية</string>
+    <string name="validate_empty">رجاءً، يرجى إدخال نص!!!</string>
+    <string name="validate_more">عبارة طويلة جدًا!!!!!!</string>
+    <string name="validate_more_more">هناك أكثر من 10 أحرف!!!</string>
+    <string name="error">خطأ!!!</string>
+	<string name="title_about">هذا التطبيق يساعد على:</string>
+    <string name="text_about">البحث في قاموس لغة الإشارات الجزائرية</string>
+	<string name="not_connected_to_internet">لا يوجد أنترنت!!!</string>
+	<string name="not_connected_to_a_network">لا يوجد إتصال بالشبكة!!!</string>
+	<string name="welcom">مرحبا</string>
+	<string name="try_searching_in_arabic">جرب البحث باللغة العربية</string>
+	<string name="try_searching_in_french">جرب البحث باللغة الفرنسية</string>
+	<string name="time_20_s">الزمن أكبر من 20s !</string>
+	<string name="valid_time_video">أدخل زمن صحيح بين 1ثا و 20ثا</string>
+	<string name="valid_theme_video">أدخل موضوع فيديو صحيح</string>
+	<string name="video_is_over">إنتهى عرض الفيديو…</string>
+	<string name="video_started">بدأ عرض الفيديو…</string>
+	<string name="video_is_playing">بدأ تشغيل الفيديو…</string>
+	<string name="video_paused">توقف تشغيل الفيديو…</string>
+	<string name="time_of_showing_a_photo">زمن عرض الصورة</string>
+	<string name="video_show">عرض الفيديو</string>
+	<string name="enter_a_search_term">أدخل عبارة بحث</string>
+	<string name="slelected_video_is_being_downloaded">بدأ تحميل الفيديو الذي اخترته</string>
+	<string name="downloading_video">تحميل الفيديو</string>
+	<string name="no_video_fond">لم يتم إيجاد الفيديو!!!</string>
+	<string name="contient">يحتوي على</string>
+	<string name="sign">إشارة.</string>
+	<string name="video">فيديو.</string>
+	<string name="image">رسم توضيحي.</string>
+	<string name="title_ref">المصادر والمراجع :</string>
+	<string name="text_ref_kamos">قاموس لغة الإشارات الجزائرية طبعة 2017 (نسخة إلكترونية)</string>
+	<string name="text_ref_kamos_video">قاموس لغة الإشارات الجزائرية طبعة 2017 (فيديوهات)</string>
+	
+	<string name="no_connection">لا يوجد اتصال بالأنترنت</string>
+	<string name="h1">عذرًا!</string>
+	<string name="h2">اتصال بطيء أو لايوجد اتصال بالإنترنت 😿</string>
+	<string name="h4">يرجى التحقق من شبكة WiFi أو الإنترنت عبر الهاتف المحمول!</string>
+
+	<string name="save_video">تحميل هذا الفيديو</string>
+	<string name="save_this_video">هل تريد تحميل هذا الفيديو؟</string>
+	<string name="save_video_offline">بعد تحميل الفيديو على جهازك ستتمكن من تشغيله لاحقا بدون أنترنت</string>
+
+	<string name="worng_package">اسم الحزمة خاطئ !!!</string>
+    <string name="worng_name">اسم التطبيق خاطئ !!!</string>
+	<string name="worng_time">يجب تحديث التطبيق !!!</string>
+	<string name="re_exit">اضغط مرة أخرى للخروج من التطبيق</string>
+
+	<string name="start_game">لعب</string>
+	<string name="enter_a_repons_term">أدخل جواب محتمل</string>
+	<string name="learn">تعلم</string>
+	<string name="scor">رصيدك</string>
+	<string name="show_help">الحصول على مساعدة مع خصم 5 نقاط ^^</string>
+	<string name="show_repo">التحقق من الإجابة ^^</string>
+	<string name="show_skip">تخطي الاختبار ^^</string>
+	<string name="more_error">محاولات كثيرة خاطئة !!!</string>
+	<string name="ask_if_you_want_learn">هل ترغب في الذهاب إلى صفحة التعلم قبل بدأ اللعب من جديد؟؟؟</string>
+	<string name="congrulation_0">تهانينا !!! لقد أجبت على</string>
+	<string name="congrulation_1">اختبار من دون أي خطأ!!! لقد أضفنا لك</string>
+	<string name="congrulation_2">اختبارات من دون أي خطأ!!! لقد أضفنا لك</string>
+	<string name="congrulation_3">نقط</string>
+	<string name="congrulation_4">نقاط</string>
+	<string name="congrulation_5">نقطة</string>
+	<string name="back_to_home">إضغط مرة أخرى للرجوع إلى الصفحة الرئيسية</string>
+	<string name="next">التالي</string>
+	<string name="dont_clear_data">لا يمكن حذف بيانات هذا التطبيق</string>
+
+	<string name="save_app">تحديث التطبيق</string>
+	<string name="save_this_app">هل تريد تحديث هذا التطبيق؟</string>
+	<string name="save_app_offline">يساعد تحديث التطبيق على تحسين بعض المزايا وإضافة بعض الملفات والخصائص</string>
+
+	<string name="update_this_app">يجب تحديث هذا التطبيق</string>
+	<string name="app_crashed">لقد توقف التطبيق عن العمل!!!</string>
+	<string name="update_app_offline">لقد توقف التطبيق عن العمل، لذلك يجب تحديثه لتصحيح الأخطاء</string>
+	<string name="support_send_succes">تم إرسال التقرير بنجاح!!!</string>
+	<string name="support_send_failde">تعذر إرسال التقرير!!!</string>
+	<string name="remove_crash">حذف تقرير</string>
+	<string name="remove_this_crash">هل تريد حقا حذف هذا التقرير!!!</string>
+	<string name="crash_remove_succes">تم حذف التقرير بنجاح!!!</string>
+	<string name="crash_remove_failde">تعذر حذف التقرير!!!</string>
+	<string name="list_crash">قائمة تقارير الأخطاء</string>
+
+	<string name="dark_mode">الوضع الليلي</string>
+	<string name="notification">الإشعارات</string>
+	<string name="info">معلومات</string>
+	<string name="song">الأصوات</string>
+	<string name="spinner">عرض الإقتراحات</string>
+	<string name="scrollOfImage">عارض الصور والفيديوهات الإشارية</string>
+	<string name="minus">تصغير</string>
+	<string name="left">الإشارة السابقة</string>
+	<string name="right">الإشارة اللاحقة</string>
+	<string name="plus">تكبير</string>
+	<string name="smile">رسم توضيحي</string>
+	<string name="smile_gone">إخفاء وعرض الرسم التوضيحي</string>
+	<string name="smile_gone_invisible">مخفي</string>
+	<string name="video_or_reload">فيديو إشاري أو تحديث اللعبة</string>
+	<string name="close_dialog">غلق الرسالة</string>
+	<string name="ref">المصادر والمراجع</string>
+	<string name="help">مساعدة</string>
+	<string name="yes">نعم</string>
+	<string name="image_view">صورة إشارية</string>
+	<string name="video_view">فيديو إشاري</string>
+	<string name="spinner_img">عرض الإشارات</string>
+	<string name="video_show_btn">تشغيل الفيديو</string>
+	<string name="search_btn">البحث</string>
+	<string name="info_dialog">عرض المعلومات</string>
+	<string name="btn_info">عرض الاستعلامات</string>
+	<string name="update_app">لتحديث التطبيق :</string>
+    <string name="start_update">تحديث</string>
+</resources>

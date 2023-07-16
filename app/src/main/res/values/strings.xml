@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">BarkiASL Lite</string>
+	<string name="pkgadmin" translatable="false">com.mohamed.barki.admin</string>
+    <string name="ar_lan">"آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻء١٢٣٤٥٦٧٨٩٠ "</string>
+    <string name="ar_lanf">"abcdefghijklmnopqrstuvwxyzàäâáæèéêùûüîïíìôöóòœ 0123456789 "</string>
+    <string name="ar_lane">"abcdefghijklmnopqrstuvwxyz 0123456789 "</string>
+    <string name="email_lang">"abcdefghijklmnopqrstuvwxyz @"</string>
+    <string name="num_lang">0123456789</string>
+    <string name="ar_lang">آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻء، abc\'defghijklmnopq()/؟?rstuvwxyzàäâáæèéêùûüîïíìôöóòœ, -123</string>
+	<string name="drawer_close">Close</string>
+    <string name="drawer_open">Open</string>
+	<string name="search">Enter a search term</string>
+	
+	<string name="page_about">Developer Facebook Page:</string>
+	<string name="email_about">Developer Email:</string>
+	<string name="site_about">To update the application:</string>
+    <string name="copy_text_to_clip">Text copied successfully!!!</string>
+    <string name="saved_to_folder">Saved to folder</string>
+    <string name="oops_screenshot_file">Oops!!  An error occurred while saving your file</string>
+	<string name="oops_screenshot">Oops!!  Your phone does not support this feature</string>
+	<string name="validate_empty">Please enter a letter or symbol!!!</string>
+    <string name="validate_more">Very long sentence!!!!!!</string>
+    <string name="validate_more_more">There are more than 10 letter!!!</string>
+    <string name="error">Error!!!</string>
+	<string name="title_about">This application helps to:</string>
+    <string name="text_about">Search in the Algerian Sign Language Dictionary</string>
+	<string name="not_connected_to_internet">Not connected to internet!!!</string>
+	<string name="not_connected_to_a_network">Not connected to a network!!!</string>
+	<string name="welcom">Welcom</string>
+	<string name="try_searching_in_arabic">Try searching in Arabic</string>
+	<string name="try_searching_in_french">Try searching in French</string>
+	<string name="time_20_s">Time geq than 20s !</string>
+	<string name="valid_time_video">Set a valid time between 1s and 20s</string>
+	<string name="valid_theme_video">Set a valid video theme</string>
+	<string name="video_is_over">The video is over!</string>
+	<string name="video_started">The video started…</string>
+	<string name="video_is_playing">The video is playing…</string>
+	<string name="video_paused">Video paused…</string>
+	<string name="time_of_showing_a_photo">Time of showing a photo</string>
+	<string name="video_show">Video Show</string>
+	<string name="enter_a_search_term">Enter a search term</string>
+	<string name="slelected_video_is_being_downloaded">Selected Video is being downloaded</string>
+	<string name="downloading_video">Downloading Video</string>
+	<string name="no_video_fond">The video was not found!!!</string>
+	<string name="contient">It contains :</string>
+	<string name="sign">signs.</string>
+	<string name="video">videos.</string>
+	<string name="image">diagrams.</string>
+	<string name="title_ref">Sources and references :</string>
+	<string name="text_ref_kamos">Algerian Sign Language Dictionary Edition 2017 (pdf)</string>
+	<string name="text_ref_kamos_video">Algerian Sign Language Dictionary Edition 2017 (video)</string>
+	<string name="numImage" tools:ignore="MissingTranslation">1008</string>
+	
+	<string name="no_connection">No Connection</string>
+	<string name="h1">Whoops!</string>
+	<string name="h2">Slow or No internet Connection 😿</string>
+	<string name="h4">Please Check your WiFi or Mobile Internet!</string>
+
+	<string name="save_video">Download this video</string>
+	<string name="save_this_video">Do you want to download this video?</string>
+	<string name="save_video_offline">After downloading the video to your device, you will be able to play it later without the Internet</string>
+
+	<string name="worng_package">The package name is wrong !!!</string>
+    <string name="worng_name">The app name is wrong !!!</string>
+	<string name="worng_time">The application must be updated !!!</string>
+	<string name="re_exit">Press again to exit the application</string>
+	<string name="back_to_home">Click again to go back to the main page</string>
+	<string name="start_game">Game</string>
+	<string name="enter_a_repons_term">Enter a possible answer</string>
+	<string name="learn">Learn</string>
+	<string name="scor">your scor</string>
+	<string name="show_help">Get help with 5 points discount ^^</string>
+	<string name="show_repo">Check the answer ^^</string>
+	<string name="show_skip">Skip the test ^^</string>
+	<string name="more_error">Too many wrong attempts!!!</string>
+	<string name="ask_if_you_want_learn">Do you want to go to the learning page before you start playing again???</string>
+	<string name="congrulation_0">Congratulations!!!  You have answered</string>
+	<string name="congrulation_1">Test without any error!!!  We have added for you</string>
+	<string name="congrulation_2">Tests without any error!!!  We have added for you</string>
+	<string name="congrulation_3">points</string>
+	<string name="congrulation_4">points</string>
+	<string name="congrulation_5">point</string>
+	<string name="next">Next</string>
+	<string name="dont_clear_data">The data of this application cannot be deleted</string>
+
+	<string name="save_app">Update the application</string>
+	<string name="save_this_app">Do you want to update this app?</string>
+	<string name="save_app_offline">Updating the application helps to improve some features and add some files and features</string>
+
+
+	<string name="update_this_app">This application must be updated</string>
+	<string name="app_crashed">The app has stopped working!!!</string>
+	<string name="update_app_offline">The app has stopped working, so it needs to be updated to fix the bug</string>
+	<string name="support_send_succes">Report sent successfully!!!</string>
+	<string name="support_send_failde">The report could not be sent!!!</string>
+	<string name="remove_crash">Delete a report</string>
+	<string name="remove_this_crash">Do you really want to delete this report!!!</string>
+	<string name="crash_remove_succes">Report deleted successfully!!!</string>
+	<string name="crash_remove_failde">The report could not be deleted!!!</string>
+	<string name="list_crash">List of bug reports</string>
+
+	<string name="dark_mode">night mode</string>
+	<string name="notification">Notices</string>
+	<string name="info">Information</string>
+	<string name="song">Sounds</string>
+	<string name="spinner">View suggestions</string>
+	<string name="scrollOfImage">Image and video viewer</string>
+	<string name="minus">Zoom out</string>
+	<string name="left">Previous signe</string>
+	<string name="right">Next signe</string>
+	<string name="plus">Zoom in</string>
+	<string name="smile">Diagram</string>
+	<string name="smile_gone">Hide and display the illustration</string>
+	<string name="smile_gone_invisible">Hidden</string>
+	<string name="video_or_reload">Indication video or game update</string>
+	<string name="close_dialog">Close the dialog</string>
+	<string name="ref">Sources and references</string>
+	<string name="help">help</string>
+	<string name="yes">Yes</string>
+	<string name="image_view">Indicative image</string>
+	<string name="video_view">Indication video</string>
+	<string name="spinner_img">Show signes</string>
+	<string name="video_show_btn">Video play</string>
+	<string name="search_btn">Search</string>
+    <string name="info_dialog">Show information</string>
+    <string name="btn_info">Show queries</string>
+    <string name="update_app">To update the application:</string>
+	<string name="start_update">Update</string>
+	<string name="success_update" translatable="false">Success update</string>
+	<string name="failure_update" translatable="false">Failure update</string>
+</resources>

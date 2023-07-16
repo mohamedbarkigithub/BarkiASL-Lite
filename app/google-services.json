@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "167551375224",
+    "firebase_url": "https://barkiasl-lite-default-rtdb.firebaseio.com",
+    "project_id": "barkiasl-lite",
+    "storage_bucket": "barkiasl-lite.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167551375224:android:1830712a60ec5e3b421a8d",
+        "android_client_info": {
+          "package_name": "com.mohamed.barki.asl.lite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "167551375224-5u58b003t9t14cjb29tgpbdjnok6s7vk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChnDoQghs_Vh2sKeCMDIbv4KfhKriw8qw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "167551375224-5u58b003t9t14cjb29tgpbdjnok6s7vk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

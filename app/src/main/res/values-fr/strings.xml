@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BarkiASL Lite</string>
+    <string name="ar_lan">"آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻء١٢٣٤٥٦٧٨٩٠ "</string>
+    <string name="ar_lanf">"abcdefghijklmnopqrstuvwxyzàäâáæèéêùûüîïíìôöóòœ 0123456789 "</string>
+    <string name="ar_lane">"abcdefghijklmnopqrstuvwxyz 0123456789 "</string>
+    <string name="email_lang">"abcdefghijklmnopqrstuvwxyz @"</string>
+    <string name="num_lang">0123456789</string>
+    <string name="ar_lang">آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻءًٌٍَُِّْ، abcdefghijklmnopqrstuvwxyzàäâáæèéêùûüîïíìôöóòœ, -12</string>
+	<string name="drawer_close">Fermé</string>
+    <string name="drawer_open">Ouvrir</string>
+	<string name="search">Entrez un terme de recherche</string>
+	
+	<string name="page_about">Page Facebook du développeur :</string>
+    <string name="email_about">Email du développeur :</string>
+	<string name="site_about">Pour mettre à jour l\'application :</string>
+    <string name="copy_text_to_clip">Texte copié avec succès !!!</string>
+	<string name="saved_to_folder">Enregistré dans le dossier</string>
+	<string name="oops_screenshot_file">Pardon!!  Une erreur s\'est produite lors de l\'enregistrement de votre fichier</string>
+	<string name="oops_screenshot">Pardon!!  Votre téléphone ne prend pas en charge cette fonctionnalité</string>
+    <string name="validate_empty">Veuillez entrer une lettre ou un symbole !!!</string>
+    <string name="validate_more">Il y a plus d\'une lettre !!!</string>
+    <string name="validate_more_more">Il y a plus de 10 lettres !!!</string>
+    <string name="error">Erreur!!!</string>
+	
+	<string name="title_about">Cette application permet de :</string>
+    <string name="text_about">Chercher dans le dictionnaire de la langue des signes algérienne</string>
+    <string name="not_connected_to_internet">Non connecté à Internet!!!</string>
+	<string name="not_connected_to_a_network">Non connecté à un réseau!!!</string>
+	<string name="welcom">Bienvenue</string>
+	<string name="try_searching_in_arabic">Essayez de rechercher en Arabe</string>
+	<string name="try_searching_in_french">Essayez de chercher en Français</string>
+	<string name="time_20_s">Temps supérieur à 20s !</string>
+	<string name="valid_time_video">Définir un temps valide entre 1s et 20s</string>
+	<string name="valid_theme_video">Définir un thème vidéo valide</string>
+	<string name="video_is_over">La vidéo est terminée!</string>
+	<string name="video_started">La vidéo a commencé…</string>
+	<string name="video_is_playing">La vidéo est en cours de lecture…</string>
+	<string name="video_paused">Vidéo en pause…</string>
+	<string name="time_of_showing_a_photo">Heure de montrer une photo</string>
+	<string name="video_show">Spectacle vidéo</string>
+	<string name="enter_a_search_term">Entrez un terme de recherche</string>
+	<string name="slelected_video_is_being_downloaded">La vidéo sélectionnée est en cours de téléchargement</string>
+	<string name="downloading_video">Téléchargement de la vidéo</string>
+	<string name="no_video_fond">La vidéo n\'a pas été trouvée!!!</string>
+	<string name="contient">Contient :</string>
+	<string name="sign">signes.</string>
+	<string name="video">vidéos.</string>
+	<string name="image">illustrations.</string>
+	<string name="title_ref">Sources et références :</string>
+	<string name="text_ref_kamos">Dictionnaire de la langue des signes algérienne Edition 2017 (pdf)</string>
+	<string name="text_ref_kamos_video">Dictionnaire de la langue des signes algérienne Edition 2017 (vidéo)</string>
+	
+	<string name="no_connection">Pas de connection</string>
+	<string name="h1">Oups!</string>
+	<string name="h2">Connexion Internet lente ou pas de connexion Internet 😿</string>
+	<string name="h4">Veuillez vérifier votre WiFi ou votre Internet mobile !</string>
+
+	<string name="save_video">Télécharger cette vidéo</string>
+	<string name="save_this_video">Voulez-vous télécharger cette vidéo?</string>
+	<string name="save_video_offline">Après avoir téléchargé la vidéo sur votre appareil, vous pourrez la lire plus tard sans Internet</string>
+
+	<string name="worng_package">Le nom du paquet est faux !!!</string>
+    <string name="worng_name">Le nom de l\'application est faux !!!</string>
+    <string name="worng_time">L\'application doit être mise à jour !!!</string>
+	<string name="re_exit">Appuyez à nouveau pour quitter l\'application</string>
+
+	<string name="start_game">Jouer</string>
+	<string name="enter_a_repons_term">Entrez une réponse possible</string>
+	<string name="learn">Apprendre</string>
+	<string name="scor">votre solde</string>
+	<string name="show_help">Obtenez de l\'aide avec 5 points de réduction ^^</string>
+	<string name="show_repo">Vérifiez la réponse ^^</string>
+	<string name="show_skip">Sauter le test ^^</string>
+	<string name="more_error">Trop de fausses tentatives !!!</string>
+	<string name="ask_if_you_want_learn">Voulez-vous accéder à la page d\'apprentissage avant de recommencer à jouer ???</string>
+	<string name="congrulation_0">Félicitations!!!  Tu as répondu</string>
+	<string name="congrulation_1">Testez sans aucune erreur !!!  Nous avons ajouté pour vous</string>
+	<string name="congrulation_2">Tests sans aucune erreur!!!  Nous avons ajouté pour vous</string>
+	<string name="congrulation_3">points</string>
+	<string name="congrulation_4">points</string>
+	<string name="congrulation_5">point</string>
+	<string name="back_to_home">Cliquez à nouveau pour revenir à la page principale</string>
+	<string name="next">Suivant</string>
+	<string name="dont_clear_data">Les données de cette application ne peuvent pas être supprimées</string>
+
+	<string name="save_app">Mettre à jour l\'application</string>
+	<string name="save_this_app">Voulez-vous mettre à jour cette application?</string>
+	<string name="save_app_offline">La mise à jour de l\'application permet d\'améliorer certaines fonctionnalités et d\'ajouter des fichiers et des fonctionnalités</string>
+
+	<string name="update_this_app">Cette application doit être mise à jour</string>
+	<string name="app_crashed">L\'application a cessé de fonctionner !!!</string>
+	<string name="update_app_offline">L\'application a cessé de fonctionner, elle doit donc être mise à jour pour corriger le bogue</string>
+	<string name="support_send_succes">Rapport envoyé avec succès !!!</string>
+	<string name="support_send_failde">Le rapport n\'a pas pu être envoyé !!!</string>
+	<string name="remove_crash">Supprimer un rapport</string>
+	<string name="remove_this_crash">Voulez-vous vraiment supprimer ce rapport !!!</string>
+	<string name="crash_remove_succes">Rapport supprimé avec succès !!!</string>
+	<string name="crash_remove_failde">Le rapport n\'a pas pu être supprimé !!!</string>
+	<string name="list_crash">Liste des rapports de bogues</string>
+
+	<string name="dark_mode">Mode nuit</string>
+	<string name="notification">Notification</string>
+	<string name="info">Information</string>
+	<string name="song">Sounds</string>
+	<string name="spinner">Voir les suggestions</string>
+	<string name="scrollOfImage">Visionneuse d\'images et de vidéos</string>
+	<string name="minus">Dézoomer</string>
+	<string name="left">Précédente signe</string>
+	<string name="right">Prochaine signe</string>
+	<string name="plus">Agrandir</string>
+	<string name="smile">Illustration</string>
+	<string name="smile_gone">Masquer et afficher l\'illustration</string>
+	<string name="smile_gone_invisible">Caché</string>
+	<string name="video_or_reload">Indication vidéo ou mise à jour du jeu</string>
+	<string name="close_dialog">Fermer le dialog</string>
+	<string name="ref">Sources et références</string>
+	<string name="help">Aider</string>
+	<string name="yes">Oui</string>
+	<string name="image_view">Image indicative</string>
+	<string name="video_view">Vidéo d\'indication</string>
+	<string name="spinner_img">Afficher les signes</string>
+	<string name="video_show_btn">Lecture vidéo</string>
+	<string name="search_btn">Recherche</string>
+	<string name="info_dialog">Afficher les information</string>
+	<string name="btn_info">Afficher les requêtes</string>
+	<string name="update_app">Pour mettre à jour l\'application :</string>
+    <string name="start_update">Mettre à jour</string>
+</resources>

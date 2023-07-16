@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<net.colindodd.gradientlayout.GradientRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:gl="http://schemas.android.com/apk/res-auto"
+    gl:start_color="@color/primary"
+    gl:end_color="@color/black"
+    gl:orientation="TL_BR"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+        <ImageView
+            android:id="@+id/screeneButton1"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:layout_above="@id/webView"
+            android:src="@mipmap/icon"
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+        <ImageView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:color/transparent"
+            android:src="@raw/gear_duo"
+            tools:ignore="ContentDescription,ImageContrastCheck" />
+</net.colindodd.gradientlayout.GradientRelativeLayout>
