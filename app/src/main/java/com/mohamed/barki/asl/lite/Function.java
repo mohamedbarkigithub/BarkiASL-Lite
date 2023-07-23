@@ -3,7 +3,6 @@ package com.mohamed.barki.asl.lite;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.app.Dialog;
 import android.app.DownloadManager;
 import android.content.ClipData;
@@ -15,10 +14,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PermissionInfo;
-import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.Uri;
@@ -38,11 +35,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
-import com.mohamed.barki.asl.resactivity.ResActivity;
+import com.mohamed.barki.asl.lite.resactivity.ResActivity;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;

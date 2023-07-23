@@ -1,4 +1,4 @@
-package com.mohamed.barki.asl.resactivity;
+package com.mohamed.barki.asl.lite.resactivity;
 
 import android.app.Activity;
 

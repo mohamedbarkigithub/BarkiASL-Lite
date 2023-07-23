@@ -58,7 +58,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
-import com.mohamed.barki.asl.resactivity.ResActivity;
+import com.mohamed.barki.asl.lite.resactivity.ResActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
