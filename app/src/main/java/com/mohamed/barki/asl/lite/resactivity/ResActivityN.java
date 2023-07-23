@@ -22,7 +22,7 @@ public class ResActivityN extends Activity
 			{"n14", "12IaiuGvT-az2jovZntdrJ1mlz4xpiHa3", "rose", "زهرة"},
 			{"n15", "12TzVaQiyqGkE8gHwn9ISlCsFI7HTsu8P", "champ", "حقل"},
 			{"n16", "12X3kYAE-xBrYkA3TwqvHg21SA8VHp4Cf", "éclipse lunaire", "خسوف القمر"},
-			{"n17", "12ddYkg4e-LJwcYfZW5BgwEql_Py0IDv5", "sable", "رمل"},
+			{"n17", "12ddYkg4e-LJwcYfZW5BgwEql_Py0IDv5", "sable2", "رمل2"},
 			{"n18", "12kRMzFBu1rfRFEB-E6QnPf8diAwy7h0h", "montagne", "جبل"},
 			{"n19", "12qKr1LXXQx7WZxWqczo9AlY1G8tTOBxu", "île", "جزيرة"},
 			{"n20", "136FuMbv2qIINuPxHhFbLl1td1G55AMMq", "herbe", "حشيش، عشب"},

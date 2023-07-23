@@ -33,7 +33,7 @@ public class ResActivityY extends Activity
 			{"y25", "1AwwHigtNW-zjQkWVI2zRKOzC7K1fPp29", "chemise1", "قميص1"},
 			{"y26", "1B5sGlytovPBffoyWQIL6Ym157E9u5Crm", "gant1", "قفاز1"},
 			{"y27", "1B07Uuk2Hbmu-4Bkl5brpqg6dxUQhprTF", "boucle d'oreille", "قرطٌ"},
-			{"y28", "1B0UehWMsJRt4aW7Ua9kp8u5Zogq6TvfE", "argent", "فضة"},
+			{"y28", "1B0UehWMsJRt4aW7Ua9kp8u5Zogq6TvfE", "argent2", "فضة2"},
 			{"y29", "1AxYBFf3NGIBMKJoKmgEKBx8EQe2F-YLz", "turban", "عمامة"},
 			{"y30", "1BJgaUqgG0KjUm7oLNY9ITvChFqd5PGE8", "lunettes", "نظارات"},
 			{"y31", "1BMrh74TwP7cl-Ie9Jf5CDGLOqAjtqd3i", "tablier", "مئزر"},
