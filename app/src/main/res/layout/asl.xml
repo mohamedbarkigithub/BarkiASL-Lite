@@ -21,7 +21,8 @@
 		android:gravity="center"
 		android:orientation="horizontal"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		tools:ignore="DisableBaselineAlignment">
 
 		<RelativeLayout
 			android:layout_weight="1.0"
@@ -269,6 +270,7 @@
 
 								<ImageView
 									android:id="@+id/maindButtonView"
+									android:scaleType="fitXY"
 									android:layout_width="wrap_content"
 									android:layout_height="wrap_content"
 									android:contentDescription="@string/smile"/>
@@ -305,6 +307,7 @@
 									android:focusedByDefault="false"
 									android:touchscreenBlocksFocus="false"
 									android:screenReaderFocusable="false"
+									android:scaleType="fitXY"
 									tools:ignore="SpeakableTextPresentCheck,UnusedAttribute" />
 								<WebView
 									android:id="@+id/maindWebView"

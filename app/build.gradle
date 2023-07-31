@@ -4,14 +4,14 @@ plugins {
 }
 android {
     namespace 'com.mohamed.barki.asl.lite'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.mohamed.barki.asl.lite"
         minSdk 23
-        targetSdk 33
-        versionCode 23072312
-        versionName "2023.07.23.lite"
+        targetSdk 34
+        versionCode 23073100
+        versionName "2023.07.31.lite"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
