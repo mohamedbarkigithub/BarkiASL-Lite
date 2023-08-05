@@ -129,7 +129,7 @@ public class ResActivityJ extends Activity
 			{"j121", "url", "boisson", "مشروب"},
 			{"j122", "url", "moutarde", "خردل"},
 			{"j123", "url", "mayonnaise", "مايونيز"},
-			{"j124", "url", "restaurant", "مطعم"},
+			{"j124", "url", "restaurant1", "مطعم1"},
 			{"j125", "url", "menu", "قائمة"},
 			{"j126", "url", "plat", "طبق"},
 			{"j127", "url", "dessert", "تحلية"},

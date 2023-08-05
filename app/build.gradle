@@ -10,8 +10,8 @@ android {
         applicationId "com.mohamed.barki.asl.lite"
         minSdk 23
         targetSdk 34
-        versionCode 23073100
-        versionName "2023.07.31.lite"
+        versionCode 23080500
+        versionName "2023.08.05.lite"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

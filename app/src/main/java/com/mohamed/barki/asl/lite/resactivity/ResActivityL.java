@@ -20,7 +20,7 @@ public class ResActivityL extends Activity
 			{"l12", "11sqX1GNektrfpoygMIPi0cfHoz8UKBfa", "phare", "منارة"},
 			{"l13", "1mSCYtOmSfxpkNaY01Sk0Jq-BxvetgpLa", "fontaine", "نافورة"},
 			{"l14", "1xn47VNdeUcV22ZpIt5RZY1JLGnVl4pr-", "lieux", "مكان، أماكن"},
-			{"l15", "1a9yVigbtTNiJLZjCbSARFNa25-9KhYA5", "restaurant", "مطعم"},
+			{"l15", "1a9yVigbtTNiJLZjCbSARFNa25-9KhYA5", "restaurant2", "مطعم2"},
 			{"l16", "1-6xUUySeNhYWUERM0550Kgdb15KkvIbH", "cimetière", "مقبرة"},
 			{"l17", "1VAAFNn-x1K769YrQa4NQ-_zwrrbg_4EN", "cafétéria", "مقهى"},
 			{"l18", "1ZX2xxoe3aiICvfxKdA5l2Y8iTtVgcsEf", "plafond", "سقف"},
