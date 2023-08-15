@@ -212,7 +212,10 @@ public class Function extends Activity
 		final LinearLayout lnyAll = dialog.findViewById(R.id.dialog_lny);
 		final LinearLayout lnyAllBig = dialog.findViewById(R.id.dialog_lny_Big);
 		String v3 = getAppContext.getString(R.string.page_about);
-		String v4 = "<a href=\"fb://profile/3203834\">" + "Barki Mohamed"+"</a>"+"</p><p>"+"<a href=\"fb://profile/1049535328\">" +"محمد باركي"+"</a>";
+		String v4 = "<a href=\"fb://profile/3203834\">" + "Barki Mohamed"+"</a>"+
+				"</p><p>"+"<a href=\"fb://profile/1049535328\">" +"محمد باركي" + "</a>"+
+				"</p><p>"+"<a href=\"fb://profile/100063588016416\">" +"صفحة فضاء التربية والتعليم في الوسط المتخصص"+"</a>"+
+				"</p><p>"+"<a href=\"fb://group/309682893728684\">" +"مجموعة فضاء التربية والتعليم في الوسط المتخصص"+"</a>";
 		String v30 = getAppContext.getString(R.string.email_about);
 		String v40 = "<font face=\"arial\" color=\"blue\">mohamedbarkimaths@gmail.com</font>";
 		String v33 = getAppContext.getString(R.string.update_app);
