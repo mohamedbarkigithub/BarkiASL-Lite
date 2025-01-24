@@ -11,12 +11,15 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.http.SslError;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.text.Editable;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.style.TypefaceSpan;
 import android.view.Gravity;
 import android.view.InputDevice;
 import android.view.LayoutInflater;
@@ -40,7 +43,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -73,27 +75,33 @@ import java.util.Random;
 public class ASLActivity extends AppCompatActivity implements OnClickListener, OnLongClickListener{
 	final String[][] resList = ResActivity.resList();
 	private AutoCompleteTextView edt;
-	private boolean autoDecrement = false, autoIncrement = false, autoLeftcrement = false, autoRightcrement = false, bool, boolPause = true, boolShow = true, boolVideo;
-	private Dialog dialog;
-	private EditText edtTime;
+	private boolean autoDecrement = false, autoIncrement = false, autoLeftcrement = false, autoRightcrement = false, bool;
 	private Handler handler;
 	private final Handler repeatLeftRightHandler = new Handler(), repeatUpdateHandler = new Handler();
 	private ImageButton btnShow, btnImage, btnVideo, btnLeft, btnRight, dimenDeafNegatif, dimenDeafPositif;
 	private ImageView imageView, photoView;
-	private int fSize, position = 0, intShow, intBut, startPhoto, endPhoto, scor, scor10, randomOfTest, nbrFalse;
+	private int fSize, position = 0, scor, scor10, randomOfTest, nbrFalse;
 	private final int nbrLenght = resList.length;
-	private LinearLayout lnyBig, lnyBigText, lnyTextView, lnyTop, lnyBottom, lnyTextViewView, lnyEditText, lnyScor;
+	private LinearLayout lnyBig;
+    private LinearLayout lnyBigText;
+    private LinearLayout lnyTextView;
+    private LinearLayout lnyTop;
+    private LinearLayout lnyBottom;
+    private LinearLayout lnyTextViewView;
+    private LinearLayout lnyScor;
 	private LinearLayout.LayoutParams paramsM, paramsMS, paramsMW, paramsM0;
 	private MediaPlayer clear, timerepond, redo_undo, nonono, failText, succText, clicUp, clicDown, click, skip, tasfiq, refresh, aide, clickSpinner;
 	private Runnable r;
 	private Spinner s1;
-	private String[] nameArFr, nameDomaine, nameDomaineAr, nameDomaineFr;
+	private String[] nameArFr;
 	private String search, searchPhoto, intent = "2", scortxt;
 	private String[] nameArFrNoPal;
-	private TextView tv, tvv, tvW, tvvW, tvScor;
+	private TextView tv;
+    private TextView tvv;
+    private TextView tvScor;
 	private WebView webView;
-	private boolean boolSelect = true;
-	private boolean boolExit;
+	private boolean boolSelect = true, boolExit;
+	private Typeface faceAr, faceFr;
 	public ASLActivity() {}
 	@Override
 	public void onClick(View p1)
@@ -223,7 +231,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		Function.hideKeyboard(ASLActivity.this, edt);
 		int nbr = resList.length;
 		if(!Function.validate(ASLActivity.this, text, edt)){return;}
-		boolVideo = false;
 		if(intent.equals("2")) btnShow.setVisibility(View.GONE); else btnShow.setVisibility(ImageButton.VISIBLE);
 		if(type.equals("image")){
 			imageView = findViewById(R.id.maindImageView);
@@ -575,7 +582,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		lnyTextViewView = findViewById(R.id.maindLinearLayout33);
 		lnyTextViewView.setVisibility(View.INVISIBLE);
 		lnyTextViewView.setLayoutParams(paramsM0);
-		lnyEditText = findViewById(R.id.maindLinearLayoutEditText);
+        LinearLayout lnyEditText = findViewById(R.id.maindLinearLayoutEditText);
 		lnyEditText.setVisibility(View.VISIBLE);
 		lnyEditText.setLayoutParams(paramsMW);
 		lnyBig = findViewById(R.id.maindLinearLayout1);
@@ -590,18 +597,18 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		lnyBottom.setVisibility(View.INVISIBLE);
 		LinearLayout lnyText = findViewById(R.id.maindTextViewL1);
 		LinearLayout lnyText2 = findViewById(R.id.maindTextViewL2);
-		Typeface faceAr = Typeface.createFromAsset(getAssets(), "fonts/amiri.ttf");
-		Typeface faceFr = Typeface.createFromAsset(getAssets(), "fonts/Noteworthy.ttf");
+		faceAr = Typeface.createFromAsset(getAssets(), "fonts/amiri.ttf");
+		faceFr = Typeface.createFromAsset(getAssets(), "fonts/Noteworthy.ttf");
 		tv = findViewById(R.id.maindTextView1);
 		tv.setTypeface(faceAr);
 		lnyText.setEnabled(false);
 		tvv = findViewById(R.id.maindTextView2);
 		tvv.setTypeface(faceFr);
 		lnyText2.setEnabled(false);
-		tvW = findViewById(R.id.maindTextView11);
+        TextView tvW = findViewById(R.id.maindTextView11);
 		tvW.setTypeface(faceAr);
 		tvW.setEnabled(false);
-		tvvW = findViewById(R.id.maindTextView22);
+        TextView tvvW = findViewById(R.id.maindTextView22);
 		tvvW.setTypeface(faceFr);
 		tvvW.setEnabled(false);
 		lnyTextView.setOnClickListener(this);
@@ -614,9 +621,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		btnVideo.setOnClickListener(this);
 		btnImage.setEnabled(false);
 		btnVideo.setEnabled(true);
-		nameDomaine = ResActivity.nameDomaine;
-		nameDomaineAr = ResActivity.nameDomaineAr;
-		nameDomaineFr = ResActivity.nameDomaineFr;
 		addStringArray();
 		autoSpinnerAdapter();
 		autoCompleteAdapter(nameArFr, nameArFrNoPal);
@@ -680,10 +684,9 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			s1.requestFocus();
 			s1.performClick();
 		});
-		Typeface face = Typeface.createFromAsset(getAssets(), "fonts/casual.ttf");
 		if(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي"))
-			face = Typeface.createFromAsset(getAssets(), "fonts/naskh.ttf");
-		edt.setTypeface(face);
+			edt.setTypeface(faceAr);
+		else edt.setTypeface(faceFr);
 		if(intent.equals("1")){
 			gameFun();
 		}
@@ -1023,6 +1026,14 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				}
 				edt.setCompoundDrawablesWithIntrinsicBounds(0, 0, d, 0);
 				edt.setCompoundDrawableTintList(ColorStateList.valueOf(colorInt));
+				String[] words = edt.getText().toString().split("\\s+");
+				int start = 0;
+				for (String word : words) {
+					Typeface typeface = word.matches("\\p{InArabic}+") ? faceAr : faceFr;
+					int end = start + word.length();
+					setSpans(e, typeface, start, end);
+					start = end + 1;
+				}
 			}
 		};
 		edt.addTextChangedListener(textWatcher);
@@ -1051,6 +1062,11 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			edt.setText("");
 			return false;
 		});
+	}
+	private void setSpans(Editable e, Typeface typeface, int start, int end){
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+			e.setSpan(new TypefaceSpan(typeface), start, end, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+		}
 	}
 	/** @noinspection CallToPrintStackTrace*/
     @SuppressWarnings("rawtypes")
