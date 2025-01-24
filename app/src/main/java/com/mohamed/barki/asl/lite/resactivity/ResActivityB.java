@@ -117,17 +117,5 @@ public class ResActivityB extends Activity
 			{"b109", "url", "vexation", "إنزعاج"},
 			{"b110", "url", "tradition", "تقليدي"},
 			{"b111", "url", "bronzage", "تسفع"},
-			{"b112", "url", "LGBTQIA+", "مجتمع الميم"},
-			{"b113", "url", "gay", "ذكر مثلي الجنس"},
-			{"b114", "url", "lesbienne", "أنثى مثلية الجنس"},
-			{"b115", "url", "queer", "مثلية جنسية"},
-			{"b116", "url", "intersexe", "ثنائي الجنس"},
-			{"b117", "url", "pansexuel.le", "شمولية جنسية"},
-			{"b118", "url", "drag queen", "ممثل بلباس امرأة"},
-			{"b119", "url", "cisgenre", "متوافق جنسيا"},
-			{"b120", "url", "non-binaire", "لاثنائي"},
-			{"b121", "url", "marche des fiertés", "مسيرة فخر المثليين"},
-			{"b122", "url", "bisexuelle", "مزدوج الجنس"},
-			{"b123", "url", "transgenre", "متحول جنسيا"},
 	};
 }

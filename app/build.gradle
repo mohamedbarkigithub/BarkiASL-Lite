@@ -4,18 +4,15 @@ plugins {
 }
 android {
     namespace 'com.mohamed.barki.asl.lite'
-    compileSdk 34
-
+    compileSdk 35
     defaultConfig {
         applicationId "com.mohamed.barki.asl.lite"
         minSdk 23
-        targetSdk 34
-        versionCode 23082800
-        versionName "2023.08.28.lite"
-
+        targetSdk 35
+        versionCode 25012400
+        versionName "2025.01.24"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         debug {
             minifyEnabled false
@@ -33,8 +30,8 @@ android {
         viewBinding true
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     packagingOptions {
         resources {
@@ -43,6 +40,7 @@ android {
         jniLibs {
             keepDebugSymbols += ['*/armeabi/*.so', '*/armeabi-v7a/*.so', '*/x86/*.so']
             excludes += ['lib/armeabi/**']
+            pickFirsts += ['lib/*/*.so']
         }
     }
     lint {
@@ -52,32 +50,31 @@ android {
         disable 'ContentDescription'
     }
     allprojects {
-        tasks.withType(JavaCompile){
-            options.compilerArgs <<"-Xlint:deprecation"
+        tasks.withType(JavaCompile).tap {
+            configureEach {
+                options.compilerArgs << "-Xlint:deprecation"
+            }
         }
     }
 }
-
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation platform('com.google.firebase:firebase-bom:30.1.0')
+    implementation platform('com.google.firebase:firebase-bom:33.8.0')
     implementation 'com.google.api-client:google-api-client:2.2.0'
-    implementation 'com.google.firebase:firebase-database:20.2.2'
+    implementation 'com.google.firebase:firebase-database:21.0.0'
+    implementation 'com.google.zxing:core:3.5.1'
     implementation 'com.firebaseui:firebase-ui-database:8.0.2'
-    implementation 'net.colindodd:gradientlayout:1.2'
     implementation 'com.github.bumptech.glide:glide:4.15.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
     implementation 'com.github.bumptech.glide:okhttp3-integration:4.15.1'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'androidx.appcompat:appcompat-resources:1.6.1'
-    implementation 'androidx.mediarouter:mediarouter:1.4.0'
-    //noinspection GradleDependency
-    implementation 'androidx.navigation:navigation-ui:2.5.3'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.appcompat:appcompat-resources:1.7.0'
+    implementation 'androidx.mediarouter:mediarouter:1.7.0'
+    implementation 'androidx.navigation:navigation-ui:2.8.5'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 }

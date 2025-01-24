@@ -2,7 +2,6 @@ package com.mohamed.barki.asl.lite;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ManageSpaceActivity extends AppCompatActivity {

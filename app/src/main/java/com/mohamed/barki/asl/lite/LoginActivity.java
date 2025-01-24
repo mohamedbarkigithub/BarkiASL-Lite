@@ -3,13 +3,17 @@ package com.mohamed.barki.asl.lite;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+
+import java.util.Locale;
 
 @SuppressWarnings({"deprecation", "RedundantSuppression"})
 public class LoginActivity extends AppCompatActivity
@@ -40,11 +44,12 @@ public class LoginActivity extends AppCompatActivity
 		super.onSaveInstanceState(outState);
 	}
 	@Override
-	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+	protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
 		initialisation();
 	}
-	@Override
+	/** @noinspection CallToPrintStackTrace*/
+    @Override
 	protected void onDestroy() {
 		super.onDestroy();
 		try {
@@ -54,6 +59,12 @@ public class LoginActivity extends AppCompatActivity
 		}
 	}
 	private void initialisation() {
+		Typeface face = Typeface.createFromAsset(getAssets(), "fonts/BlackHistory.otf");
+		if(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي")){
+			face = Typeface.createFromAsset(getAssets(), "fonts/ArefRuqaa.ttf");
+		}
+		((TextView) findViewById(R.id.screeneText1)).setTypeface(face);
+		((TextView) findViewById(R.id.screeneText2)).setTypeface(face);
 
 		Glide.with(this).asGif().load(R.raw.gear_duo).into((ImageView) findViewById(R.id.webView));
 

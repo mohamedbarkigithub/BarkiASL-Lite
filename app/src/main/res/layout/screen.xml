@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<net.colindodd.gradientlayout.GradientRelativeLayout
+<RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:gl="http://schemas.android.com/apk/res-auto"
-	gl:start_color="@color/primary"
-	gl:end_color="@color/textPrimary"
-	gl:orientation="TL_BR"
+	android:background="@drawable/gradient_screen"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 	<LinearLayout
@@ -17,78 +14,154 @@
 		android:layout_marginLeft="20dip"
 		android:orientation="horizontal"
 		android:layout_width="match_parent"
-		android:layout_height="70.0dp">
-
+		android:layout_height="80.0dp">
 		<ImageButton
 			android:id="@+id/rign_button"
 			android:layout_weight="1.0"
 			android:layout_width="0.0dip"
 			android:layout_height="match_parent"
-			android:background="@null"
 			android:src="@drawable/ic_bell_ring"
+			android:background="@drawable/button_pressed"
 			android:contentDescription="@string/notification"
 			app:tint="@color/colorText"
-			tools:ignore="SpeakableTextPresentCheck" />
-
+			tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 		<ImageButton
 			android:id="@+id/song_button"
 			android:layout_weight="1.0"
 			android:layout_width="0.0dip"
 			android:layout_height="match_parent"
-			android:layout_marginLeft="10dip"
-			android:layout_marginRight="10dip"
-			android:background="@null"
 			android:src="@drawable/group_song"
+			android:background="@drawable/button_pressed"
 			android:contentDescription="@string/song"
 			app:tint="@color/colorText"
-			tools:ignore="SpeakableTextPresentCheck" />
-
+			tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 		<ImageButton
 			android:id="@+id/dark_button"
 			android:layout_weight="1.0"
 			android:layout_width="0.0dip"
 			android:layout_height="match_parent"
-			android:background="@null"
 			android:src="@drawable/ic_dark"
+			android:background="@drawable/button_pressed"
 			android:contentDescription="@string/dark_mode"
 			app:tint="@color/colorText"
-			tools:ignore="SpeakableTextPresentCheck" />
-
+			tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 		<ImageButton
 			android:id="@+id/screenButton4"
 			android:layout_weight="1.0"
 			android:layout_width="0.0dip"
 			android:layout_height="match_parent"
-			android:background="@null"
 			android:src="@drawable/group_info"
+			android:background="@drawable/button_pressed"
 			android:contentDescription="@string/info"
 			app:tint="@color/colorText"
 			tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+		<ImageButton
+			android:id="@+id/screenButton5"
+			android:layout_weight="1.0"
+			android:layout_width="0.0dip"
+			android:layout_height="match_parent"
+			android:src="@drawable/ic_share"
+			android:background="@drawable/button_pressed"
+			android:contentDescription="@string/share"
+			app:tint="@color/colorText"
+			tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 	</LinearLayout>
+	<LinearLayout
+		android:id="@+id/screenButtonly1"
+		android:layout_above="@id/screenButtonly2"
+		android:gravity="center"
+		android:background="@drawable/button_empty"
+		android:layout_marginTop="20dip"
+		android:layout_marginRight="20dip"
+		android:layout_marginLeft="20dip"
+		android:orientation="horizontal"
+		android:layout_width="wrap_content"
+		android:layout_height="110dp"
+		android:layout_centerInParent="true">
+	<ImageView
+		android:id="@+id/screenImage1"
+		android:layout_width="100dp"
+		android:layout_height="100dp"
+		android:layout_gravity="center_vertical"
+		android:layout_marginRight="5dp"
+		android:src="@mipmap/learn"
+		tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 	<Button
 		android:id="@+id/screenButton2"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginBottom="10.0dip"
-		android:layout_centerInParent="true"
+		android:layout_gravity="center_vertical"
+		android:layout_marginRight="10dp"
 		android:background="@drawable/button_screen"
 		android:minHeight="48dp"
 		android:text="@string/learn"
 		android:textAppearance="?android:attr/textAppearanceLarge"
 		android:textColor="@color/colorText"
 		tools:ignore="TextContrastCheck" />
-
+	</LinearLayout>
+	<LinearLayout
+		android:id="@+id/screenButtonly2"
+		android:gravity="center"
+		android:background="@drawable/button_empty"
+		android:layout_marginTop="20dip"
+		android:layout_marginRight="20dip"
+		android:layout_marginLeft="20dip"
+		android:orientation="horizontal"
+		android:layout_width="wrap_content"
+		android:layout_height="110dp"
+		android:layout_centerInParent="true">
+	<ImageView
+		android:id="@+id/screenImage2"
+		android:layout_width="100dp"
+		android:layout_height="100dp"
+		android:layout_gravity="center_vertical"
+		android:layout_marginRight="5dp"
+		android:src="@mipmap/game"
+		tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 	<Button
-		android:layout_below="@id/screenButton2"
+		android:id="@+id/screenButton1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10.0dip"
+		android:layout_marginBottom="10.0dip"
+		android:layout_marginRight="10dp"
+		android:background="@drawable/button_screen"
+		android:minHeight="48dp"
+		android:text="@string/start_game"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:textColor="@color/colorText"
+		tools:ignore="TextContrastCheck" />
+	</LinearLayout>
+	<LinearLayout
+		android:id="@+id/screenButtonly3"
+		android:layout_below="@id/screenButtonly2"
+		android:gravity="center"
+		android:background="@drawable/button_empty"
+		android:layout_marginTop="20dip"
+		android:layout_marginRight="20dip"
+		android:layout_marginLeft="20dip"
+		android:orientation="horizontal"
+		android:layout_width="wrap_content"
+		android:layout_height="100.0dp"
+		android:layout_centerInParent="true">
+	<ImageView
+		android:id="@+id/screenImage3"
+		android:layout_width="100dp"
+		android:layout_height="100dp"
+		android:layout_gravity="center_vertical"
+		android:layout_marginRight="5dp"
+		android:src="@mipmap/roundicon"
+		tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+	<Button
 		android:id="@+id/screenButton3"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_centerInParent="true"
-		android:layout_marginTop="10.0dip"
+		android:layout_marginRight="10dp"
 		android:background="@drawable/button_screen"
 		android:minHeight="48dp"
 		android:text="@string/start_update"
 		android:textAppearance="?android:attr/textAppearanceLarge"
 		android:textColor="@color/colorText"
 		tools:ignore="TextContrastCheck" />
-</net.colindodd.gradientlayout.GradientRelativeLayout>
+	</LinearLayout>
+</RelativeLayout>

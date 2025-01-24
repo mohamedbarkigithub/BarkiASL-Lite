@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -22,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Locale;
 import java.util.Objects;
 
 @SuppressWarnings({"deprecation", "RedundantSuppression"})
@@ -56,10 +58,18 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 				Function.saveFromBoolean(this, "song", !Function.getBoolean(this, "song"));
 				recreate();
                 break;
+			case R.id.screenButton1:
+				startSongs(clickScreen);
+				if(Function.getValue(this, "startGame").isEmpty()){
+					Function.saveFromText(this, "startGame", "true");
+				}
+				if(Function.isNetworkConnected(this)) updateReference.removeEventListener(valueEventListener);
+				startActivityFun(intent, "1");
+				break;
 			case R.id.screenButton2:
 				startSongs(clickScreen);
 				if(Function.isNetworkConnected(this)) updateReference.removeEventListener(valueEventListener);
-				startActivity(intent); break;
+				startActivityFun(intent, "2"); break;
 			case R.id.screenButton3:
 				startSongs(clickScreen);
 				if(Function.isNetworkConnected(this)){
@@ -73,7 +83,16 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
             case R.id.screenButton4:
 				startSongs(click);
 				Function.info(ScreenActivity.this, ScreenActivity.this); break;
+			case R.id.screenButton5:
+				startSongs(click);
+				Function.share(ScreenActivity.this, ScreenActivity.this); break;
         }
+	}
+
+	private void startActivityFun(Intent intent, String p1) {
+		stopHandler();
+		Function.saveFromText(this, "intent", p1);
+		startActivity(intent);
 	}
 	@SuppressLint("SuspiciousIndentation")
 	@Override
@@ -91,14 +110,28 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		
 		intent = new Intent(ScreenActivity.this, ASLActivity.class);
 
+		Typeface face = Typeface.createFromAsset(getAssets(), "fonts/handwriter.ttf");
+		if(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي")){
+			face = Typeface.createFromAsset(getAssets(), "fonts/MolhimBold.ttf");
+		}
+
+		Button btn_game = findViewById(R.id.screenButton1);
+		btn_game.setTypeface(face);
+		btn_game.setOnClickListener(this);
+		btn_game.setBackgroundResource(R.drawable.button_screen);
 		Button btn_search = findViewById(R.id.screenButton2);
+		btn_search.setTypeface(face);
 		btn_search.setOnClickListener(this);
 		btn_search.setBackgroundResource(R.drawable.button_screen);
 		Button btn_update = findViewById(R.id.screenButton3);
+		btn_update.setTypeface(face);
 		btn_update.setOnClickListener(this);
+
 
 		ImageButton btn_info = findViewById(R.id.screenButton4);
 		btn_info.setOnClickListener(this);
+		ImageButton btn_share = findViewById(R.id.screenButton5);
+		btn_share.setOnClickListener(this);
 
 		btn_dark = findViewById(R.id.dark_button);
 		btn_dark.setOnClickListener(this);
@@ -123,12 +156,34 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 			btn_song.setImageResource(R.drawable.group_song);
 		}
 		if(Function.isAdmin(this)){
-			btn_update.setVisibility(View.VISIBLE);
+			findViewById(R.id.screenButtonly3).setVisibility(View.VISIBLE);
 		}else{
-			btn_update.setVisibility(View.GONE);
+			findViewById(R.id.screenButtonly3).setVisibility(View.GONE);
 		}
-    }
-
+		timerepond = MediaPlayer.create(this, R.raw.timerepond);
+		handler = new Handler();
+		r = () -> {
+			Function.startSongs(ScreenActivity.this, timerepond);
+			startHandler();
+		};
+	}
+	private MediaPlayer timerepond;
+	private Handler handler;
+	private Runnable r;
+	final long REPEAT_USER_DELAY = 25;
+	@Override
+	public void onUserInteraction() {
+		super.onUserInteraction();
+		stopHandler();
+		Function.stopSongs(ScreenActivity.this, timerepond);
+		startHandler();
+	}
+	public void stopHandler() {
+		handler.removeCallbacks(r);
+	}
+	public void startHandler() {
+		handler.postDelayed(r, REPEAT_USER_DELAY *1000);
+	}
 	@Override
 	protected void onStart() {
 		super.onStart();
@@ -150,11 +205,13 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 			};
 			updateReference.addValueEventListener(valueEventListener);
 		}
+		startHandler();
 	}
 	@Override
 	protected void onStop() {
 		super.onStop();
 		if(Function.isNetworkConnected(this)) updateReference.removeEventListener(valueEventListener);
+		stopHandler();
 	}
 	private void openDialog() {
 		boolUpdate = false;
@@ -191,11 +248,10 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 	}
 	@SuppressLint("NewApi")
 	@Override
-	public void onBackPressed()
-	{
-		// TODO: Implement this method
+	public void onBackPressed() {
 		if (boolExit) {
 			if(Function.isNetworkConnected(this)) updateReference.removeEventListener(valueEventListener);
+			stopHandler();
 			finish();
 			finishAffinity();
 			finishAndRemoveTask();

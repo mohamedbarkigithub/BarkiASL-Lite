@@ -1,13 +1,53 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<net.colindodd.gradientlayout.GradientRelativeLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:gl="http://schemas.android.com/apk/res-auto"
-    gl:start_color="@color/primary"
-    gl:end_color="@color/black"
-    gl:orientation="TL_BR"
+    android:background="@drawable/gradient_login"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:src="@mipmap/alg"
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0">
+                        <TextView
+                            android:id="@+id/screeneText1"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:text="@string/jomhoriya"
+                            android:textColor="@color/textPrimaryInverse"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+                        <TextView
+                            android:id="@+id/screeneText2"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:text="@string/wizara"
+                            android:textColor="@color/textPrimaryInverse"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="5dp"
+                    android:src="@mipmap/wizara"
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+        </LinearLayout>
         <ImageView
             android:id="@+id/screeneButton1"
             android:layout_width="80dp"
@@ -16,7 +56,6 @@
             android:layout_above="@id/webView"
             android:src="@mipmap/icon"
             tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
-
         <ImageView
             android:id="@+id/webView"
             android:layout_width="match_parent"
@@ -26,4 +65,4 @@
             android:background="@android:color/transparent"
             android:src="@raw/gear_duo"
             tools:ignore="ContentDescription,ImageContrastCheck" />
-</net.colindodd.gradientlayout.GradientRelativeLayout>
+</RelativeLayout>

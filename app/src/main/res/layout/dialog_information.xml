@@ -32,7 +32,6 @@
 				android:layout_width="0dp"
 				android:gravity="right"
 				android:layout_height="wrap_content">
-
 			<ImageButton
 				android:id="@+id/dialog_ref"
 				android:layout_width="50dp"
@@ -68,27 +67,40 @@
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
 		android:layout_weight="1.0"
-		android:gravity="top|left">
+		android:gravity="top">
 		<ScrollView
 		    android:layout_width="match_parent"
             android:layout_height="wrap_content"
 			tools:ignore="UselessParent">
 			<LinearLayout
-				android:id="@+id/dialog_lny"
 				android:orientation="vertical"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:gravity="top|left">
+				android:gravity="top">
+				<LinearLayout
+					android:id="@+id/dialog_lny"
+					android:orientation="vertical"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:gravity="top">
+				</LinearLayout>
+				<TextView
+					android:id="@+id/dialog_info"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="10dp"
+					android:textIsSelectable="true"
+					android:contentDescription="@string/info_dialog"
+					tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 			</LinearLayout>
 		</ScrollView>
 	</LinearLayout>
-
 	<TextView
-		android:id="@+id/dialog_info"
+		android:id="@+id/dialog_infox"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:gravity="center"
 		android:minHeight="50dp"
-		android:gravity="left"
 		android:padding="10dp"
 		android:textIsSelectable="true"
 		android:contentDescription="@string/info_dialog"

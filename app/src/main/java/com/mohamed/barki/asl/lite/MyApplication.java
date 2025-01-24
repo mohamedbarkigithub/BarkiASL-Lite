@@ -9,7 +9,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Thread.setDefaultUncaughtExceptionHandler((thread, ex) -> {
-            Log.e("AboMokbelMaths", "Uncaught exception is: ", ex);
+            Log.e("BarkiASL Lite", "Uncaught exception is: ", ex);
             Function.doCopy(getApplicationContext(), logError(ex));
             Intent myIntent = new Intent(getApplicationContext(), UpdateActivity.class);
             myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -18,6 +18,7 @@ public class MyApplication extends Application {
             System.exit(10);
         });
     }
+    /** @noinspection CallToPrintStackTrace*/
     private String logError(final Throwable paramThrowable){
         try {
             StringBuilder stackTrace = new StringBuilder();
@@ -36,7 +37,7 @@ public class MyApplication extends Application {
                 }
                 stackTrace.append(tmp.getStackTrace()[tmp.getStackTrace().length-1].toString()).append(".");
             }
-            return paramThrowable.getMessage()+"\n"+stackTrace.toString();
+            return paramThrowable.getMessage()+"\n"+ stackTrace;
         }catch(Exception e){
             e.printStackTrace();
             return paramThrowable.getMessage();

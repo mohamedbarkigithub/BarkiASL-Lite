@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">BarkiASL Lite</string>
     <string name="ar_lan">"آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻء١٢٣٤٥٦٧٨٩٠ "</string>
     <string name="ar_lanf">"abcdefghijklmnopqrstuvwxyzàäâáæèéêùûüîïíìôöóòœ 0123456789 "</string>
     <string name="ar_lane">"abcdefghijklmnopqrstuvwxyz 0123456789 "</string>
@@ -125,5 +124,10 @@
 	<string name="btn_info">عرض الاستعلامات</string>
 	<string name="update_app">لتحديث التطبيق :</string>
     <string name="start_update">تحديث</string>
-	<string name="get_app">للحصول على النسخة الكاملة :</string>
+    <string name="jomhoriya">الجمهورية الجزائرية الديمقراطية الشعبية</string>
+	<string name="wizara">وزارة التضامن الوطني والأسرة وقضايا المرأة</string>
+    <string name="share">مشاركة التطبيق</string>
+	<string name="sharesubject">
+		تحميل تطبيق BarkiASL Lite
+	</string>
 </resources>
