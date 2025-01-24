@@ -321,8 +321,10 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                         new Handler().postDelayed(() -> {
-                            Function.saveFromText(ASLActivity.this, "type", "video");
-                            searchFun(search, "video");
+                            if(intent.equals("2")){
+								Function.saveFromText(ASLActivity.this, "type", "video");
+								searchFun(search, "video");
+							}
                         }, 1000);
                         return false;
                     }
@@ -678,14 +680,13 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			s1.requestFocus();
 			s1.performClick();
 		});
-		if(intent.equals("1")){
-			gameFun();
-		}
 		Typeface face = Typeface.createFromAsset(getAssets(), "fonts/casual.ttf");
 		if(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي"))
 			face = Typeface.createFromAsset(getAssets(), "fonts/naskh.ttf");
-		else edt.setTextSize(25);
 		edt.setTypeface(face);
+		if(intent.equals("1")){
+			gameFun();
+		}
 	}
 	@Override
 	public void onUserInteraction() {
@@ -810,7 +811,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		int min = 0;
 		int max = resList.length - 2;
         do randomOfTest = randomGenerator(min, max);
-        while (Objects.equals(resList[randomOfTest][1], "url"));
+        while (Objects.equals(resList[randomOfTest][1], "url") || resList[randomOfTest][1].isEmpty());
 		search = nameArFr[randomOfTest];
 		new android.os.Handler().postDelayed(() -> searchFun(nameArFr[randomOfTest], "image"), 100);
 	}
