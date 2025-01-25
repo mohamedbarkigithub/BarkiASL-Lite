@@ -14,20 +14,16 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PermissionInfo;
-import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.ResultReceiver;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.Window;
@@ -55,14 +51,12 @@ import com.mohamed.barki.asl.lite.resactivity.ResActivity;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.Normalizer;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.regex.Pattern;
 
 @SuppressWarnings({"deprecation", "RedundantSuppression"})
@@ -148,15 +142,6 @@ public class Function extends Activity {
 		SharedPreferences.Editor editor = prefs.edit();
 		editor.putString(key, text).apply();
 	}
-
-	public static int getInt(Context getAppContext, String key) {
-		return Integer.parseInt(getValue(getAppContext, key));
-	}
-
-	public static void saveInt(Context getAppContext, String key, int value) {
-		saveFromText(getAppContext, key, String.valueOf(value));
-	}
-
 	public static boolean getBoolean(Context getAppContext, String key) {
 		SharedPreferences prefs = getAppContext.getSharedPreferences(getApplicationName(getAppContext), MODE_PRIVATE);
 		return prefs.getBoolean(key, false);
