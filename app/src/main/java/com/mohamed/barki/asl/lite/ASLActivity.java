@@ -16,12 +16,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.text.Editable;
+import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.TypefaceSpan;
 import android.view.Gravity;
 import android.view.InputDevice;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,6 +31,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.webkit.CookieManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
@@ -42,7 +45,6 @@ import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Filter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -73,15 +75,13 @@ import java.util.Random;
 
 @SuppressWarnings({"deprecation", "RedundantSuppression"})
 public class ASLActivity extends AppCompatActivity implements OnClickListener, OnLongClickListener{
-	final String[][] resList = ResActivity.resList();
-	private AutoCompleteTextView edt;
-	private boolean autoDecrement = false, autoIncrement = false, autoLeftcrement = false, autoRightcrement = false, bool;
+	private AutoCompleteEditText edt;
+	private boolean autoDecrement = false, autoIncrement = false, autoLeftcrement = false, autoRightcrement = false, bool, boolSelect = true, boolExit, boolClose = false, boolFocus = false;
 	private Handler handler;
 	private final Handler repeatLeftRightHandler = new Handler(), repeatUpdateHandler = new Handler();
 	private ImageButton btnShow, btnImage, btnVideo, btnLeft, btnRight, dimenDeafNegatif, dimenDeafPositif;
 	private ImageView imageView, photoView;
 	private int fSize, position = 0, scor, scor10, randomOfTest, nbrFalse;
-	private final int nbrLenght = resList.length;
 	private LinearLayout lnyBig;
     private LinearLayout lnyBigText;
     private LinearLayout lnyTextView;
@@ -93,15 +93,16 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 	private MediaPlayer clear, timerepond, redo_undo, nonono, failText, succText, clicUp, clicDown, click, skip, tasfiq, refresh, aide, clickSpinner;
 	private Runnable r;
 	private Spinner s1;
-	private String[] nameArFr;
 	private String search, searchPhoto, intent = "2", scortxt;
-	private String[] nameArFrNoPal;
+	private String[] nameArFr, nameArFrNoPal;
+	final String[][] resList = ResActivity.resList();
+	private final int nbrLenght = resList.length;
 	private TextView tv;
     private TextView tvv;
     private TextView tvScor;
+	private TextWatcher textWatcher;
+	private Typeface faceFr, faceAr;
 	private WebView webView;
-	private boolean boolSelect = true, boolExit;
-	private Typeface faceAr, faceFr;
 	public ASLActivity() {}
 	@Override
 	public void onClick(View p1)
@@ -151,7 +152,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				if(intent.equals("1")){
 					Function.startSongs(this, refresh);
 					gameButtonFun(3);
-					break;
 				}
 				break;
 			case (R.id.maindLinearLayout3): Function.startSongs(this, click);
@@ -171,15 +171,15 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				break;
 		}
 	}
-	class RepetetiveUpdater implements Runnable {
+	class repetiveAdapter implements Runnable {
 		public void run() {
 			long REPEAT_DELAY = 50;
 			if( autoIncrement ){
 				increment(5);
-				repeatUpdateHandler.postDelayed( new RepetetiveUpdater(), REPEAT_DELAY);
+				repeatUpdateHandler.postDelayed( new repetiveAdapter(), REPEAT_DELAY);
 			}else if( autoDecrement ){
 				decrement(5);
-				repeatUpdateHandler.postDelayed( new RepetetiveUpdater(), REPEAT_DELAY);
+				repeatUpdateHandler.postDelayed( new repetiveAdapter(), REPEAT_DELAY);
 			}
 		}
 	}
@@ -204,12 +204,12 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			case (R.id.maindButtonP):
 				Function.startSongs(this, clicUp);
 				autoIncrement = true;
-				repeatUpdateHandler.post( new RepetetiveUpdater() );
+				repeatUpdateHandler.post( new repetiveAdapter() );
 				break;
 			case (R.id.maindButtonN):
 				Function.startSongs(this, clicDown);
 				autoDecrement = true;
-				repeatUpdateHandler.post( new RepetetiveUpdater() );
+				repeatUpdateHandler.post( new repetiveAdapter() );
 				break;
 			case (R.id.maindButtonLeft):
 				Function.startSongs(this, redo_undo);
@@ -224,14 +224,20 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		}
 		return false;
 	}
+	@SuppressLint("UseCompatTextViewDrawableApis")
+	private void restartEditText(){
+		int colorInt = ContextCompat.getColor(ASLActivity.this, R.color.textPrimaryInverse);
+		edt.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_menu_search, 0);
+		edt.setCompoundDrawableTintList(ColorStateList.valueOf(colorInt));
+		edt.removeTextChangedListener(textWatcher);
+		edt.setText(null);
+		edt.addTextChangedListener(textWatcher);
+	}
 	@SuppressLint("ClickableViewAccessibility")
-    private void searchFun(String text, String type)
-	{
+	private void searchFun(String text, String type) {
 		if(bool){bool = false; if(Function.getValue(this, "screen").equals("true")){Function.showToastMessage(this, getString(R.string.welcom)+" 😊😊");}else{Function.showToastMessage(this, String.valueOf(resList.length));} return;}
 		Function.hideKeyboard(ASLActivity.this, edt);
 		int nbr = resList.length;
-		if(!Function.validate(ASLActivity.this, text, edt)){return;}
-		if(intent.equals("2")) btnShow.setVisibility(View.GONE); else btnShow.setVisibility(ImageButton.VISIBLE);
 		if(type.equals("image")){
 			imageView = findViewById(R.id.maindImageView);
 			imageView.setLayoutParams(paramsM);
@@ -289,8 +295,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			}else{startHandler();}
 			tv.setText(resList[j][3]);
 			tvv.setText(resList[j][2]);
-			edt.setText("");
-			edt.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_menu_search, 0);
 			dimenDeafPositif.setEnabled(true);
 			dimenDeafNegatif.setEnabled(true);
 			lnyTextViewView.setVisibility(View.VISIBLE);
@@ -322,44 +326,38 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 	private void setPhotoToButtonPhoto(String path, ImageView imagView) {
 		Glide.with(this)
 				.load(getString(R.string.url_asset)+Function.serchFolder(path)+"/"+path+".br")
-				.apply(new RequestOptions()
-						.error(R.drawable.question_mark)
-				).listener(new RequestListener<>() {
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                        new Handler().postDelayed(() -> {
-                            if(intent.equals("2")){
+				.apply(new RequestOptions().error(R.drawable.question_mark)).listener(new RequestListener<>() {
+					@Override
+					public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+						new Handler().postDelayed(() -> {
+							if(intent.equals("2")){
 								Function.saveFromText(ASLActivity.this, "type", "video");
 								searchFun(search, "video");
-							}
-                        }, 1000);
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                        return false;
-                    }
-                }).into(imagView);
+							}else randomDeaf();
+						}, 1000);
+						return false;
+					}
+					@Override
+					public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+						return false;
+					}
+				}).into(imagView);
 	}
 	private void setPhotoToButtonImage(String path, ImageView photoButton) {
 		Glide.with(this)
 				.load(getString(R.string.url_asset)+Function.serchFolder(path)+"/"+path+".br")
-				.apply(new RequestOptions()
-						.error(R.drawable.question_mark)
-				).listener(new RequestListener<>() {
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                        photoButton.setBackgroundTintList(ColorStateList.valueOf(ResourcesCompat.getColor(getResources(), R.color.textPrimaryInverse, null)));
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                        photoButton.setBackgroundTintList(null);
-                        return false;
-                    }
-                }).into(photoButton);
+				.apply(new RequestOptions().error(R.drawable.question_mark)).listener(new RequestListener<>() {
+					@Override
+					public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+						photoButton.setBackgroundTintList(ColorStateList.valueOf(ResourcesCompat.getColor(getResources(), R.color.textPrimaryInverse, null)));
+						return false;
+					}
+					@Override
+					public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+						photoButton.setBackgroundTintList(null);
+						return false;
+					}
+				}).into(photoButton);
 	}
 	private String VIDEO_ID, VIDEO_NAME;
 	private void setVideoToVideoView(int videoIndex) {
@@ -396,14 +394,14 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		if(webView!=null) webView.stopLoading();
 	}
 	/** @noinspection CallToPrintStackTrace*/
-    @Override
+	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		if(webView!=null) webView.destroy();
 		try {
 			Function.trimCache(ASLActivity.this);
 		} catch (Exception e) {
-            e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 	@SuppressLint({"SetJavaScriptEnabled", "ClickableViewAccessibility"})
@@ -561,9 +559,9 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 	}
 	@SuppressLint({"ClickableViewAccessibility", "SuspiciousIndentation"})
 	@Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
 
 		intent = Function.getValue(this, "intent");
 		if(Function.getBoolean(this, "dark"))
@@ -671,10 +669,10 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		initMediaPlayer();
 
 		findViewById(R.id.imgSpinner1).setOnClickListener(view -> {
+			Function.hideKeyboard(ASLActivity.this, edt);
+			restartEditText();
+			Function.startSongs(this, click);
 			if(intent.equals("2")) {
-				edt.clearFocus();
-				Function.hideKeyboard(ASLActivity.this, edt);
-				Function.startSongs(this, click);
 				boolSelect = false;
 				while (position != s1.getSelectedItemPosition()) {
 					s1.setSelection(position);
@@ -691,6 +689,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			gameFun();
 		}
 	}
+	long REPEAT_USER_DELAY = 15;
 	@Override
 	public void onUserInteraction() {
 		super.onUserInteraction();
@@ -701,10 +700,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		}
 	}
 	public void stopHandler() {handler.removeCallbacks(r);}
-	public void startHandler() {
-		long REPEAT_USER_DELAY = 12;
-		handler.postDelayed(r, REPEAT_USER_DELAY *1000);
-	}
+	public void startHandler() {handler.postDelayed(r, REPEAT_USER_DELAY *1000);}
 	private void slideFun(int k) {
 		switch(k){
 			case 2:
@@ -719,7 +715,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		searchFun(search, Function.getValue(this, "type"));
 	}
 	/** @noinspection SpellCheckingInspection*/
-    class repetiveLeftRight implements Runnable {
+	class repetiveLeftRight implements Runnable {
 		public void run() {
 			long REPEAT_LR_DELAY = 100;
 			if( autoLeftcrement ){
@@ -810,11 +806,11 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		}
 	}
 	@SuppressLint("SuspiciousIndentation")
-    private void randomDeaf() {
+	private void randomDeaf() {
 		int min = 0;
 		int max = resList.length - 2;
-        do randomOfTest = randomGenerator(min, max);
-        while (Objects.equals(resList[randomOfTest][1], "url") || resList[randomOfTest][1].isEmpty());
+		do randomOfTest = randomGenerator(min, max);
+		while (Objects.equals(resList[randomOfTest][1], "url") || resList[randomOfTest][1].isEmpty());
 		search = nameArFr[randomOfTest];
 		new android.os.Handler().postDelayed(() -> searchFun(nameArFr[randomOfTest], "image"), 100);
 	}
@@ -828,7 +824,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			new android.os.Handler().postDelayed(
 					this::randomDeaf, 500);
 		}else{
-			edt.setText("");
+			restartEditText();
 			scorFun("0");
 			if((nbrFalse>=10) && (nbrFalse%5==0)){
 				scor = scor+scor10/2;
@@ -895,16 +891,16 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				((TextView) dialog.findViewById(R.id.dialog_cong)).setText(getString(R.string.congrulation_0)+repoFun()+noteFun());
 				dialog.show();
 				new android.os.Handler().postDelayed(() -> {
-							Function.stopSongs(ASLActivity.this, tasfiq);
-							photoView.setVisibility(View.INVISIBLE);
-							tvScor.setText(scortxt);
-							dialog.dismiss();
-						}, 4500);
+					Function.stopSongs(ASLActivity.this, tasfiq);
+					photoView.setVisibility(View.INVISIBLE);
+					tvScor.setText(scortxt);
+					dialog.dismiss();
+				}, 4500);
 			}else{
 				new android.os.Handler().postDelayed(() -> {
-							tvScor.setText(scortxt);
-							photoView.setVisibility(View.INVISIBLE);
-						}, 500);
+					tvScor.setText(scortxt);
+					photoView.setVisibility(View.INVISIBLE);
+				}, 500);
 			}
 		}else{new android.os.Handler().postDelayed(() -> photoView.setVisibility(View.INVISIBLE), 500);}
 	}
@@ -931,21 +927,23 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 	private void autoSpinnerAdapter(){
 		s1 = findViewById(R.id.maindSpinner1);
 		s1.setOnItemSelectedListener(new OnItemSelectedListener() {
-				@Override
-				public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {
-					if(boolSelect){
-						Function.startSongs(ASLActivity.this, clickSpinner);
-						String selection = (String)arg0.getItemAtPosition(arg2);
-						if(intent.equals("1")){if(!selection.isEmpty()){testSameWord(selection);}
-						}else{
-							search = selection;
-							searchFun(selection, Function.getValue(ASLActivity.this, "type"));
-						}
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {
+				if(boolSelect){
+					Function.startSongs(ASLActivity.this, clickSpinner);
+					String selection = (String)arg0.getItemAtPosition(arg2);
+					if(intent.equals("1")){
+						Function.hideKeyboard(ASLActivity.this, edt);
+						if(!selection.isEmpty()){testSameWord(selection);}
+					}else{
+						search = selection;
+						searchFun(selection, Function.getValue(ASLActivity.this, "type"));
 					}
 				}
-				@Override
-				public void onNothingSelected(AdapterView<?> arg0) {s1.setSelection(position);}
-			});
+			}
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {s1.setSelection(position);}
+		});
 		s1.setAdapter(new SpinnerAdapter(this, R.layout.custom_title_spinner, R.layout.custom_drop_down_spinner, nameArFr));
 		s1.callOnClick();
 	}
@@ -961,13 +959,24 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		@Override
 		public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) {
 			View row = LayoutInflater.from(parent.getContext()).inflate(textViewResourceId, parent, false);
+			Typeface faceAr = Typeface.createFromAsset(getContext().getAssets(), "fonts/amiri.ttf");
+			Typeface faceFr = Typeface.createFromAsset(getContext().getAssets(), "fonts/Noteworthy.ttf");
 			final TextView Title= row.findViewById(R.id.custom_spinner);
 			if(Function.getValue(getContext(), "intent").equals("1")){
 				Title.setBackgroundResource(R.drawable.celll_game);
 				Title.setTextColor(getContext().getColor(R.color.black));
 			}
 			Title.setGravity(Gravity.CENTER);
-			Title.setText(objects[position]);
+			SpannableString spannableString = new SpannableString(objects[position]);
+			String[] words = objects[position].split("\\s+");
+			int start = 0;
+			for (String word : words) {
+				Typeface typeface = word.replaceAll("[0-9]", "").matches("\\p{InArabic}+") ? faceAr : faceFr;
+				int end = start + word.length();
+				setSpans(spannableString, typeface, start, end);
+				start = end + 1;
+			}
+			Title.setText(spannableString);
 			Title.setEllipsize(TextUtils.TruncateAt.MARQUEE);
 			Title.setSingleLine(true);
 			Title.setHorizontallyScrolling(true);
@@ -989,24 +998,33 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			return row;
 		}
 	}
-	private Boolean boolClose = true;
+	private static void setSpans(SpannableString s, Typeface typeface, int start, int end){
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+			s.setSpan(new TypefaceSpan(typeface), start, end, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+		}
+	}
+	@SuppressLint({"UseCompatTextViewDrawableApis", "SuspiciousIndentation"})
 	private void autoCompleteAdapter(String[] nam, String[] namNoPal){
 		ArrayList<String> stringList = new ArrayList<>(Arrays.asList(nam));
 		ArrayList<String> stringListNoPal = new ArrayList<>(Arrays.asList(namNoPal));
 		AutoSuggestAdapter adapter = new AutoSuggestAdapter(ASLActivity.this, R.layout.list_item, stringList, stringListNoPal);
 		edt = findViewById(R.id.maindEditText1);
 		edt.setOnItemClickListener((parent, view, position, rowId) -> {
+			restartEditText();
 			Function.startSongs(ASLActivity.this, clickSpinner);
 			String selection = (String)parent.getItemAtPosition(position);
-			if(intent.equals("1")){if(!selection.isEmpty()){testSameWord(selection);}
+			if(intent.equals("1")){
+				Function.hideKeyboard(ASLActivity.this, edt);
+				if(!selection.isEmpty()){testSameWord(selection);}
 			}else{
 				search = selection;
 				searchFun(selection, Function.getValue(ASLActivity.this, "type"));
 			}
 		});
 		edt.setAdapter(adapter);
-	    edt.setThreshold(2);
-		TextWatcher textWatcher = new TextWatcher(){
+		edt.setThreshold(2);
+		edt.requestFocus();
+		textWatcher = new TextWatcher(){
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {}
 			@Override
@@ -1016,51 +1034,170 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			public void afterTextChanged(Editable e) {
 				int d, colorInt;
 				if(edt.getText().toString().isEmpty()){
-					d = R.drawable.ic_menu_search;
+					d = Function.isSoftKeyboardShown(ASLActivity.this, edt) ? R.drawable.ic_keyboard : R.drawable.ic_menu_search;
 					colorInt = ContextCompat.getColor(ASLActivity.this, R.color.textPrimaryInverse);
 					boolClose = false;
 				}else{
 					d = R.drawable.ic_delete;
 					colorInt = ContextCompat.getColor(ASLActivity.this, R.color.button_f);
 					boolClose = true;
+					String[] words = edt.getText().toString().split("\\s+");
+					int start = 0;
+					for (String word : words) {
+						Typeface typeface = word.replaceAll("[0-9]", "").matches("\\p{InArabic}+") ? faceAr : faceFr;
+						int end = start + word.length();
+						setSpans(e, typeface, start, end);
+						start = end + 1;
+					}
 				}
 				edt.setCompoundDrawablesWithIntrinsicBounds(0, 0, d, 0);
 				edt.setCompoundDrawableTintList(ColorStateList.valueOf(colorInt));
-				String[] words = edt.getText().toString().split("\\s+");
-				int start = 0;
-				for (String word : words) {
-					Typeface typeface = word.matches("\\p{InArabic}+") ? faceAr : faceFr;
-					int end = start + word.length();
-					setSpans(e, typeface, start, end);
-					start = end + 1;
-				}
 			}
 		};
 		edt.addTextChangedListener(textWatcher);
+		edt.setOnFocusChangeListener((arg0, hsf) -> boolFocus = hsf);
+		edt.setOnEditorActionListener((v, actionId, event) -> {
+			if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+				Function.startSongs(ASLActivity.this, clicDown);
+				Function.hideKeyboard(ASLActivity.this, edt);
+				if(edt.getText().toString().isEmpty()){
+					int d = R.drawable.ic_menu_search;
+					int colorInt = ContextCompat.getColor(ASLActivity.this, R.color.textPrimaryInverse);
+					edt.setCompoundDrawablesWithIntrinsicBounds(0, 0, d, 0);
+					edt.setCompoundDrawableTintList(ColorStateList.valueOf(colorInt));
+				}
+			}
+			return false;
+		});
+		edt.setKeyImeChangeListener((keyCode, event) -> {
+            if (KeyEvent.KEYCODE_BACK == event.getKeyCode()) {
+				if(Function.isSoftKeyboardShown(ASLActivity.this, edt)){
+					if(edt.getText().toString().isEmpty()){
+						int d = R.drawable.ic_menu_search;
+						int colorInt = ContextCompat.getColor(ASLActivity.this, R.color.textPrimaryInverse);
+						edt.setCompoundDrawablesWithIntrinsicBounds(0, 0, d, 0);
+						edt.setCompoundDrawableTintList(ColorStateList.valueOf(colorInt));
+					}
+				}else{
+					if (boolExit) {
+						if (intent.equals("1")) {
+							stopHandler();
+							r = null;
+						}
+						if(webView!=null) webView.stopLoading();
+						Function.startActivityFun(this, ScreenActivity.class);
+					} else {
+						Function.showToastMessage(this, getString(R.string.re_exit));
+						boolExit = true;
+					}
+				}
+            }
+        });
+		edt.setOnClickListener(v -> {
+			if(boolClose){
+				Function.startSongs(ASLActivity.this, clear);
+				String txt = edt.getText().toString();
+				if(txt.isEmpty()){
+					int d, colorInt;
+					if(!boolFocus) edt.requestFocus();
+					if (Function.isSoftKeyboardShown(this, edt)) {
+						d = R.drawable.ic_menu_search;
+						Function.startSongs(ASLActivity.this, clicDown);
+						Function.hideKeyboard(this, edt);
+					} else {
+						d = R.drawable.ic_keyboard;
+						Function.startSongs(ASLActivity.this, clicUp);
+						Function.showKeyboard(this, edt);
+					}
+					if(edt.getText().toString().isEmpty())
+						colorInt = ContextCompat.getColor(ASLActivity.this, R.color.textPrimaryInverse);
+					else
+						colorInt = ContextCompat.getColor(ASLActivity.this, R.color.button_f);
+					edt.setCompoundDrawablesWithIntrinsicBounds(0, 0, d, 0);
+					edt.setCompoundDrawableTintList(ColorStateList.valueOf(colorInt));
+				}
+			}else{
+				int d, colorInt;
+				if(!boolFocus) edt.requestFocus();
+				if (Function.isSoftKeyboardShown(this, edt)) {
+					d = R.drawable.ic_menu_search;
+					Function.startSongs(ASLActivity.this, clicDown);
+					Function.hideKeyboard(this, edt);
+				} else {
+					d = R.drawable.ic_keyboard;
+					Function.startSongs(ASLActivity.this, clicUp);
+					Function.showKeyboard(this, edt);
+				}
+				if(edt.getText().toString().isEmpty())
+					colorInt = ContextCompat.getColor(ASLActivity.this, R.color.textPrimaryInverse);
+				else
+					colorInt = ContextCompat.getColor(ASLActivity.this, R.color.button_f);
+				edt.setCompoundDrawablesWithIntrinsicBounds(0, 0, d, 0);
+				edt.setCompoundDrawableTintList(ColorStateList.valueOf(colorInt));
+			}
+		});
 		View btnClose = findViewById(R.id.maindButtonClose);
 		btnClose.setOnClickListener(v -> {
 			if(boolClose){
 				Function.startSongs(ASLActivity.this, clear);
 				String txt = edt.getText().toString();
-				if(!txt.isEmpty()){
-					edt.setText(txt.substring(0, txt.length()-1));
-					edt.setSelection(txt.length()-1);
+				if(txt.isEmpty()){
+					int d, colorInt;
+					if(!boolFocus) edt.requestFocus();
+					if (Function.isSoftKeyboardShown(this, edt)) {
+						d = R.drawable.ic_menu_search;
+						Function.startSongs(ASLActivity.this, clicDown);
+						Function.hideKeyboard(this, edt);
+					} else {
+						d = R.drawable.ic_keyboard;
+						Function.startSongs(ASLActivity.this, clicUp);
+						Function.showKeyboard(this, edt);
+					}
+					if(edt.getText().toString().isEmpty())
+						colorInt = ContextCompat.getColor(ASLActivity.this, R.color.textPrimaryInverse);
+					else
+						colorInt = ContextCompat.getColor(ASLActivity.this, R.color.button_f);
+					edt.setCompoundDrawablesWithIntrinsicBounds(0, 0, d, 0);
+					edt.setCompoundDrawableTintList(ColorStateList.valueOf(colorInt));
 				}else{
-					edt.setSelection(0);
-					Function.showKeyboard(ASLActivity.this, edt);
+					int selection = Math.max(0, edt.getSelectionStart());
+					if(selection>0){
+						txt=txt.substring(0, selection-1)+txt.substring(selection);
+						selection--;
+					}
+					edt.setText(txt);
+					edt.setSelection(selection);
 				}
 			}else{
+				int d, colorInt;
+				if(!boolFocus) edt.requestFocus();
 				if (Function.isSoftKeyboardShown(this, edt)) {
+					d = R.drawable.ic_menu_search;
+					Function.startSongs(ASLActivity.this, clicDown);
 					Function.hideKeyboard(this, edt);
 				} else {
+					d = R.drawable.ic_keyboard;
+					Function.startSongs(ASLActivity.this, clicUp);
 					Function.showKeyboard(this, edt);
 				}
+				if(edt.getText().toString().isEmpty())
+					colorInt = ContextCompat.getColor(ASLActivity.this, R.color.textPrimaryInverse);
+				else
+					colorInt = ContextCompat.getColor(ASLActivity.this, R.color.button_f);
+				edt.setCompoundDrawablesWithIntrinsicBounds(0, 0, d, 0);
+				edt.setCompoundDrawableTintList(ColorStateList.valueOf(colorInt));
 			}
 		});
 		btnClose.setOnLongClickListener(p1 -> {
-			Function.startSongs(ASLActivity.this, clear);
-			edt.setText("");
-			return false;
+			if(boolClose){
+				Function.startSongs(ASLActivity.this, clear);
+				String txt = edt.getText().toString();
+				int selection = Math.max(0, edt.getSelectionStart());
+				if(selection>0) txt=txt.substring(selection);
+				edt.setText(txt);
+				edt.setSelection(0);
+			}
+			return true;
 		});
 	}
 	private void setSpans(Editable e, Typeface typeface, int start, int end){
@@ -1069,9 +1206,8 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		}
 	}
 	/** @noinspection CallToPrintStackTrace*/
-    @SuppressWarnings("rawtypes")
-	public class AutoSuggestAdapter extends ArrayAdapter
-	{
+	@SuppressWarnings("rawtypes")
+	public class AutoSuggestAdapter extends ArrayAdapter {
 		private final Context      context;
 		private final int          resource;
 		private final ArrayList<String> items, tempItems, tempItemsNoPl, suggestions;
@@ -1107,8 +1243,16 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 					Title.setBackgroundResource(R.drawable.celll_game);
 					Title.setTextColor(getContext().getColor(R.color.black));
 				}
-			    Title.setText(item);
-
+				SpannableString spannableString = new SpannableString(item);
+				String[] words = item.split("\\s+");
+				int start = 0;
+				for (String word : words) {
+					Typeface typeface = word.replaceAll("[0-9]", "").matches("\\p{InArabic}+") ? faceAr : faceFr;
+					int end = start + word.length();
+					setSpans(spannableString, typeface, start, end);
+					start = end + 1;
+				}
+				Title.setText(spannableString);
 				Title.setEllipsize(TextUtils.TruncateAt.MARQUEE);
 				Title.setSingleLine(true);
 				Title.setHorizontallyScrolling(true);
@@ -1167,20 +1311,20 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			}
 		};
 	}
-	@SuppressLint("NewApi")
 	@Override
-	public void onBackPressed()
-	{
-		if (boolExit) {
-			if (intent.equals("1")) {
-				stopHandler();
-				r = null;
+	public void onBackPressed() {
+		if(!boolFocus){
+			if (boolExit) {
+				if (intent.equals("1")) {
+					stopHandler();
+					r = null;
+				}
+				if(webView!=null) webView.stopLoading();
+				Function.startActivityFun(this, ScreenActivity.class);
+			} else {
+				Function.showToastMessage(this, getString(R.string.re_exit));
+				boolExit = true;
 			}
-			if(webView!=null) webView.stopLoading();
-			Function.startActivityFun(this, ScreenActivity.class);
-		} else {
-			Function.showToastMessage(this, getString(R.string.re_exit));
-			boolExit = true;
 		}
 	}
 }

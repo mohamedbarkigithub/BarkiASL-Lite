@@ -3,31 +3,31 @@ plugins {
     id 'com.google.gms.google-services'
 }
 android {
-    namespace 'com.mohamed.barki.asl.lite'
-    compileSdk 35
+    namespace = 'com.mohamed.barki.asl.lite'
+    compileSdk = 35
     defaultConfig {
         applicationId "com.mohamed.barki.asl.lite"
-        minSdk 23
-        targetSdk 35
-        versionCode 25012421
-        versionName "2025.01.24"
+        minSdk = 23
+        targetSdk = 35
+        versionCode 25012500
+        versionName "2025.01.25"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         debug {
             minifyEnabled false
-            shrinkResources false
+            shrinkResources = false
             debuggable true
-            signingConfig signingConfigs.debug
+            signingConfig = signingConfigs.debug
         }
         release {
             minifyEnabled true
-            shrinkResources true
+            shrinkResources = true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     buildFeatures {
-        viewBinding true
+        viewBinding = true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -44,8 +44,8 @@ android {
         }
     }
     lint {
-        abortOnError false
-        checkReleaseBuilds false
+        abortOnError = false
+        checkReleaseBuilds = false
         disable 'InvalidPackage'
         disable 'ContentDescription'
     }
@@ -53,6 +53,17 @@ android {
         tasks.withType(JavaCompile).tap {
             configureEach {
                 options.compilerArgs << "-Xlint:deprecation"
+            }
+        }
+        plugins.with {
+            tasks.withType(JavaPlugin).tap {
+                configureEach {
+                    configurations.configureEach { conf ->
+                        if (conf.canBeResolved && !(conf.name in excludedConfigurations)) {
+                            add(conf.name, enforcedPlatform(project(":project-dependencies")))
+                        }
+                    }
+                }
             }
         }
     }

@@ -10,12 +10,8 @@ dependencyResolutionManagement {repositoriesMode.set(RepositoriesMode.FAIL_ON_PR
         google()    // no need to declare this in `allProjects` if its declared here
         mavenCentral()
         gradlePluginPortal()
-        maven {
-            url 'https://jitpack.io'
-        }
-        maven {
-            url 'https://dl.bintray.com/videolan/Android'
-        }
+        maven {url = uri("https://jitpack.io")}
+        maven {url = uri('https://dl.bintray.com/videolan/Android')}
     }
 }
 rootProject.name = "BarkiASL Lite"

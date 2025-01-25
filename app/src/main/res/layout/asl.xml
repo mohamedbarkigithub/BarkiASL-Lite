@@ -34,7 +34,7 @@
 			android:layout_height="52.0dp"
 			tools:ignore="RtlHardcoded,RtlSymmetry">
 
-			<AutoCompleteTextView
+			<com.mohamed.barki.asl.lite.AutoCompleteEditText
 				android:id="@+id/maindEditText1"
 				android:layout_width="match_parent"
 				android:layout_height="50dp"
@@ -50,6 +50,7 @@
 				android:drawableTintMode="multiply"
 				android:dropDownHeight="wrap_content"
 				android:hint="@string/search"
+				android:imeOptions="actionDone"
 				android:inputType="text|textAutoComplete|textNoSuggestions"
 				android:scrollHorizontally="true"
 				android:singleLine="true"

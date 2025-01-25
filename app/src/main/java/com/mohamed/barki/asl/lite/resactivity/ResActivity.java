@@ -51,69 +51,69 @@ public class ResActivity extends Activity
 
 	public static String[] nameDomaine = new String[]{
 			"موضوع الفيديو"+
-					"/ Thème de la vidéo",
+					" / Thème de la vidéo",
 			"الألوان"+
-					"/ Couleurs",
+					" / Couleurs",
 			"الصفات، الحالات والأضداد"+
-					"/ Comportements et Contraires",
+					" / Comportements et Contraires",
 			"الأشياء، الوسائل والمواد"+
-					"/ Objets, Moyens et Matières",
+					" / Objets, Moyens et Matières",
 			"مصطلحات سياسية وعسكرية"+
-					"/ Terminologie Politique et Militaire",
+					" / Terminologie Politique et Militaire",
 			"الولايات الجزائرية"+
-					"/ Wilayas Algériennes",
+					" / Wilayas Algériennes",
 			"الأشكال"+
-					"Formes",
+					" / Formes",
 			"الرياضة والتسلية"+
-					"/ Sports et Loisirs",
+					" / Sports et Loisirs",
 			"الأعياد والمناسبات"+
-					"/ Festivités et Évènements",
+					" / Festivités et Évènements",
 			"المركبات ووسائل النقل"+
-					"/ Engins et Moyens de Transport",
+					" / Engins et Moyens de Transport",
 			"المواد الغذائية"+
-					"/ Produits Alimentaires",
+					" / Produits Alimentaires",
 			"الحيوانات والحشرات"+
-					"/ Animaux et Insectes",
+					" / Animaux et Insectes",
 			"المباني والأماكن"+
-					"/ Structures et Lieux",
+					" / Structures et Lieux",
 			"المصطلحات الجغرافية ودول العالم"+
-					"/ Terminologie géographique et Pays",
+					" / Terminologie géographique et Pays",
 			"الكون والطبيعة"+
-					"/ Espace et Nature",
+					" / Espace et Nature",
 			"الوظائف والمهن"+
-					"/ Fonctions, Professions et Métiers",
+					" / Fonctions, Professions et Métiers",
 			"الإدارة والوثائق الإدارية"+
-					"/ Administration et Documents administratifs",
+					" / Administration et Documents administratifs",
 			"العدالة"+
-					"/ Justice",
+					" / Justice",
 			"الصحة"+
-					"/ Santé",
+					" / Santé",
 			"التواصل"+
-					"/ Communication",
+					" / Communication",
 			"الكمية والقياس"+
-					"Quantité et Mesure",
+					" / Quantité et Mesure",
 			"الأفعال وقواعد النحو"+
-					"/ Verbes et Grammaire",
+					" / Verbes et Grammaire",
 			"التربية والتعليم"+
-					"/ Éducation et Enseignement",
+					" / Éducation et Enseignement",
 			"الدين"+
-					"/ Religion",
+					" / Religion",
 			"الزمن"+
-					"/ Temps",
+					" / Temps",
 			"الملابس والحلي"+
-					"/ Habillement et Bijoux",
+					" / Habillement et Bijoux",
 			"المنزل"+
-					"/ Maison",
+					" / Maison",
 			"الأسرة والعائلة"+
-					"/ Famille",
+					" / Famille",
 			"جسم الإنسان"+
-					"/ Corps humain",
+					" / Corps humain",
 			"الأرقام والأعداد"+
-					"/ Chiffres et Nombres",
+					" / Chiffres et Nombres",
 			"الأبجدية الإشارية"+
-					"/ Dactylologie",
+					" / Dactylologie",
 			"أخرى"+
-					"/ Autre"
+					" / Autre"
 	};
 	public static String[] nameDomaineAr = new String[]{
 			"موضوع الفيديو",
