@@ -1124,7 +1124,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			}else{
 				int d, colorInt;
 				if(!boolFocus) edt.requestFocus();
-				Function.showToastMessage(this, String.valueOf(Function.isSoftKeyboardShown(ASLActivity.this)));
 				if (Function.isSoftKeyboardShown(this)) {
 					d = R.drawable.ic_menu_search;
 					Function.startSongs(ASLActivity.this, clicDown);
