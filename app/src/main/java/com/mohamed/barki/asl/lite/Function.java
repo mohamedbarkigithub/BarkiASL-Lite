@@ -179,55 +179,19 @@ public class Function extends Activity {
 	}
 
 	public static void hideKeyboard(Context getAppContext, EditText edt) {
-		// hide keyboard
 		InputMethodManager inputManager = (InputMethodManager) getAppContext.getSystemService(Context.INPUT_METHOD_SERVICE);
 		inputManager.hideSoftInputFromWindow(edt.getWindowToken(), 0);
+		Function.saveFromBoolean(getAppContext, "keyboard", false);
 	}
-
 	public static void showKeyboard(final Context getAppContext, final EditText edt) {
 		edt.requestFocus();
 		InputMethodManager imm = (InputMethodManager) getAppContext.getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+		Function.saveFromBoolean(getAppContext, "keyboard", true);
 	}
-
-	public static boolean isSoftKeyboardShown(final Context getAppContext, final EditText edt) {
-		IMMResult result = new IMMResult();
-		int res;
-		InputMethodManager imm = (InputMethodManager) getAppContext.getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.showSoftInput(edt, 0, result);
-		res = result.getResult();
-		return res == InputMethodManager.RESULT_UNCHANGED_SHOWN || res == InputMethodManager.RESULT_UNCHANGED_HIDDEN;
+	public static boolean isSoftKeyboardShown(final Context getAppContext) {
+		return Function.getBoolean(getAppContext, "keyboard");
 	}
-
-	private static class IMMResult extends ResultReceiver {
-		public int result = -1;
-
-		public IMMResult() {
-			super(null);
-		}
-
-		@Override
-		public void onReceiveResult(int r, Bundle data) {
-			result = r;
-		}
-
-		/**
-		 * @noinspection BusyWait
-		 */ // poll result value for up to 500 milliseconds
-		public int getResult() {
-			try {
-				int sleep = 0;
-				while (result == -1 && sleep < 500) {
-					Thread.sleep(100);
-					sleep += 100;
-				}
-			} catch (InterruptedException e) {
-				Log.e("IMMResult", Objects.requireNonNull(e.getMessage()));
-			}
-			return result;
-		}
-	}
-
 	public static String getApplicationName(Context getAppContext) {
 		ApplicationInfo applicationInfo = getAppContext.getApplicationInfo();
 		int stringId = applicationInfo.labelRes;
@@ -429,6 +393,13 @@ public class Function extends Activity {
 			sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, getAppContext.getString(R.string.app_url));
 			myActivity.startActivity(Intent.createChooser(sharingIntent, getAppContext.getString(R.string.share)));
 		});
+		Typeface face = Typeface.createFromAsset(getAppContext.getAssets(), "fonts/casual.ttf");
+		if (Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي")) {
+			face = Typeface.createFromAsset(getAppContext.getAssets(), "fonts/naskh.ttf");
+			((LinearLayout) dialog.findViewById(R.id.dialog_lny_Big)).setGravity(Gravity.RIGHT);
+			((TextView) dialog.findViewById(R.id.dialog_share)).setGravity(Gravity.RIGHT);
+		}
+		((TextView) dialog.findViewById(R.id.dialog_share)).setTypeface(face);
 		dialog.show();
 	}
 

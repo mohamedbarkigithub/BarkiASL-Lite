@@ -70,7 +70,6 @@ import com.mohamed.barki.asl.lite.resactivity.ResActivity;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Random;
 
 @SuppressWarnings({"deprecation", "RedundantSuppression"})
@@ -810,7 +809,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		int min = 0;
 		int max = resList.length - 2;
 		do randomOfTest = randomGenerator(min, max);
-		while (Objects.equals(resList[randomOfTest][1], "url") || resList[randomOfTest][1].isEmpty());
+		while (!resList[randomOfTest][1].equals("url"));
 		search = nameArFr[randomOfTest];
 		new android.os.Handler().postDelayed(() -> searchFun(nameArFr[randomOfTest], "image"), 100);
 	}
@@ -1017,6 +1016,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				Function.hideKeyboard(ASLActivity.this, edt);
 				if(!selection.isEmpty()){testSameWord(selection);}
 			}else{
+
 				search = selection;
 				searchFun(selection, Function.getValue(ASLActivity.this, "type"));
 			}
@@ -1024,6 +1024,8 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		edt.setAdapter(adapter);
 		edt.setThreshold(2);
 		edt.requestFocus();
+		Function.saveFromBoolean(this, "keyboard", false);
+		boolFocus = true;
 		textWatcher = new TextWatcher(){
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {}
@@ -1034,7 +1036,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			public void afterTextChanged(Editable e) {
 				int d, colorInt;
 				if(edt.getText().toString().isEmpty()){
-					d = Function.isSoftKeyboardShown(ASLActivity.this, edt) ? R.drawable.ic_keyboard : R.drawable.ic_menu_search;
+					d = Function.isSoftKeyboardShown(ASLActivity.this) ? R.drawable.ic_keyboard : R.drawable.ic_menu_search;
 					colorInt = ContextCompat.getColor(ASLActivity.this, R.color.textPrimaryInverse);
 					boolClose = false;
 				}else{
@@ -1058,41 +1060,44 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		edt.setOnFocusChangeListener((arg0, hsf) -> boolFocus = hsf);
 		edt.setOnEditorActionListener((v, actionId, event) -> {
 			if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
-				Function.startSongs(ASLActivity.this, clicDown);
-				Function.hideKeyboard(ASLActivity.this, edt);
-				if(edt.getText().toString().isEmpty()){
-					int d = R.drawable.ic_menu_search;
-					int colorInt = ContextCompat.getColor(ASLActivity.this, R.color.textPrimaryInverse);
-					edt.setCompoundDrawablesWithIntrinsicBounds(0, 0, d, 0);
-					edt.setCompoundDrawableTintList(ColorStateList.valueOf(colorInt));
-				}
-			}
-			return false;
-		});
-		edt.setKeyImeChangeListener((keyCode, event) -> {
-            if (KeyEvent.KEYCODE_BACK == event.getKeyCode()) {
-				if(Function.isSoftKeyboardShown(ASLActivity.this, edt)){
+				if(Function.isSoftKeyboardShown(ASLActivity.this)){
+					Function.startSongs(ASLActivity.this, clicDown);
+					Function.hideKeyboard(ASLActivity.this, edt);
 					if(edt.getText().toString().isEmpty()){
 						int d = R.drawable.ic_menu_search;
 						int colorInt = ContextCompat.getColor(ASLActivity.this, R.color.textPrimaryInverse);
 						edt.setCompoundDrawablesWithIntrinsicBounds(0, 0, d, 0);
 						edt.setCompoundDrawableTintList(ColorStateList.valueOf(colorInt));
 					}
+				}
+			}
+			return false;
+		});
+		edt.setKeyImeChangeListener((keyCode, event) -> {
+			if (KeyEvent.KEYCODE_BACK == event.getKeyCode()) {
+				if(Function.isSoftKeyboardShown(ASLActivity.this)){
+					Function.startSongs(ASLActivity.this, clicDown);
+					Function.hideKeyboard(ASLActivity.this, edt);
+					if(edt.getText().toString().isEmpty()){
+						int d = R.drawable.ic_menu_search;
+						int colorInt = ContextCompat.getColor(ASLActivity.this, R.color.textPrimaryInverse);
+						edt.setCompoundDrawablesWithIntrinsicBounds(0, 0, d, 0);
+						edt.setCompoundDrawableTintList(ColorStateList.valueOf(colorInt));
+					}
+					boolExit = false;
+					intExit = -1;
 				}else{
-					if (boolExit) {
-						if (intent.equals("1")) {
-							stopHandler();
-							r = null;
-						}
-						if(webView!=null) webView.stopLoading();
-						Function.startActivityFun(this, ScreenActivity.class);
-					} else {
-						Function.showToastMessage(this, getString(R.string.re_exit));
-						boolExit = true;
+					switch (intExit){
+						case -1, 1: intExit++; break;
+						case 0 : Function.showToastMessage(this, getString(R.string.re_exit)); intExit++; break;
+                        case 2 : if (intent.equals("1")) {stopHandler(); r = null;}
+							if(webView!=null) webView.stopLoading();
+							Function.startActivityFun(this, ScreenActivity.class);
+							break;
 					}
 				}
-            }
-        });
+			}
+		});
 		edt.setOnClickListener(v -> {
 			if(boolClose){
 				Function.startSongs(ASLActivity.this, clear);
@@ -1100,7 +1105,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				if(txt.isEmpty()){
 					int d, colorInt;
 					if(!boolFocus) edt.requestFocus();
-					if (Function.isSoftKeyboardShown(this, edt)) {
+					if (Function.isSoftKeyboardShown(this)) {
 						d = R.drawable.ic_menu_search;
 						Function.startSongs(ASLActivity.this, clicDown);
 						Function.hideKeyboard(this, edt);
@@ -1119,7 +1124,8 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			}else{
 				int d, colorInt;
 				if(!boolFocus) edt.requestFocus();
-				if (Function.isSoftKeyboardShown(this, edt)) {
+				Function.showToastMessage(this, String.valueOf(Function.isSoftKeyboardShown(ASLActivity.this)));
+				if (Function.isSoftKeyboardShown(this)) {
 					d = R.drawable.ic_menu_search;
 					Function.startSongs(ASLActivity.this, clicDown);
 					Function.hideKeyboard(this, edt);
@@ -1144,7 +1150,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				if(txt.isEmpty()){
 					int d, colorInt;
 					if(!boolFocus) edt.requestFocus();
-					if (Function.isSoftKeyboardShown(this, edt)) {
+					if (Function.isSoftKeyboardShown(this)) {
 						d = R.drawable.ic_menu_search;
 						Function.startSongs(ASLActivity.this, clicDown);
 						Function.hideKeyboard(this, edt);
@@ -1171,7 +1177,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			}else{
 				int d, colorInt;
 				if(!boolFocus) edt.requestFocus();
-				if (Function.isSoftKeyboardShown(this, edt)) {
+				if (Function.isSoftKeyboardShown(this)) {
 					d = R.drawable.ic_menu_search;
 					Function.startSongs(ASLActivity.this, clicDown);
 					Function.hideKeyboard(this, edt);
@@ -1200,6 +1206,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			return true;
 		});
 	}
+	private int intExit = 0;
 	private void setSpans(Editable e, Typeface typeface, int start, int end){
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
 			e.setSpan(new TypefaceSpan(typeface), start, end, Spanned.SPAN_INCLUSIVE_INCLUSIVE);

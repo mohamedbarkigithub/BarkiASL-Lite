@@ -133,6 +133,6 @@
 	<string name="failure_update" translatable="false">Failure update</string>
 	<string name="jomhoriya">People\'s Democratic Republic of Algeria</string>
 	<string name="wizara">Ministry of National Solidarity, Family Affairs and the Status of Women</string>
-    <string name="share">Share the app</string>
+    <string name="share">Share the app:</string>
 	<string name="sharesubject">Download the BarkiASL Lite application</string>
 </resources>
