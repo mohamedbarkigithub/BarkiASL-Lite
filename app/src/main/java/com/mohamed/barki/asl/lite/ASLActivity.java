@@ -108,6 +108,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 	{
 		if(Function.validatePackageName(this)){return;
 		}else if(Function.validateApplicationName(this)){return;}
+		restartExit();
 		boolExit = false;
 		fSize = Integer.parseInt(Function.getValue(ASLActivity.this, "dimenPhoto"));
 		switch (p1.getId()) {
@@ -198,6 +199,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 	}
 	@Override
 	public boolean onLongClick(View p1) {
+		restartExit();
 		fSize = Integer.parseInt(Function.getValue(ASLActivity.this, "dimenPhoto"));
 		switch (p1.getId()) {
 			case (R.id.maindButtonP):
@@ -537,11 +539,13 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		((TextView) dialog.findViewById(R.id.dialog_infoo)).setText(getString(R.string.h2));
 		((TextView) dialog.findViewById(R.id.dialog_infooo)).setText(getString(R.string.h4));
 		dialog.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
+			restartExit();
 			Function.startSongs(this, click);
 			setWebView();
 			dialog.dismiss();
 		});
 		dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> {
+			restartExit();
 			Function.startSongs(this, click);
 			dialog.dismiss();
 		});
@@ -627,6 +631,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		dimenDeafPositif.setOnClickListener(this);
 		dimenDeafPositif.setOnLongClickListener(this);
 		dimenDeafPositif.setOnTouchListener((v, event) -> {
+			restartExit();
 			if( event.getAction() == MotionEvent.ACTION_UP && autoIncrement ){autoIncrement = false;}
 			return false;
 		});
@@ -634,6 +639,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		dimenDeafNegatif.setOnClickListener(this);
 		dimenDeafNegatif.setOnLongClickListener(this);
 		dimenDeafNegatif.setOnTouchListener((v, event) -> {
+			restartExit();
 			if( event.getAction() == MotionEvent.ACTION_UP && autoDecrement ){autoDecrement = false;}
 			return false;
 		});
@@ -669,6 +675,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 
 		findViewById(R.id.imgSpinner1).setOnClickListener(view -> {
 			Function.hideKeyboard(ASLActivity.this, edt);
+			restartExit();
 			restartEditText();
 			Function.startSongs(this, click);
 			if(intent.equals("2")) {
@@ -684,11 +691,14 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		if(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي"))
 			edt.setTypeface(faceAr);
 		else edt.setTypeface(faceFr);
-		if(intent.equals("1")){
-			gameFun();
-		}
+		Function.unmute(this);
+		if(intent.equals("1")) gameFun();
 	}
 	long REPEAT_USER_DELAY = 15;
+	private void restartExit(){
+		boolExit = false;
+		intExit = 0;
+	}
 	@Override
 	public void onUserInteraction() {
 		super.onUserInteraction();
@@ -744,6 +754,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 	}
 	@SuppressLint("ResourceAsColor")
 	private void gameFun() {
+		Function.mute(this);
 		photoView.setVisibility(View.GONE);
 		findViewById(R.id.maindButtonImage).setVisibility(View.GONE);
 		findViewById(R.id.maindButtonImageInvisible).setVisibility(View.GONE);
@@ -806,10 +817,9 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 	}
 	@SuppressLint("SuspiciousIndentation")
 	private void randomDeaf() {
-		int min = 0;
-		int max = resList.length - 2;
-		do randomOfTest = randomGenerator(min, max);
-		while (!resList[randomOfTest][1].equals("url"));
+		int min = 1;
+		int max = resList.length - 1;
+		randomOfTest = randomGenerator(min, max);
 		search = nameArFr[randomOfTest];
 		new android.os.Handler().postDelayed(() -> searchFun(nameArFr[randomOfTest], "image"), 100);
 	}
@@ -836,12 +846,14 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 					dialog.setCanceledOnTouchOutside(false);
 					dialog.setCancelable(false);
 					dialog.findViewById(R.id.dialog_close).setOnClickListener(v -> {
+						restartExit();
 						Function.startSongs(ASLActivity.this, click);
 						dialog.dismiss();
 					});
 					((TextView) dialog.findViewById(R.id.dialog_infoo)).setText(this.getString(R.string.more_error));
 					((TextView) dialog.findViewById(R.id.dialog_nonono)).setText(this.getString(R.string.ask_if_you_want_learn));
 					dialog.findViewById(R.id.dialog_yes).setOnClickListener(v -> {
+						restartExit();
 						Function.startSongs(ASLActivity.this, click);
 						Function.saveFromText(ASLActivity.this, "intent", "2");
 						Function.startActivityFun(ASLActivity.this, ASLActivity.class);
@@ -1009,6 +1021,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		AutoSuggestAdapter adapter = new AutoSuggestAdapter(ASLActivity.this, R.layout.list_item, stringList, stringListNoPal);
 		edt = findViewById(R.id.maindEditText1);
 		edt.setOnItemClickListener((parent, view, position, rowId) -> {
+			restartExit();
 			restartEditText();
 			Function.startSongs(ASLActivity.this, clickSpinner);
 			String selection = (String)parent.getItemAtPosition(position);
@@ -1060,6 +1073,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		edt.setOnFocusChangeListener((arg0, hsf) -> boolFocus = hsf);
 		edt.setOnEditorActionListener((v, actionId, event) -> {
 			if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+				restartExit();
 				if(Function.isSoftKeyboardShown(ASLActivity.this)){
 					Function.startSongs(ASLActivity.this, clicDown);
 					Function.hideKeyboard(ASLActivity.this, edt);
@@ -1099,6 +1113,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			}
 		});
 		edt.setOnClickListener(v -> {
+			restartExit();
 			if(boolClose){
 				Function.startSongs(ASLActivity.this, clear);
 				String txt = edt.getText().toString();
@@ -1143,6 +1158,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		});
 		View btnClose = findViewById(R.id.maindButtonClose);
 		btnClose.setOnClickListener(v -> {
+			restartExit();
 			if(boolClose){
 				Function.startSongs(ASLActivity.this, clear);
 				String txt = edt.getText().toString();
@@ -1194,6 +1210,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			}
 		});
 		btnClose.setOnLongClickListener(p1 -> {
+			restartExit();
 			if(boolClose){
 				Function.startSongs(ASLActivity.this, clear);
 				String txt = edt.getText().toString();

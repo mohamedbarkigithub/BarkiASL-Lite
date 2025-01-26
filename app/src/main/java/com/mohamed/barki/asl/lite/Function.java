@@ -18,6 +18,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -152,7 +153,13 @@ public class Function extends Activity {
 		SharedPreferences.Editor editor = prefs.edit();
 		editor.putBoolean(key, bool).apply();
 	}
+	public static int getInt(Context getAppContext, String key) {
+		return Integer.parseInt(getValue(getAppContext, key));
+	}
 
+	public static void saveInt(Context getAppContext, String key, int value) {
+		saveFromText(getAppContext, key, String.valueOf(value));
+	}
 	public static void doCopy(Context getAppContext, String text) {
 		ClipboardManager clipboardManager;
 		clipboardManager = (ClipboardManager) getAppContext.getSystemService(Context.CLIPBOARD_SERVICE);
@@ -162,7 +169,6 @@ public class Function extends Activity {
 			showToastMessage(getAppContext, getAppContext.getString(R.string.copy_text_to_clip));
 		}
 	}
-
 	public static void hideKeyboard(Context getAppContext, EditText edt) {
 		InputMethodManager inputManager = (InputMethodManager) getAppContext.getSystemService(Context.INPUT_METHOD_SERVICE);
 		inputManager.hideSoftInputFromWindow(edt.getWindowToken(), 0);
@@ -176,6 +182,15 @@ public class Function extends Activity {
 	}
 	public static boolean isSoftKeyboardShown(final Context getAppContext) {
 		return Function.getBoolean(getAppContext, "keyboard");
+	}
+	public static void mute(Context context) {
+		AudioManager mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+		mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+	}
+	public static void unmute(Context context) {
+		AudioManager mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+		int mute_volume = Function.getInt(context, "volume");
+		mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mute_volume, 0);
 	}
 	public static String getApplicationName(Context getAppContext) {
 		ApplicationInfo applicationInfo = getAppContext.getApplicationInfo();
