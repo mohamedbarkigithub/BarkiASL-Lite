@@ -312,6 +312,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			lnyTextView.setVisibility(View.INVISIBLE);
 		}
 		findViewById(R.id.maindButtonImage).setOnClickListener(v -> {
+			restartExit();
 			if(photoView.getVisibility()==View.GONE){
 				photoView.setVisibility(View.VISIBLE);
 				findViewById(R.id.maindButtonImageInvisible).setVisibility(View.INVISIBLE);
