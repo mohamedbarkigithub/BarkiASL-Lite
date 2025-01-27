@@ -10,7 +10,7 @@
     <color name="primaryGAME">#ff065e52</color>
     <color name="colorPrimaryButton">#2E8B57</color>
     <color name="colorText">#ffffffff</color>
-    <color name="colorTextHint">#1d1e17</color>
+    <color name="colorTextHint">#ffb6b6b6</color>
 
     <color name="textPrimary">#000000</color>
     <color name="textPrimaryInverse">#ffffff</color>
