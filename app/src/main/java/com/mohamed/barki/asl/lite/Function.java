@@ -18,7 +18,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -152,13 +151,6 @@ public class Function extends Activity {
 		SharedPreferences prefs = getAppContext.getSharedPreferences(getApplicationName(getAppContext), MODE_PRIVATE);
 		SharedPreferences.Editor editor = prefs.edit();
 		editor.putBoolean(key, bool).apply();
-	}
-	public static int getInt(Context getAppContext, String key) {
-		return Integer.parseInt(getValue(getAppContext, key));
-	}
-
-	public static void saveInt(Context getAppContext, String key, int value) {
-		saveFromText(getAppContext, key, String.valueOf(value));
 	}
 	public static void doCopy(Context getAppContext, String text) {
 		ClipboardManager clipboardManager;

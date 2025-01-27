@@ -1,11 +1,9 @@
 package com.mohamed.barki.asl.lite;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
-import android.media.AudioManager;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -84,9 +82,6 @@ public class LoginActivity extends AppCompatActivity
 			if (Function.getValue(this, "update").isEmpty()) {
 				Function.saveFromText(this, "update", Function.setTime());
 			}
-			AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-			int mute_volume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-			Function.saveInt(this, "volume", mute_volume);
 			new android.os.Handler().postDelayed(() -> {
 				startActivity(new Intent(LoginActivity.this, ScreenActivity.class));
 				finish();
