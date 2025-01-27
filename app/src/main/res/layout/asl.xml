@@ -75,6 +75,7 @@
 		</RelativeLayout>
 
 		<RelativeLayout
+			android:id="@+id/maindrlvSpinner1"
 			android:layout_width="50.0dp"
 			android:layout_height="50.0dp"
 			android:layout_centerVertical="true"

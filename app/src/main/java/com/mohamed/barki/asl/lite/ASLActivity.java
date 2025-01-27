@@ -49,6 +49,7 @@ import android.widget.Filter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -363,10 +364,12 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 	}
 	private String VIDEO_ID, VIDEO_NAME;
 	private void setVideoToVideoView(int videoIndex) {
+		if(intent.equals("1")) randomDeaf();
+
 		VIDEO_ID = resList[videoIndex][1];
 		VIDEO_NAME = resList[videoIndex][0] + ".MPG" ;
 
-		if(VIDEO_ID.equals("url")){
+		if(VIDEO_ID.equals("url") || VIDEO_ID.isEmpty()){
 			btnVideo.setImageResource(R.drawable.ic_video);
 			btnVideo.setBackgroundResource(R.drawable.button_f);
 			Function.saveFromText(this, "type", "image");
@@ -689,10 +692,10 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			s1.requestFocus();
 			s1.performClick();
 		});
+		if(intent.equals("1")) findViewById(R.id.maindrlvSpinner1).setVisibility(RelativeLayout.GONE);
 		if(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي"))
 			edt.setTypeface(faceAr);
 		else edt.setTypeface(faceFr);
-		Function.unmute(this);
 		if(intent.equals("1")) gameFun();
 	}
 	long REPEAT_USER_DELAY = 15;
@@ -755,7 +758,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 	}
 	@SuppressLint("ResourceAsColor")
 	private void gameFun() {
-		Function.mute(this);
 		photoView.setVisibility(View.GONE);
 		findViewById(R.id.maindButtonImage).setVisibility(View.GONE);
 		findViewById(R.id.maindButtonImageInvisible).setVisibility(View.GONE);

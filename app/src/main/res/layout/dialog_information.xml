@@ -90,6 +90,7 @@
 					android:layout_height="wrap_content"
 					android:padding="10dp"
 					android:textIsSelectable="true"
+					android:textSize="20sp"
 					android:contentDescription="@string/info_dialog"
 					tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 			</LinearLayout>

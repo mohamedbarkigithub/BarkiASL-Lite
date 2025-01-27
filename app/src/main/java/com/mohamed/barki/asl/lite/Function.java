@@ -183,15 +183,6 @@ public class Function extends Activity {
 	public static boolean isSoftKeyboardShown(final Context getAppContext) {
 		return Function.getBoolean(getAppContext, "keyboard");
 	}
-	public static void mute(Context context) {
-		AudioManager mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-		mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
-	}
-	public static void unmute(Context context) {
-		AudioManager mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-		int mute_volume = Function.getInt(context, "volume");
-		mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mute_volume, 0);
-	}
 	public static String getApplicationName(Context getAppContext) {
 		ApplicationInfo applicationInfo = getAppContext.getApplicationInfo();
 		int stringId = applicationInfo.labelRes;
