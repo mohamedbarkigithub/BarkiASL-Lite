@@ -70,39 +70,35 @@
 
         <activity android:name="com.mohamed.barki.asl.lite.LoginActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize|screenLayout|uiMode"
-            android:screenOrientation="portrait"
             android:exported="true"
             android:noHistory="true"
-            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+            tools:ignore="DiscouragedApi">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
-            android:configChanges="orientation|keyboard|keyboardHidden|screenSize|screenLayout|uiMode"
-            android:windowSoftInputMode="stateHidden"
             android:name="com.mohamed.barki.asl.lite.ScreenActivity"
-            android:permission="com.mohamed.barki.asl.MYPERMISSION"
-            android:screenOrientation="portrait"
-            android:exported="false"
-            tools:ignore="DiscouragedApi,LockedOrientationActivity" />
-        <activity
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize|screenLayout|uiMode"
             android:windowSoftInputMode="stateHidden"
-            android:name="com.mohamed.barki.asl.lite.ASLActivity"
             android:permission="com.mohamed.barki.asl.MYPERMISSION"
-            android:screenOrientation="portrait"
             android:exported="false"
-            tools:ignore="DiscouragedApi,LockedOrientationActivity" />
+            tools:ignore="DiscouragedApi" />
+        <activity
+            android:name="com.mohamed.barki.asl.lite.ASLActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize|screenLayout|uiMode"
+            android:windowSoftInputMode="stateHidden"
+            android:permission="com.mohamed.barki.asl.MYPERMISSION"
+            android:exported="false"
+            tools:ignore="DiscouragedApi" />
         <activity
             android:name="com.mohamed.barki.asl.lite.ManageSpaceActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize|screenLayout|uiMode"
-            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing"
             android:exported="true"
             android:noHistory="true"
-            tools:ignore="DiscouragedApi,LockedOrientationActivity"/>
+            tools:ignore="DiscouragedApi"/>
 
         <meta-data android:name="SUPPORT_OLD_LAYOUT" android:value="true" />
         <meta-data android:name="SUPPORT_NEW_LAYOUT" android:value="true" />

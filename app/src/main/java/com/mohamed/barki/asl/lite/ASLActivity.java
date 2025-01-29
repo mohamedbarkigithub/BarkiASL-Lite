@@ -1227,9 +1227,10 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 	}
 	private int intExit = 0;
 	private void setSpans(Editable e, Typeface typeface, int start, int end){
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P)
 			e.setSpan(new TypefaceSpan(typeface), start, end, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-		}
+		else
+			e.setSpan(typeface, start, end, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
 	}
 	/** @noinspection CallToPrintStackTrace*/
 	@SuppressWarnings("rawtypes")
