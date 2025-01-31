@@ -66,7 +66,7 @@
 	<string name="start_game">لعب</string>
 	<string name="enter_a_repons_term">أدخل جواب محتمل</string>
 	<string name="learn">تعلم</string>
-	<string name="scor">رصيدك</string>
+	<string name="scor">رصيدك:</string>
 	<string name="show_help">الحصول على مساعدة مع خصم 5 نقاط ^^</string>
 	<string name="show_repo">التحقق من الإجابة ^^</string>
 	<string name="show_skip">تخطي الاختبار ^^</string>

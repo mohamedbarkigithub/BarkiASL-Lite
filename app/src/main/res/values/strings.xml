@@ -71,7 +71,7 @@
 	<string name="start_game">Game</string>
 	<string name="enter_a_repons_term">Enter a possible answer</string>
 	<string name="learn">Learn</string>
-	<string name="scor">your scor</string>
+	<string name="scor">your scor:</string>
 	<string name="show_help">Get help with 5 points discount ^^</string>
 	<string name="show_repo">Check the answer ^^</string>
 	<string name="show_skip">Skip the test ^^</string>

@@ -67,7 +67,7 @@
 	<string name="start_game">Jouer</string>
 	<string name="enter_a_repons_term">Entrez une réponse possible</string>
 	<string name="learn">Apprendre</string>
-	<string name="scor">votre solde</string>
+	<string name="scor">votre solde:</string>
 	<string name="show_help">Obtenez de l\'aide avec 5 points de réduction ^^</string>
 	<string name="show_repo">Vérifiez la réponse ^^</string>
 	<string name="show_skip">Sauter le test ^^</string>
