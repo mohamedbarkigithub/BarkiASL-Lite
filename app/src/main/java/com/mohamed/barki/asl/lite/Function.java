@@ -605,15 +605,11 @@ public class Function extends Activity {
 
 	public static void setThemeDark(Activity getActivity, int layout) {
 		AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-		getActivity.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getActivity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		getActivity.setContentView(layout);
 	}
 
 	public static void setThemeLight(Activity getActivity, int layout) {
 		AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-		getActivity.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getActivity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		getActivity.setContentView(layout);
 	}
 

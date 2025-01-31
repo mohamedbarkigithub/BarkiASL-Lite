@@ -4,6 +4,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:background="@drawable/gradient_screen"
+	android:fitsSystemWindows="true"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 	<LinearLayout

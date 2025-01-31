@@ -99,7 +99,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 	private final int nbrLenght = resList.length;
 	private TextView tv;
     private TextView tvv;
-    private TextView tvScor;
+    private TextView tvScorL, tvScorR;
 	private TextWatcher textWatcher;
 	private Typeface faceFr, faceAr;
 	private WebView webView;
@@ -776,14 +776,27 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		btnShow.setEnabled(true);
 		btnLeft.setVisibility(View.GONE);
 		btnRight.setVisibility(View.GONE);
-		tvScor = findViewById(R.id.mainTextViewScor);
+		tvScorL = findViewById(R.id.mainTextViewScorL);
+		tvScorR = findViewById(R.id.mainTextViewScorR);
+		if(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي"))
+			tvScorL.setVisibility(View.VISIBLE);
+		else
+			tvScorR.setVisibility(View.VISIBLE);
+		tvScorL.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/maths.ttf"));
+		tvScorR.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/maths.ttf"));
+		Typeface font = Typeface.createFromAsset(getAssets(),
+				(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي")) ?
+						"fonts/ArefRuqaa.ttf" : "fonts/Balton.ttf"
+		);
+		((TextView)findViewById(R.id.mainTextViewScor)).setTypeface(font);
 		if(Function.getValue(this, "scor").isEmpty()){Function.saveFromText(this, "scor", "0");}
 		scor = Integer.parseInt(Function.getValue(this, "scor"));
 		scor10 = 0;
 		nbrFalse = 0;
 		String scortxt = String.valueOf(scor);
 		if (scor > 0) {scortxt = "+" + scortxt;}
-		tvScor.setText(scortxt);
+		tvScorL.setText(scortxt);
+		tvScorR.setText(scortxt);
 		bool = false;
 		handler = new Handler();
 		r = () -> {
@@ -804,7 +817,8 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				Function.saveFromText(this, "scor", String.valueOf(scor));
 				scortxt = String.valueOf(scor);
 				if(scor>0){scortxt = "+"+scortxt;}
-				tvScor.setText(scortxt);
+				tvScorL.setText(scortxt);
+				tvScorR.setText(scortxt);
 				new android.os.Handler().postDelayed(() -> lnyTextView.setLayoutParams(paramsM0), 500);
 				break;
 			case 3://refresh
@@ -812,7 +826,8 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				scor10 = 0;
 				Function.saveFromText(this, "scor", "0");
 				scortxt = String.valueOf(scor);
-				tvScor.setText(scortxt);
+				tvScorL.setText(scortxt);
+				tvScorR.setText(scortxt);
 				randomDeaf();
 				break;
 		}
@@ -888,8 +903,9 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				break;
 		}
 		scortxt = String.valueOf(scor);
-		if(scor>0){scortxt = "+"+scortxt;}
-		tvScor.setText(scortxt);
+		if(scor>0) scortxt = "+"+scortxt;
+		tvScorL.setText(scortxt);
+		tvScorR.setText(scortxt);
 		Function.saveFromText(this, "scor", String.valueOf(scor));
 		if(scor10!=0 && scor10%10 == 0){
 			scor = scor+scor10/2;
@@ -906,12 +922,14 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				new android.os.Handler().postDelayed(() -> {
 					Function.stopSongs(ASLActivity.this, tasfiq);
 					photoView.setVisibility(View.INVISIBLE);
-					tvScor.setText(scortxt);
+					tvScorL.setText(scortxt);
+					tvScorR.setText(scortxt);
 					dialog.dismiss();
 				}, 4500);
 			}else{
 				new android.os.Handler().postDelayed(() -> {
-					tvScor.setText(scortxt);
+					tvScorL.setText(scortxt);
+					tvScorR.setText(scortxt);
 					photoView.setVisibility(View.INVISIBLE);
 				}, 500);
 			}
