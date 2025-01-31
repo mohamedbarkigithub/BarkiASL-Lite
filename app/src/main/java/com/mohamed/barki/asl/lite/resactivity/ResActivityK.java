@@ -66,7 +66,7 @@ public class ResActivityK extends Activity
 			{"k58", "1Zw9hx9PPUFVkeySUYEN3974j-6b6_znM", "araignée", "عنكبوت"},
 			{"k59", "1XVypvNA4J4mq3tWld6XWI1KBYQ9pQBl0", "écureuil", "سنجاب"},
 			{"k60", "1ZigqqXrlldwCSaVg0vZy_vdSpiI9rZ8t", "kafard1", "صرصور1"},
-			{"k61", "1Ud_Vi6QmcIRjpcH585MHxpJDhQgUbu3s", "grenouille", "ضفدع"},
+			{"k61", "1Ud_Vi6QmcIRjpcH585MHxpJDhQgUbu3s", "grenouille1", "ضفدع1"},
 			{"k62", "12xbnts74e1DDGDDrEv57Oj0kGqs5zo4e", "torture1", "سلحفاة1"},
 			{"k63", "url", "torture2", "سلحفاة2"},
 			{"k64", "1kjG5TdwZvy0034pe0eg57-kUWx_FalA8", "requin1", "سمك القرش1"},
@@ -129,5 +129,10 @@ public class ResActivityK extends Activity
 			{"k121", "url", "oie", "إوزة"},
 			{"k122", "url", "agneau", "حمل"},
 			{"k123", "url", "poney", "فرس قزم"},
+			{"k124", "url", "grenouille2", "ضفدع2"},
+			{"k125", "url", "licorne", "يونيكورن، أحادي القرن (حيوان خرافي)"},
+			{"k126", "url", "sirène", "حورية البحر"},
+			{"k127", "url", "dragon", "تنين"},
+			{"k128", "url", "géant", "عملاق"},
 	};
 }

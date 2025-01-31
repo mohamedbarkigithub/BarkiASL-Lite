@@ -77,5 +77,11 @@ public class ResActivityX extends Activity
 			{"x69", "url", "mardi3", "الثلاثاء3"},
 			{"x70", "url", "jeudi2", "الخميس2"},
 			{"x71", "url", "week-end", "عطلة نهاية الأسبوع"},
+			{"x72", "url", "il était une fois", "كان يا مكان"},
+			{"x73", "url", "prince", "أمير"},
+			{"x74", "url", "princesse", "أميرة"},
+			{"x75", "url", "fée", "جني، عفريت"},
+			{"x76", "url", "sorcière", "ساحرة، مشعوذة"},
+			{"x77", "url", "pirate", "قرصان"},
 	};
 }

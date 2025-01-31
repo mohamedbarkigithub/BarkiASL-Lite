@@ -465,7 +465,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 
 		webView.loadData(urlVideo,  "text/html", "utf-8");
 
-		webView.requestFocus();
 		webView.setEnabled(false);
 		webView.setFocusable(false);
 		webView.setClickable(false);

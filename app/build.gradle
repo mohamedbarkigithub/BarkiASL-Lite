@@ -9,8 +9,8 @@ android {
         applicationId "com.mohamed.barki.asl.lite"
         minSdk = 23
         targetSdk = 35
-        versionCode 25012900
-        versionName "2025.01.29"
+        versionCode 25013100
+        versionName "2025.01.31"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -78,12 +78,13 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.15.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
     implementation 'com.github.bumptech.glide:okhttp3-integration:4.15.1'
+    implementation 'org.apache.commons:commons-lang3:3.9'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'androidx.appcompat:appcompat-resources:1.7.0'
     implementation 'androidx.mediarouter:mediarouter:1.7.0'
-    implementation 'androidx.navigation:navigation-ui:2.8.5'
+    implementation 'androidx.navigation:navigation-ui:2.8.6'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'

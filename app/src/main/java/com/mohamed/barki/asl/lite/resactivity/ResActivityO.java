@@ -69,5 +69,6 @@ public class ResActivityO extends Activity
 			{"o61", "url", "facteur2", "ساعي البريد2"},
 			{"o62", "url", "policier2", "شرطي2"},
 			{"o63", "url", "serveur", "خادم، نادل"},
+			{"o64", "url", "chasseur", "صياد"},
 	};
 }
