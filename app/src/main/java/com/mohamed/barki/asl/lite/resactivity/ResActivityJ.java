@@ -143,7 +143,7 @@ public class ResActivityJ extends Activity
 			{"j135", "url", "goût amer", "مر المذاق"},
 			{"j136", "url", "goût acide", "حامض المذاق"},
 			{"j137", "url", "goût piqaunt", "حار المذاق"},
-			{"j137", "url", "goût épicé", "متبل المذاق"},
-			{"j138", "url", "papille gustative", "برعم التذوق"},
+			{"j138", "url", "goût épicé", "متبل المذاق"},
+			{"j139", "url", "papille gustative", "برعم التذوق"},
 	};
 }
