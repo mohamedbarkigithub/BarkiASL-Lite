@@ -6,10 +6,6 @@
 	android:background="@drawable/gradient_asl"
 	android:id="@+id/gradientlayout"
 	android:orientation="vertical"
-	android:paddingTop="5.0dip"
-	android:paddingLeft="10.0dip"
-	android:paddingRight="10.0dip"
-	android:paddingBottom="10.0dip"
 	android:fitsSystemWindows="true"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
@@ -116,9 +112,11 @@
 	<LinearLayout
 		android:orientation="vertical"
 		android:gravity="center"
+		android:layout_marginTop="5dp"
+		android:layout_marginLeft="5dp"
+		android:layout_marginRight="5dp"
 		android:background="@drawable/background_top"
 		android:id="@+id/maindLinearLayout33"
-		android:layout_marginTop="5dip"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
 		<LinearLayout
@@ -127,7 +125,6 @@
 			android:id="@+id/maindTextViewL11"
 			android:background="@android:color/transparent"
 			android:paddingLeft="2.0dip"
-			android:paddingTop="2.0dip"
 			android:paddingRight="2.0dip"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -172,7 +169,9 @@
 		android:orientation="horizontal"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
-		android:layout_marginTop="5.0dp"
+		android:layout_marginTop="5dp"
+		android:layout_marginLeft="5dp"
+		android:layout_marginRight="5dp"
 		android:layout_weight="1.0">
 		<LinearLayout
 			android:orientation="vertical"
@@ -352,8 +351,6 @@
 									android:visibility="gone"
 									android:minWidth="50dp"
 									android:minHeight="100dp"
-									android:background="@color/textPrimaryInverse"
-									android:contentDescription="@string/image_view"
 									android:clickable="false"
 									android:saveEnabled="false"
 									android:focusable="false"
@@ -362,6 +359,7 @@
 									android:touchscreenBlocksFocus="false"
 									android:screenReaderFocusable="false"
 									android:scaleType="fitXY"
+									android:contentDescription="@string/image_view"
 									tools:ignore="SpeakableTextPresentCheck,UnusedAttribute" />
 								<WebView
 									android:id="@+id/maindWebView"
@@ -370,9 +368,8 @@
 									android:visibility="gone"
 									android:minWidth="50dp"
 									android:minHeight="100dp"
-									android:background="@color/textPrimaryInverse"
 									android:contentDescription="@string/video_view"
-									tools:ignore="SpeakableTextPresentCheck,UnusedAttribute" />
+									tools:ignore="SpeakableTextPresentCheck,TooDeepLayout" />
 							</LinearLayout>
 						</LinearLayout>
 					</ScrollView>
@@ -388,7 +385,10 @@
 		android:orientation="horizontal"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="2dp">
+		android:layout_marginLeft="5dp"
+		android:layout_marginRight="5dp"
+		android:layout_marginTop="2dp"
+		android:layout_marginBottom="2dp">
 
 		<ImageButton
 			android:id="@+id/maindButtonN"

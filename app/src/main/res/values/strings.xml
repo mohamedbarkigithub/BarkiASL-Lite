@@ -1,38 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name" translatable="false">BarkiASL Lite</string>
+	<string name="app_name">BarkiASL Lite</string>
+	<string name="barkiasl" translatable="false">BARKIASL LITE</string>
 	<string name="app_url" translatable="false">https://play.google.com/store/apps/details?id=com.mohamed.barki.asl.lite</string>
 	<string name="url_asset" translatable="false">https://github.com/mohamedbarkigithub/BarkiASL-Lite/raw/master/assets/</string>
+	<string name="privacy_policy" translatable="false">https://mohamedbarki.blogspot.com/2023/07/privacy-policy-of-barkiasl-lite.html</string>
 	<string name="pkgadmin" translatable="false">com.mohamed.barki.admin</string>
-    <string name="ar_lan">"آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻء١٢٣٤٥٦٧٨٩٠ "</string>
-    <string name="ar_lanf">"abcdefghijklmnopqrstuvwxyzàäâáæèéêùûüîïíìôöóòœ 0123456789 "</string>
-    <string name="ar_lane">"abcdefghijklmnopqrstuvwxyz 0123456789 "</string>
-    <string name="email_lang">"abcdefghijklmnopqrstuvwxyz @"</string>
-    <string name="num_lang">0123456789</string>
-    <string name="ar_lang">آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻء، abc\'defghijklmnopq()/؟?rstuvwxyzàäâáæèéêùûüîïíìôöóòœ, -123</string>
+	<string name="ar_lan">"آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻء١٢٣٤٥٦٧٨٩٠ "</string>
+	<string name="ar_lanf">"abcdefghijklmnopqrstuvwxyzàäâáæèéêùûüîïíìôöóòœ 0123456789 "</string>
+	<string name="ar_lane">"abcdefghijklmnopqrstuvwxyz 0123456789 "</string>
+	<string name="email_lang">"abcdefghijklmnopqrstuvwxyz @"</string>
+	<string name="num_lang">0123456789</string>
+	<string name="ar_lang">آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻء، abc\'defghijklmnopq()/؟?rstuvwxyzàäâáæèéêùûüîïíìôöóòœ, -123</string>
 	<string name="drawer_close">Close</string>
-    <string name="drawer_open">Open</string>
+	<string name="drawer_open">Open</string>
 	<string name="search">Enter a search term</string>
-	
+
 	<string name="page_about">Developer Facebook Page:</string>
 	<string name="email_about">Developer Email:</string>
 	<string name="site_about">To update the application:</string>
-    <string name="copy_text_to_clip">Text copied successfully!!!</string>
-    <string name="saved_to_folder">Saved to folder</string>
-    <string name="oops_screenshot_file">Oops!!  An error occurred while saving your file</string>
+	<string name="copy_text_to_clip">Text copied successfully!!!</string>
+	<string name="saved_to_folder">Saved to folder</string>
+	<string name="oops_screenshot_file">Oops!!  An error occurred while saving your file</string>
 	<string name="oops_screenshot">Oops!!  Your phone does not support this feature</string>
 	<string name="validate_empty">Please enter a letter or symbol!!!</string>
-    <string name="validate_more">Very long sentence!!!!!!</string>
-    <string name="validate_more_more">There are more than 10 letter!!!</string>
-    <string name="error">Error!!!</string>
+	<string name="validate_more">Very long sentence!!!!!!</string>
+	<string name="validate_more_more">There are more than 10 letter!!!</string>
+	<string name="error">Error!!!</string>
 	<string name="title_about">This application helps to:</string>
-    <string name="text_about">Search in the Algerian Sign Language Dictionary</string>
+	<string name="text_about">Search in the Algerian Sign Language Dictionary</string>
 	<string name="not_connected_to_internet">Not connected to internet!!!</string>
 	<string name="not_connected_to_a_network">Not connected to a network!!!</string>
 	<string name="welcom">Welcom</string>
 	<string name="try_searching_in_arabic">Try searching in Arabic</string>
 	<string name="try_searching_in_french">Try searching in French</string>
-	<string name="time_20_s">Time geq than 20s !</string>
+	<string name="time_20_s">Time is greater than 20s!</string>
 	<string name="valid_time_video">Set a valid time between 1s and 20s</string>
 	<string name="valid_theme_video">Set a valid video theme</string>
 	<string name="video_is_over">The video is over!</string>
@@ -53,7 +55,7 @@
 	<string name="text_ref_kamos">Algerian Sign Language Dictionary Edition 2017 (pdf)</string>
 	<string name="text_ref_kamos_video">Algerian Sign Language Dictionary Edition 2017 (video)</string>
 	<string name="numImage" tools:ignore="MissingTranslation">1008</string>
-	
+
 	<string name="no_connection">No Connection</string>
 	<string name="h1">Whoops!</string>
 	<string name="h2">Slow or No internet Connection 😿</string>
@@ -64,7 +66,7 @@
 	<string name="save_video_offline">After downloading the video to your device, you will be able to play it later without the Internet</string>
 
 	<string name="worng_package">The package name is wrong !!!</string>
-    <string name="worng_name">The app name is wrong !!!</string>
+	<string name="worng_name">The app name is wrong !!!</string>
 	<string name="worng_time">The application must be updated !!!</string>
 	<string name="re_exit">Press again to exit the application</string>
 	<string name="back_to_home">Click again to go back to the main page</string>
@@ -125,14 +127,83 @@
 	<string name="spinner_img">Show signes</string>
 	<string name="video_show_btn">Video play</string>
 	<string name="search_btn">Search</string>
-    <string name="info_dialog">Show information</string>
-    <string name="btn_info">Show queries</string>
-    <string name="update_app">To update the application:</string>
+	<string name="info_dialog">Show information</string>
+	<string name="btn_info">Show queries</string>
+	<string name="update_app">Update the application</string>
 	<string name="start_update">Update</string>
 	<string name="success_update" translatable="false">Success update</string>
 	<string name="failure_update" translatable="false">Failure update</string>
 	<string name="jomhoriya">People\'s Democratic Republic of Algeria</string>
 	<string name="wizara">Ministry of National Solidarity, Family Affairs and the Status of Women</string>
-    <string name="share">Share the app:</string>
-	<string name="sharesubject">Download the BarkiASL Lite application</string>
+	<string name="share">Share the app:</string>
+	<string name="sharesubject">Download the BarkiASL application</string>
+	<string name="idistagram" translatable="false">http://instagram.com/_u/medbarkinsta</string>
+	<string name="idtelegramapp" translatable="false">tg://resolve?domain=barkigram</string>
+	<string name="idtelegram" translatable="false">https://t.me/barkigram</string>
+	<string name="idtelegramappG" translatable="false">tg://resolve?domain=SpecializedEducationSpaceGroup</string>
+	<string name="idtelegramG" translatable="false">https://t.me/SpecializedEducationSpaceGroup</string>
+	<string name="idfacebookdevlopperapp" translatable="false">fb://profile/3203834</string>
+	<string name="idfacebookdevlopper" translatable="false">https://www.facebook.com/profile.php?id=3203834</string>
+	<string name="idfacebookdevlopper2app" translatable="false">fb://profile/1049535328</string>
+	<string name="idfacebookdevlopper2" translatable="false">https://www.facebook.com/profile.php?id=1049535328</string>
+	<string name="idfacebookpageappbarki" translatable="false">fb://profile/100063588016416</string>
+	<string name="idfacebookpagebarki" translatable="false">https://www.facebook.com/100063588016416</string>
+	<string name="idfacebookgroupapp" translatable="false">fb://group/279469321639852</string>
+	<string name="idfacebookgroup" translatable="false">https://www.facebook.com/groups/specialized.education.space.group</string>
+
+	<string name="pkgapp" translatable="false">com.mohamed.barki.asl</string>
+	<string name="pkgfacebook" translatable="false">com.facebook.katana</string>
+	<string name="pkgfacebooklite" translatable="false">com.facebook.lite</string>
+	<string name="pkginstagram" translatable="false">com.instagram.android</string>
+	<string name="pkginstagramlite" translatable="false">com.instagram.lite</string>
+	<string name="pkgyoutube" translatable="false">com.google.android.youtube</string>
+	<string name="pkgtelegram" translatable="false">org.telegram.messenger</string>
+	<string name="pkgtelegramweb" translatable="false">org.telegram.messenger.web</string>
+	<string name="logo" translatable="false">logo</string>
+	<string name="email_dev" translatable="false">mohamedbarkimaths@gmail.com</string>
+	<string name="phone_dev" translatable="false">+213779875388</string>
+	<string name="adminchat" translatable="false">ChatAdminActivity</string>
+	<string name="adminsupport" translatable="false">SupportViewActivity</string>
+
+	<string name="support_view">Technical Support</string>
+	<string name="admininfo">Information of the owner and developer of the application</string>
+	<string name="facebookpage">Facebook page</string>
+	<string name="facebook">Facebook account</string>
+	<string name="facebookk">Second Facebook account</string>
+	<string name="insta">Instagram account</string>
+	<string name="telegram">Telegram group</string>
+	<string name="mytelegram">Telegram account</string>
+	<string name="email">Email</string>
+	<string name="action_settings">Settings</string>
+	<string name="policy">Privacy policy</string>
+	<string name="phone">Phone number</string>
+	<string name="facebookpageG">Facebook group</string>
+	<string name="email_admin_txt">Email of the application owner</string>
+	<string name="copy_email_to_clip">Email copied successfully!!!</string>
+	<string name="phone_admin_txt">Phone number of the application owner</string>
+	<string name="copy_phone_to_clip">Phone number copied successfully!!!</string>
+	<string name="copy_error_to_clip">Error copied successfully!!!</string>
+	<string name="copy_message_to_clip">Message copied successfully!!!</string>
+	<string name="message_card" translatable="false">message_card</string>
+	<string name="img_message_right" translatable="false">img_message_right</string>
+	<string name="img_message_left" translatable="false">img_message_left</string>
+	<string name="edit_or_remove_message">Choose the appropriate action</string>
+	<string name="remove_message">remove_message</string>
+	<string name="remove_this_message">remove_this_message</string>
+	<string name="support_remove_succes" translatable="false">support_remove_succes</string>
+	<string name="support_remove_failde" translatable="false">support_remove_succes</string>
+	<string name="support_edit_succes" translatable="false">support_edit_succes</string>
+	<string name="support_edit_failde" translatable="false">support_edit_failde</string>
+	<string name="last_seen">last seen</string>
+	<string name="recycerview_message" translatable="false">recycerview_message</string>
+	<string name="your_support_view">Enter your question…</string>
+	<string name="send" translatable="false">send</string>
+	<string name="send_failed">Send failed</string>
+	<string name="re_home">Click again to return to the home page</string>
+	<string name="cancel" translatable="false" tools:ignore="ButtonCase">cancel</string>
+	<string name="copy_message" translatable="false">copy_message</string>
+	<string name="new_message">New message</string>
+	<string name="new_message_text">You have received a new message from</string>
+	<string name="new_message_test">Do you really want to reply to this message?</string>
+	<string name="support">Respond to questions</string>
 </resources>

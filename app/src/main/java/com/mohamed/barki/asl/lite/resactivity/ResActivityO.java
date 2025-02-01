@@ -29,7 +29,7 @@ public class ResActivityO extends Activity
 			{"o21", "11UPVb9mtMALDWGzRlwwy-YAoatLVPQl_", "professeur1", "أستاذ1"},
 			{"o22", "11WQQQczf3SBh48hsDAwwsP9Dkc0wnfFu", "cordonnier", "إسكافي"},
 			{"o23", "11cBodpqbtz7O9DVWHtuER8rWNR5v2VC9", "pompier", "إطفائي"},
-			{"o24", "11clZZCqQ7DaQ1BhwrI-V2cQSLO3SjSEe", "pêcheur", "صياد"},
+			{"o24", "11clZZCqQ7DaQ1BhwrI-V2cQSLO3SjSEe", "pêcheur", "صياد السمك"},
 			{"o25", "11dz5gRdyAKLCalj1aq_IoSsVKSH9CcHY", "journaliste", "صحفي"},
 			{"o26", "11oJKloWtbfe6O6JOp6CiBFmjkCu5dtmR", "policier1", "شرطي1"},
 			{"o27", "11oi9d4EpOzHlY6Jqe2vsKn70ZR9tgwAv", "pilote", "طيار"},
@@ -60,7 +60,7 @@ public class ResActivityO extends Activity
 			{"o52", "url", "taxieur", "سائق سيارة أجرة"},
 			{"o53", "url", "boulanger2", "خباز2"},
 			{"o54", "url", "ouvrier", "عامل"},
-			{"o55", "url", "coiffeuse", "حلاقة"},
+			{"o55", "url", "coiffeuse", "حلَّاقة"},
 			{"o56", "url", "barmaid, barman", "نادل"},
 			{"o57", "url", "cuisinier", "طباخ"},
 			{"o58", "13rNhVkQTWZpUXfIYm1Cmu2Ju4ihT779m", "juge1", "قاضي1"},
@@ -70,5 +70,7 @@ public class ResActivityO extends Activity
 			{"o62", "url", "policier2", "شرطي2"},
 			{"o63", "url", "serveur", "خادم، نادل"},
 			{"o64", "url", "chasseur", "صياد"},
+			{"o65", "url", "sculpture, sculpteur", "نحت، نحات"},
+			{"o66", "url", "jardinage", "بستنة، بستاتي"},
 	};
 }

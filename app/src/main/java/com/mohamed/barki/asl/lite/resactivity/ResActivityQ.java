@@ -29,11 +29,12 @@ public class ResActivityQ extends Activity
 			{"q21", "15RB6M2J_Z4t7_Z7GgxNRv7gw58qvtcDa", "tribunal", "محكمة"},
 			{"q22", "15SUk132RaAYTTAWZEvsC0PZoSEsUOZBQ", "litige", "نزاع"},
 			{"q23", "15Y51TCHfmjJzsmyl2vFxv8kLkSUIwvWc", "procureur", "نائب عام"},
-			{"q24", "15_4lMtar7ngkfoLi2zHQ0IJzUaxwFwGz", "héritage", "ميراث"},
+			{"q24", "15_4lMtar7ngkfoLi2zHQ0IJzUaxwFwGz", "héritage1", "1ميراث"},
 			{"q25", "15aoG5G-ip53Gy0vvAGLmQPF25q9c_Nzf", "huissier de justice", "محضر قضائي"},
 			{"q26", "15gbjIJI8xD6Kntc2U927PfRKWZ8m2UJZ", "audience", "جلسة سماع"},
 			{"q27", "15nfNAlCH3Lfr6S3--vMrfsme2DvQFME5", "greffier", "كاتب ضبط"},
 			{"q28", "url", "juge d'instruction", "قاضي التحقيق"},
 			{"q29", "1iX-z0QBZ3lRgaR1L0ZZRij12bfndyY0b", "conservateur", "أمين ضبط"},
+			{"q30", "url", "héritage2", "2ميراث"},
 	};
 }

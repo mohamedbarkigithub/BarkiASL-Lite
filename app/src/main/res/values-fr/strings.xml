@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ar_lan">"آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻء١٢٣٤٥٦٧٨٩٠ "</string>
-    <string name="ar_lanf">"abcdefghijklmnopqrstuvwxyzàäâáæèéêùûüîïíìôöóòœ 0123456789 "</string>
-    <string name="ar_lane">"abcdefghijklmnopqrstuvwxyz 0123456789 "</string>
-    <string name="email_lang">"abcdefghijklmnopqrstuvwxyz @"</string>
-    <string name="num_lang">0123456789</string>
-    <string name="ar_lang">آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻءًٌٍَُِّْ، abcdefghijklmnopqrstuvwxyzàäâáæèéêùûüîïíìôöóòœ, -12</string>
+	<string name="app_name">BarkiASL</string>
+	<string name="ar_lan">"آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻء١٢٣٤٥٦٧٨٩٠ "</string>
+	<string name="ar_lanf">"abcdefghijklmnopqrstuvwxyzàäâáæèéêùûüîïíìôöóòœ 0123456789 "</string>
+	<string name="ar_lane">"abcdefghijklmnopqrstuvwxyz 0123456789 "</string>
+	<string name="email_lang">"abcdefghijklmnopqrstuvwxyz @"</string>
+	<string name="num_lang">0123456789</string>
+	<string name="ar_lang">آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻءًٌٍَُِّْ، abcdefghijklmnopqrstuvwxyzàäâáæèéêùûüîïíìôöóòœ, -12</string>
 	<string name="drawer_close">Fermé</string>
-    <string name="drawer_open">Ouvrir</string>
+	<string name="drawer_open">Ouvrir</string>
 	<string name="search">Entrez un terme de recherche</string>
-	
+
 	<string name="page_about">Page Facebook du développeur :</string>
-    <string name="email_about">Email du développeur :</string>
+	<string name="email_about">Email du développeur :</string>
 	<string name="site_about">Pour mettre à jour l\'application :</string>
-    <string name="copy_text_to_clip">Texte copié avec succès !!!</string>
+	<string name="copy_text_to_clip">Texte copié avec succès !!!</string>
 	<string name="saved_to_folder">Enregistré dans le dossier</string>
 	<string name="oops_screenshot_file">Pardon!!  Une erreur s\'est produite lors de l\'enregistrement de votre fichier</string>
 	<string name="oops_screenshot">Pardon!!  Votre téléphone ne prend pas en charge cette fonctionnalité</string>
-    <string name="validate_empty">Veuillez entrer une lettre ou un symbole !!!</string>
-    <string name="validate_more">Il y a plus d\'une lettre !!!</string>
-    <string name="validate_more_more">Il y a plus de 10 lettres !!!</string>
-    <string name="error">Erreur!!!</string>
-	
+	<string name="validate_empty">Veuillez entrer une lettre ou un symbole !!!</string>
+	<string name="validate_more">Il y a plus d\'une lettre !!!</string>
+	<string name="validate_more_more">Il y a plus de 10 lettres !!!</string>
+	<string name="error">Erreur!!!</string>
+
 	<string name="title_about">Cette application permet de :</string>
-    <string name="text_about">Chercher dans le dictionnaire de la langue des signes algérienne</string>
-    <string name="not_connected_to_internet">Non connecté à Internet!!!</string>
+	<string name="text_about">Chercher dans le dictionnaire de la langue des signes algérienne</string>
+	<string name="not_connected_to_internet">Non connecté à Internet!!!</string>
 	<string name="not_connected_to_a_network">Non connecté à un réseau!!!</string>
 	<string name="welcom">Bienvenue</string>
 	<string name="try_searching_in_arabic">Essayez de rechercher en Arabe</string>
 	<string name="try_searching_in_french">Essayez de chercher en Français</string>
-	<string name="time_20_s">Temps supérieur à 20s !</string>
+	<string name="time_20_s">Le temps est supérieur à 20 s !</string>
 	<string name="valid_time_video">Définir un temps valide entre 1s et 20s</string>
 	<string name="valid_theme_video">Définir un thème vidéo valide</string>
 	<string name="video_is_over">La vidéo est terminée!</string>
@@ -49,7 +50,7 @@
 	<string name="title_ref">Sources et références :</string>
 	<string name="text_ref_kamos">Dictionnaire de la langue des signes algérienne Edition 2017 (pdf)</string>
 	<string name="text_ref_kamos_video">Dictionnaire de la langue des signes algérienne Edition 2017 (vidéo)</string>
-	
+
 	<string name="no_connection">Pas de connection</string>
 	<string name="h1">Oups!</string>
 	<string name="h2">Connexion Internet lente ou pas de connexion Internet 😿</string>
@@ -60,8 +61,8 @@
 	<string name="save_video_offline">Après avoir téléchargé la vidéo sur votre appareil, vous pourrez la lire plus tard sans Internet</string>
 
 	<string name="worng_package">Le nom du paquet est faux !!!</string>
-    <string name="worng_name">Le nom de l\'application est faux !!!</string>
-    <string name="worng_time">L\'application doit être mise à jour !!!</string>
+	<string name="worng_name">Le nom de l\'application est faux !!!</string>
+	<string name="worng_time">L\'application doit être mise à jour !!!</string>
 	<string name="re_exit">Appuyez à nouveau pour quitter l\'application</string>
 
 	<string name="start_game">Jouer</string>
@@ -123,10 +124,41 @@
 	<string name="search_btn">Recherche</string>
 	<string name="info_dialog">Afficher les information</string>
 	<string name="btn_info">Afficher les requêtes</string>
-	<string name="update_app">Pour mettre à jour l\'application :</string>
-    <string name="start_update">Mettre à jour</string>
+	<string name="update_app">Mettre à jour l\'application</string>
+	<string name="start_update">Mettre à jour</string>
 	<string name="jomhoriya">République Algérienne Démocratique Et Populaire</string>
 	<string name="wizara">Ministère de la Solidarité nationale, de la Famille et de la Condition de la femme</string>
-    <string name="share">Partager l\'application:</string>
-	<string name="sharesubject">Téléchargez l\'application BarkiASL Lite</string>
+	<string name="share">Partager l\'application:</string>
+	<string name="sharesubject">Téléchargez l\'application BarkiASL</string>
+
+	<string name="support_view">Assistance technique</string>
+	<string name="admininfo">Informations sur le propriétaire et le développeur de l\'application</string>
+	<string name="facebookpage">Page Facebook</string>
+	<string name="facebook">Compte Facebook</string>
+	<string name="facebookk">Deuxième compte Facebook</string>
+	<string name="insta">Compte Instagram</string>
+	<string name="telegram">Groupe Telegram</string>
+	<string name="mytelegram">Compte Telegram</string>
+	<string name="email">E-mail</string>
+	<string name="action_settings">Paramètres</string>
+	<string name="policy">Politique de confidentialité</string>
+	<string name="phone">Numéro de téléphone</string>
+	<string name="facebookpageG">Groupe Facebook</string>
+	<string name="email_admin_txt">E-mail du propriétaire de l\'application</string>
+	<string name="copy_email_to_clip">E-mail copié avec succès !!!</string>
+	<string name="phone_admin_txt">E-mail du propriétaire de l\'application</string>
+	<string name="copy_phone_to_clip">E-mail copié avec succès !!!</string>
+	<string name="copy_error_to_clip">Erreur copiée avec succès !!!</string>
+	<string name="copy_message_to_clip">Message copiée avec succès !!!</string>
+	<string name="edit_or_remove_message">Choisissez l\'action appropriée</string>
+	<string name="remove_message">remove_message</string>
+	<string name="remove_this_message">remove_this_message</string>
+	<string name="last_seen">Vu pour la dernière fois</string>
+	<string name="send_failed">Envoi échoué</string>
+	<string name="re_home">Cliquez à nouveau pour revenir à la page d\'accueil</string>
+	<string name="your_support_view">Entrez votre question…</string>
+	<string name="new_message">Nouveau message</string>
+	<string name="new_message_text">Vous avez reçu un nouveau message de</string>
+	<string name="new_message_test">Voulez-vous vraiment répondre à ce message ?</string>
+	<string name="support">Répondre aux questions</string>
 </resources>

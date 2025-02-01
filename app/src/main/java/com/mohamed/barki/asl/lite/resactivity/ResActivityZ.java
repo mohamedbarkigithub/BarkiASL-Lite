@@ -48,6 +48,9 @@ public class ResActivityZ extends Activity
 			{"z40", "url", "faire la vaisselle", "غسل الصحون"},
 			{"z41", "url", "ménage", "شغل منزلي"},
 			{"z42", "url", "coffre", "صندوق، خزنة"},
+			{"z43", "url", "canapé", "أريكة"},
+			{"z44", "url", "fauteuil", "كرسي بذراعين"},
+			{"z45", "url", "bibliothèque3", "مكتبة3"},
 			//العائلة
 			{"zu0", "1M2xpEK7GNGXWERttp_GdBc6jJXF3rjB9", "proches", "أقارب"},
 			{"zu1", "1M5sFhTUf9D7XMf6vKdyU0ylVwJmmuZwI", "beau-père", "حموٌ"},

@@ -12,7 +12,7 @@ public class ResActivityB extends Activity
 			{"b4", "url", "valeur", "قيمة"},
 			{"b5", "url", "difficulté", "عائق"},
 			{"b6", "url", "important", "مهم"},
-			{"b7", "1iArZdN5qjZho4A8ylvr-33q58aBdr1R2", "riche", "غني"},
+			{"b7", "1iArZdN5qjZho4A8ylvr-33q58aBdr1R2", "riche1", "غني، ثري1"},
 			{"b8", "url", "assoiffé", "عطش"},
 			{"b9", "url", "désobéissant", "عاصي"},
 			{"b10", "url", "fatigué", "تعب"},
@@ -49,7 +49,7 @@ public class ResActivityB extends Activity
 			{"b41", "17bf2j0lDxInim948cLo5e_aK-9XIUP6W", "rusé", "ماكر"},
 			{"b42", "url", "occupé", "مشغول"},
 			{"b43", "1g4RzlL8cc7qSM1q9Pe6xsiceIAxtIKU5", "jaloux", "غيور"},
-			{"b44", "1fyoDWWkJl1aUmvUta1w4ckSRcKGjHuye", "pauvre", "فقير"},
+			{"b44", "1fyoDWWkJl1aUmvUta1w4ckSRcKGjHuye", "pauvre1", "فقر، فقير1"},
 			{"b45", "1t1DOkcUyGEIdvDm5MBWqFplNmI-JC05S", "méchant", "قبيح"},
 			{"b46", "1Jd_hB13ytBhYzeSNsnxr6iq3rwbNzGJh", "atroce", "شنيع"},
 			{"b47", "1dbD1MJcHw5IMD7LBdlrMe3q24itUSYDi", "courageux", "شجاع"},
@@ -117,5 +117,10 @@ public class ResActivityB extends Activity
 			{"b109", "url", "vexation", "إنزعاج"},
 			{"b110", "url", "tradition", "تقليدي"},
 			{"b111", "url", "bronzage", "تسفع"},
+			{"b112", "url", "pauvre2", "فقر، فقير2"},
+			{"b113", "url", "riche2", "غني، ثري2"},
+			{"b114", "url", "gras", "سمين"},
+			{"b115", "url", "confort, confortable", "راحة، مريحة"},
+			{"b116", "url", "repos", "استراحة"},
 	};
 }

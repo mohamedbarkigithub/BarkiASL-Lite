@@ -83,5 +83,6 @@ public class ResActivityX extends Activity
 			{"x75", "url", "fée", "جني، عفريت"},
 			{"x76", "url", "sorcière", "ساحرة، مشعوذة"},
 			{"x77", "url", "pirate", "قرصان"},
-	};
+		        {"x78", "url", "semaine3", "أسبوع3"},
+	};		
 }

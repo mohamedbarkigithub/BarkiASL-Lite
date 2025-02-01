@@ -61,5 +61,12 @@ public class ResActivityP extends Activity
 			{"p53", "url", "direction", "مديرية"},
 			{"p54", "url", "carte d'adhérent", "بطاقة العضوية"},
 			{"p55", "url", "autorisation", "تصريح"},
+			{"p56", "url", "monnaie, argent, devise", "نقود، مال، أموال، عملة"},
+			{"p57", "url", "euro", "أورو (عملة)"},
+			{"p58", "url", "pièce de monnaie", "قطعة نقدية"},
+			{"p59", "url", "dollar", "دولار (عملة)"},
+			{"p60", "url", "prix", "سعر"},
+			{"p61", "url", "compte", "حساب"},
+			{"p62", "url", "carte bancaire", "بطاقة بنكية"},
 	};
 }

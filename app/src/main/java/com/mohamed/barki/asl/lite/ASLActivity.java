@@ -394,9 +394,21 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		}
 	}
 	@Override
+	protected void onResume() {
+		super.onResume();
+	}
+	@Override
+	protected void onPause() {
+		super.onPause();
+	}
+	@Override
 	protected void onStop() {
 		super.onStop();
 		if(webView!=null) webView.stopLoading();
+	}
+	@Override
+	protected void onRestart() {
+		super.onRestart();
 	}
 	/** @noinspection CallToPrintStackTrace*/
 	@Override
@@ -408,6 +420,16 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	@Override
+	protected void onSaveInstanceState(@NonNull Bundle outState) {
+		super.onSaveInstanceState(outState);
+	}
+
+	@SuppressLint("SetTextI18n")
+	@Override
+	protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
 	}
 	@SuppressLint({"SetJavaScriptEnabled", "ClickableViewAccessibility"})
 	private void setWebView() {
@@ -583,6 +605,8 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		boolExit = false;
 		paramsMW = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 		paramsM0 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0);
+		paramsMW.setMargins(Function.dpToPx(5), 0, Function.dpToPx(5), 0);
+		paramsM0.setMargins(Function.dpToPx(5), 0, Function.dpToPx(5), 0);
 		lnyTextViewView = findViewById(R.id.maindLinearLayout33);
 		lnyTextViewView.setVisibility(View.INVISIBLE);
 		lnyTextViewView.setLayoutParams(paramsM0);
@@ -1123,7 +1147,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				}else{
 					switch (intExit){
 						case -1, 1: intExit++; break;
-						case 0 : Function.showToastMessage(this, getString(R.string.re_exit)); intExit++; break;
+						case 0 : Function.showToastMessage(this, getString(R.string.re_home)); intExit++; break;
                         case 2 : if (intent.equals("1")) {stopHandler(); r = null;}
 							if(webView!=null) webView.stopLoading();
 							Function.startActivityFun(this, ScreenActivity.class);
@@ -1366,7 +1390,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				if(webView!=null) webView.stopLoading();
 				Function.startActivityFun(this, ScreenActivity.class);
 			} else {
-				Function.showToastMessage(this, getString(R.string.re_exit));
+				Function.showToastMessage(this, getString(R.string.re_home));
 				boolExit = true;
 			}
 		}

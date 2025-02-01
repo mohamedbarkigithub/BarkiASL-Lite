@@ -67,7 +67,7 @@ public class ResActivityC extends Activity
 			{"c59", "19X2TsSAen6cSk8jnpoMKTL62_ffewF1R", "passoire", "مصفاة"},
 			{"c60", "1zw1Tvcrff7ciMYpefSd3hLqr_q8V03Re", "cuisinière", "آلة الطبخ"},
 			{"c61", "1xlQCttrzkj3JUZrMisjSRTyau9vZYVV-", "machine à laver", "آلة غسيل"},
-			{"c62", "1CfnGgij044VEXtQIE-nkvk5zQEJzhXV7", "télévision", "تلفاز"},
+			{"c62", "1CfnGgij044VEXtQIE-nkvk5zQEJzhXV7", "télévision1", "تلفاز، تلفزة1"},
 			{"c63", "1B3ZtdnFqzMXnbZSMnBmbEnxOdBwzXrv_", "douche", "مرش"},
 			{"c64", "10KlkmRQyppTmfaX2WPS11tj3Ag2SIcs6", "clou", "مسمار"},
 			{"c65", "1-PIM1-ZXGw2eZFZJM7TaCJdBssccpmda", "microphone", "مكروفون"},
@@ -154,7 +154,7 @@ public class ResActivityC extends Activity
 			{"c146", "url", "tissu", "قماش"},
 			{"c147", "url", "cuivre", "نحاس"},
 			{"c148", "url", "pierre", "صخر"},
-			{"c149", "url", "argile", "فخار"},
+			{"c149", "url", "argile", "صلصال"},
 			{"c150", "url", "argent1", "فضة1"},
 			{"c151", "url", "repasser, fer à repasser2", "مكواة2"},
 			{"c152", "url", "lave vaisselle", "غسالة الصحون"},
@@ -164,5 +164,9 @@ public class ResActivityC extends Activity
 			{"c156", "url", "balai", "مكنسة"},
 			{"c157", "url", "poubelle", "سلة المهملات"},
 			{"c158", "url", "produits de nettoyage", "مواد التنظيف"},
+			{"c159", "url", "télévision2", "تلفاز، تلفزة2"},
+			{"c160", "url", "table-basse", "طاولة القهوة"},
+			{"c161", "url", "poterie", "فخار، خزف"},
+			{"c162", "url", "tirelire", "حصالة"},
 	};
 }

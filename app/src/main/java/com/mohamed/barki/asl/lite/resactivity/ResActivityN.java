@@ -80,5 +80,8 @@ public class ResActivityN extends Activity
 			{"n72", "url", "verglas", "جليد"},
 			{"n73", "url", "mer2", "بحر2"},
 			{"n74", "url", "étoiles", "نجوم"},
+			{"n75", "url", "flacon de neige", "ندفة الثلج"},
+			{"n76", "url", "froid", "برد"},
+			{"n77", "url", "gel, gelé", "صقيع"},
 	};
 }

@@ -5,7 +5,6 @@ public class ResActivityA extends Activity
 {
 	public static String[][] resList = new String[][]{
 			{"name", "id_video", "name_french", "name_arabic"},
-
 			//الحروف
 			{"00", "url", "la dactylologie arabe", "الأبجدية الإشارية العربية"},
 			{"01", "url", "la dactylologie francais", "الأبجدية الإشارية الفرنسية"},

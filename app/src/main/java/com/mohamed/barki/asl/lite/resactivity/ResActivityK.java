@@ -79,7 +79,7 @@ public class ResActivityK extends Activity
 			{"k71", "1B6vWdIWhk-MMtQ0UUSGsKJ41G3rExxdJ", "autruche", "نعامة"},
 			{"k72", "url", "éléphant2", "فيل2"},
 			{"k73", "url", "girafe2", "زرافة2"},
-			{"k74", "url", "rhinocéros, licorne", "كركدن، وحيد القرن"},
+			{"k74", "url", "rhinocéros", "كركدن، وحيد القرن"},
 			{"k75", "url", "guépard", "فهد"},
 			{"k76", "url", "lion2", "أسد2"},
 			{"k77", "url", "hyène", "ضبع"},

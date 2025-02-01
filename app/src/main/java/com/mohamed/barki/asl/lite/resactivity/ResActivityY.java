@@ -58,5 +58,8 @@ public class ResActivityY extends Activity
 			{"y50", "url", "lunettes de soleil", "نظارات شمسية"},
 			{"y51", "url", "casquette", "قبعة صيفية"},
 			{"y52", "url", "short2", "تُبَّان2"},
+			{"y53", "url", "gant3", "قفاز3"},
+			{"y54", "url", "tricot", "حياكة"},
+			{"y55", "url", "couture", "خياطة"},
 	};
 }
