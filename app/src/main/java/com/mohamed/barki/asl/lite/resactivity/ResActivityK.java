@@ -30,7 +30,7 @@ public class ResActivityK extends Activity
 			{"k22", "1L9xQHy82jQsGW5_5Wr6N9vWcQqGiq7nR", "renard", "ثعلب"},
 			{"k23", "1sc8KMPX7GkOAMvOTF6qrRXUHjgCaBL87", "moustique", "بعوضة"},
 			{"k24", "1r008UqnfMvr8hHTmJ5SOcQ4ju7YgwK8D", "vache1", "بقرة1"},
-			{"k25", "16XczWGCrmqIWbfXT_z83V13jykqGRPzh", "chouette", "بومة"},
+			{"k25", "16XczWGCrmqIWbfXT_z83V13jykqGRPzh", "chouette", "بومة بدون قرون"},
 			{"k26", "19L3yrkqhN2C2wDudCdcKf4WdcLdCSdTO", "perroquet", "ببغاء"},
 			{"k27", "15BlSJoXYundsyWd-0XNdowDDi3ETPJ42", "canard", "بطة"},
 			{"k28", "1CxdWoUSMIW9WNJHx_Tbvt98mKs_fdFm2", "pingouin", "بطريق"},

@@ -43,5 +43,6 @@ public class ResActivityH extends Activity
 			{"h35", "url", "guirlande", "إكليل"},
 			{"h36", "url", "père noël", "بابا نويل"},
 			{"h37", "url", "fête", "عيد، حفل، حفلة"},
+			{"h38", "url", "manifestation", "مظاهرة"},
 	};
 }

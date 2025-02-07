@@ -278,5 +278,7 @@ public class ResActivityU extends Activity
 			{"u270", "url", "économiser de l'argent", "وفَّر المال (فعل)"},
 			{"u271", "url", "goûter", "ذاق (فعل)"},
 			{"u272", "url", "c'est bon", "جيد، لا بأس، انتهى، حسناً، كفى"},
+			{"u273", "url", "jouer", "لعِب (فعل)"},
+			{"u274", "url", "se faire dépister", "اختبر (فعل)"},
 	};
 }

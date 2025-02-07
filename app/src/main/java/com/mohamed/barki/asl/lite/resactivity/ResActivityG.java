@@ -62,5 +62,8 @@ public class ResActivityG extends Activity
 			{"g54", "url", "ski2", "تزلج2"},
 			{"g55", "url", "jeux-video", "ألعاب الفيديو"},
 			{"g56", "url", "billard2", "بلياردو2"},
+			{"g57", "url", "ballon", "كرة"},
+			{"g58", "url", "puzzle", "لغز، أحجية"},
+			{"g59", "url", "jeux de societé, plateau", "ألعاب الطاولة، اللوحة"},
 	};
 }

@@ -13,7 +13,7 @@ public class ResActivityR extends Activity
 			{"r5", "1iWde7D6BpyOPhb0q59BJrtvRVZFpnPOJ", "bandage", "ضمادة"},
 			{"r6", "169KgmWxWrtP4ojHpCBKcJUqg2_cK-EbJ", "vaccination1", "تلقيح1"},
 			{"r7", "16EzrEfGZ5Sy_yGQbGIk-OYGfElTlrbi9", "guérison", "شفاء"},
-			{"r8", "16IqStNQ6kVHDCnnxXdiz6yyu_ESoBsmP", "traitement", "علاج"},
+			{"r8", "16IqStNQ6kVHDCnnxXdiz6yyu_ESoBsmP", "traitement1", "علاج1"},
 			{"r9", "16K4-ihAwuADcR3DBwaXDmRFEYiFuHiYg", "scanner médical", "ماسح ضوئي طبي"},
 			{"r10", "16MubkY1VN827sdFIItGsnVPr1j92M_eu", "santé", "صحة"},
 			{"r11", "16O4XvhVZ4QUEhgFa-wLk4SCLIWZbLUPS", "tension artérielle", "ضغط دموي"},
@@ -56,5 +56,14 @@ public class ResActivityR extends Activity
 			{"r48", "url", "psychomotricien", "المعالج النفسي"},
 			{"r49", "url", "intermédiateur", "وسيط"},
 			{"r50", "url", "professeur spécialisé", "أستاذ متخصص"},
+			{"r51", "url", "cancer", "مرض السرطان"},
+			{"r52", "url", "prévention", "وقاية"},
+			{"r53", "url", "sensibilisation", "حساسية"},
+			{"r54", "url", "diagonistiquer", "تشخيص"},
+			{"r55", "url", "symptôme", "عَرَض، أمارة"},
+			{"r56", "url", "traitement2", "علاج2"},
+			{"r57", "url", "chimio", "علاج كيميائي"},
+			{"r58", "url", "solidarité", "تضامن، تكافل"},
+			{"r59", "url", "guérison", "شفاء"},
 	};
 }

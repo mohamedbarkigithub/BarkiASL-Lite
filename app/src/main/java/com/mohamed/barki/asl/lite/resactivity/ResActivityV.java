@@ -121,5 +121,6 @@ public class ResActivityV extends Activity
 			{"v113", "url", "physique2", "فيزياء2"},
 			{"v114", "url", "chimie", "كيمياء"},
 			{"v115", "url", "stylo2", "سيالة2"},
+			{"v116", "url", "recherche scientifique", "بحث علمي"},
 	};
 }
