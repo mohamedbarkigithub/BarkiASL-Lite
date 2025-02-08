@@ -644,6 +644,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 			else{
 				intent = new Intent(ScreenActivity.this, ChatActivity.class);
 				Bundle extra = new Bundle();
+				extra.putString("activity", "ScreenActivity");
 				extra.putString("email", Function.getValue(ScreenActivity.this, "email"));
 				extra.putString("name", Function.getValue(ScreenActivity.this, "name"));
 				intent.putExtras(extra);

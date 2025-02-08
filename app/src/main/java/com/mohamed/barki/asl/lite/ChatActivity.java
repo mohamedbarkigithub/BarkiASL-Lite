@@ -202,7 +202,7 @@ public class ChatActivity extends AppCompatActivity {
         if (baa.equals("exit")) goToHome();
         else {
             Function.saveFromBoolean(this, "screen", false);
-            Function.showToastMessage(this, getString(R.string.re_home));
+            Function.showToastMessage(this, activity.equals("ScreenActivity") ? getString(R.string.re_home) : getString(R.string.re_activity));
             baa = "exit";
         }
     }
@@ -213,8 +213,10 @@ public class ChatActivity extends AppCompatActivity {
             Intent intent = new Intent(ChatActivity.this, ScreenActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
-        }else
+        }else{
+            Function.saveFromText(this, "message", Function.setTime());
             finish();
+        }
     }
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {

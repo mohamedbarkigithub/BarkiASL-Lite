@@ -151,6 +151,7 @@
 	<string name="last_seen">آخر ظهور</string>
 	<string name="send_failed">فشل الإرسال</string>
 	<string name="re_home">إضغط مرة أخرى للرجوع للصفحة الرئيسية</string>
+	<string name="re_activity">إضغط مرة أخرى للرجوع للصفحة السابقة</string>
 	<string name="your_support_view">أدخل سؤالك…</string>
 	<string name="new_message">رسالة جديدة</string>
 	<string name="new_message_text">لقد تلقيت رسالة جديدة من</string>

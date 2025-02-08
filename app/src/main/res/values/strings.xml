@@ -202,6 +202,7 @@
 	<string name="send" translatable="false">send</string>
 	<string name="send_failed">Send failed</string>
 	<string name="re_home">Click again to return to the home page</string>
+	<string name="re_activity">Click again to return to the previous page</string>
 	<string name="cancel" translatable="false" tools:ignore="ButtonCase">cancel</string>
 	<string name="copy_message" translatable="false">copy_message</string>
 	<string name="new_message">New message</string>

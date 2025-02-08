@@ -150,6 +150,7 @@
 	<string name="last_seen">Vu pour la dernière fois</string>
 	<string name="send_failed">Envoi échoué</string>
 	<string name="re_home">Cliquez à nouveau pour revenir à la page d\'accueil</string>
+	<string name="re_activity">Cliquez à nouveau pour revenir à la page précédente</string>
 	<string name="your_support_view">Entrez votre question…</string>
 	<string name="new_message">Nouveau message</string>
 	<string name="new_message_text">Vous avez reçu un nouveau message de</string>

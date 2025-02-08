@@ -1479,7 +1479,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		dialogMessage.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
 			dialogMessage.dismiss();
 			dialogMessage = null;
-			removeAllEventListener();
 			Function.saveFromText(this, "message", Function.setTime());
 			Intent intent = new Intent(ASLActivity.this, (Function.isAdmin(this)) ? ChatAdminActivity.class : ChatActivity.class);
 			Bundle extra = new Bundle();
