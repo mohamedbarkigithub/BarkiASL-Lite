@@ -73,6 +73,8 @@ public class LoginActivity extends AppCompatActivity
 			Function.showToastMessage(this, getString(R.string.worng_package));
 		}else if(!Function.getApplicationName(this).equals(str5)){
 			Function.showToastMessage(this, getString(R.string.worng_name));
+		}else if(!Function.isNetworkConnected(this)){
+			Function.showToastMessage(this, getString(R.string.h4));
 		}else {
 			Function.saveFromBoolean(this, "screen", true);
 			if (Function.getValue(this, "scor").isEmpty()) {
