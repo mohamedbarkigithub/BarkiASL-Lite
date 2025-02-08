@@ -162,12 +162,6 @@ public class Function extends Activity {
 		SharedPreferences.Editor editor = prefs.edit();
 		editor.putString(key, text).apply();
 	}
-	public static int getInt(Context getAppContext, String key) {
-		return Integer.parseInt(getValue(getAppContext, key));
-	}
-	public static void saveInt(Context getAppContext, String key, int value) {
-		saveFromText(getAppContext, key, String.valueOf(value));
-	}
 	public static boolean getBoolean(Context getAppContext, String key) {
 		SharedPreferences prefs = getAppContext.getSharedPreferences(getApplicationName(getAppContext), MODE_PRIVATE);
 		return prefs.getBoolean(key, false);
@@ -455,23 +449,6 @@ public class Function extends Activity {
 			commaOffset -= 3;
 		}
 		return Long.parseLong(resultBuffer.toString());
-	}
-	/**
-	 * @noinspection CallToPrintStackTrace
-	 */
-	public static Drawable getDrawableFromFile(Context getAppContext, String filename) {
-		AssetManager assetManager = getAppContext.getAssets();
-		Drawable d;
-		InputStream in;
-		try {
-			in = assetManager.open(serchFolder(filename) + "/" + filename + ".br");
-			d = Drawable.createFromStream(in, null);
-			in.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-			d = null;
-		}
-		return d;
 	}
 	public static String serchFolder(String filename) {
 		if (filename.endsWith("s")) {
