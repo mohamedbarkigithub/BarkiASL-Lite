@@ -20,14 +20,15 @@ public class LoginActivity extends AppCompatActivity
 {
 	@SuppressLint("SuspiciousIndentation")
 	@Override
-    protected void onCreate(Bundle savedInstanceState)
+	protected void onCreate(Bundle savedInstanceState)
 	{
-        super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);
 
 		if(Function.getValue(this, "start").isEmpty()){
 			int mode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
 			if (mode == Configuration.UI_MODE_NIGHT_YES) Function.setThemeDark(this, R.layout.login);
 			else Function.setThemeLight(this, R.layout.login);
+			Function.saveFromBoolean(this, "dark", (mode == Configuration.UI_MODE_NIGHT_YES));
 			Function.saveFromText(this, "start", "true");
 		}else{
 			if(Function.getBoolean(this, "dark")) Function.setThemeDark(this, R.layout.login);
@@ -38,7 +39,7 @@ public class LoginActivity extends AppCompatActivity
 	}
 	private final String str1 = Function.st, str2 = Function.stt, str3 = Function.sttt, str4 = Function.stttt, str5 = Function.sttttt;
 	@Override
-    public void onBackPressed() {super.onBackPressed();}
+	public void onBackPressed() {super.onBackPressed();}
 	@Override
 	protected void onSaveInstanceState(@NonNull Bundle outState) {
 		super.onSaveInstanceState(outState);
@@ -49,7 +50,7 @@ public class LoginActivity extends AppCompatActivity
 		initialisation();
 	}
 	/** @noinspection CallToPrintStackTrace*/
-    @Override
+	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		try {
@@ -73,14 +74,21 @@ public class LoginActivity extends AppCompatActivity
 		}else if(!Function.getApplicationName(this).equals(str5)){
 			Function.showToastMessage(this, getString(R.string.worng_name));
 		}else {
-			if (Function.getValue(this, "screen").isEmpty()) {
-				Function.saveFromText(this, "screen", "true");
-			}
+			Function.saveFromBoolean(this, "screen", true);
 			if (Function.getValue(this, "scor").isEmpty()) {
 				Function.saveFromText(this, "scor", "0");
 			}
 			if (Function.getValue(this, "update").isEmpty()) {
 				Function.saveFromText(this, "update", Function.setTime());
+			}
+			if (Function.getValue(this, "email").isEmpty()) {
+				Function.saveFromText(this, "email", Function.setEmail(Function.getDeviceName(this)));
+			}
+			if (Function.getValue(this, "name").isEmpty()) {
+				Function.saveFromText(this, "name", Function.getDeviceName(this));
+			}
+			if(Function.getValue(this, "message").isEmpty()){
+				Function.saveFromText(this, "message", Function.setTime());
 			}
 			new android.os.Handler().postDelayed(() -> {
 				startActivity(new Intent(LoginActivity.this, ScreenActivity.class));

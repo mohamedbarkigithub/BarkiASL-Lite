@@ -6,8 +6,10 @@
     <color name="colorOnPrimary">#000</color>
     <color name="colorPrimaryASL">@android:color/black</color>
     <color name="colorPrimaryGAME">@android:color/black</color>
+    <color name="colorPrimaryChat">@android:color/black</color>
     <color name="primaryASL">#ff58ba53</color>
     <color name="primaryGAME">#ff065e52</color>
+    <color name="primaryChat">@android:color/black</color>
     <color name="colorPrimaryButton">#2E8B57</color>
     <color name="colorText">#ffffffff</color>
     <color name="colorTextHint">#ffb6b6b6</color>

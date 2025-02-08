@@ -7,6 +7,7 @@ import android.app.ActivityManager;
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,18 +15,24 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PermissionInfo;
+import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -46,15 +53,16 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.mohamed.barki.asl.lite.resactivity.ResActivity;
 
-
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.Normalizer;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 @SuppressWarnings({"deprecation", "RedundantSuppression"})
@@ -63,17 +71,16 @@ public class Function extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	}
-
 	public static boolean isNetworkConnected(Context getAppContext) {
 		ConnectivityManager cm = (ConnectivityManager) getAppContext.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo activeNetworkInfo = cm.getActiveNetworkInfo();
 		return cm.getActiveNetwork() != null && cm.getNetworkCapabilities(cm.getActiveNetwork()) != null && activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
-
 	public static boolean isAdmin(Activity activity) {
 		return Function.isPackageInstalled(activity, activity.getString(R.string.pkgadmin));
+	}public static boolean isAdmin(Context context) {
+		return Function.isPackageInstalled(context, context.getString(R.string.pkgadmin));
 	}
-
 	public static boolean isPackageInstalled(Context getAppContext, String packageName) {
 		PackageManager packageManager = getAppContext.getPackageManager();
 		try {
@@ -83,26 +90,23 @@ public class Function extends Activity {
 			return false;
 		}
 	}
-
 	public static boolean validatePackageName(Context getAppContext) {
 		return (getAppContext.getPackageName().compareTo(Function.st + Function.stt + Function.sttt + Function.stttt) != 0);
 	}
-
 	public static boolean validateApplicationName(Context getAppContext) {
 		return (!getApplicationName(getAppContext).equals(Function.sttttt));
 	}
-
 	@SuppressLint("SuspiciousIndentation")
-	public static boolean validate(Context getAppContext, final String text, final AutoCompleteTextView edt) {
+	public static boolean validate(Activity getActivity, final String text, final AutoCompleteTextView edt) {
 		boolean valid = true;
 		if (text.isEmpty()) {
-			edt.setError(Html.fromHtml("<font color='red'>" + getAppContext.getString(R.string.error) + "</font>"));
-			showError(getAppContext, "0");
+			edt.setError(Html.fromHtml("<font color='red'>" + getActivity.getString(R.string.error) + "</font>"));
+			showError(getActivity, "0");
 			valid = false;
 		} else {
 			if (text.length() > 100) {
-				edt.setError(Html.fromHtml("<font color='red'>" + getAppContext.getString(R.string.error) + "</font>"));
-				showError(getAppContext, "1");
+				edt.setError(Html.fromHtml("<font color='red'>" + getActivity.getString(R.string.error) + "</font>"));
+				showError(getActivity, "1");
 				valid = false;
 			} else {
 				edt.setError(null);
@@ -110,54 +114,86 @@ public class Function extends Activity {
 		}
 		return valid;
 	}
-
-	public static void showError(Context getAppContext, String ss) {
-		// TODO: Implement this method
-		if (ss.equals("0")) {
-			Function.showToastMessage(getAppContext, getAppContext.getString(R.string.validate_empty));
-		}
-		if (ss.equals("1")) {
-			Function.showToastMessage(getAppContext, getAppContext.getString(R.string.validate_more));
-		}
-		if (ss.equals("2")) {
-			Function.showToastMessage(getAppContext, getAppContext.getString(R.string.validate_more_more));
-		}
+	public static void showError(Activity getActivity, String ss) {
+		Function.showToastMessage(getActivity, getActivity.getString(
+				switch (ss){
+					case "0"-> R.string.validate_empty;
+					case "1"-> R.string.validate_more;
+					default-> R.string.validate_more_more;
+				}
+		));
 	}
-
 	public static String st = "com.moh", stt = "amed.ba", sttt = "rki.a", stttt = "sl.lite", sttttt = "BarkiASL Lite";
-
-	public static void showToastMessage(Context getAppContext, String text) {
-		Toast.makeText(getAppContext, text, Toast.LENGTH_SHORT).show();
+	public static Toast toast;
+	@SuppressLint({"InflateParams", "MissingInflatedId"})
+	public static void showToastMessage(Context getContext, String message) {
+		LayoutInflater inflater = (LayoutInflater) getContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View layout = inflater.inflate(R.layout.toast, null);
+		TextView text = layout.findViewById(R.id.text);
+		ImageView imageL = layout.findViewById(R.id.imageL);
+		ImageView imageR = layout.findViewById(R.id.imageR);
+		imageL.setImageResource(R.mipmap.roundicon);
+		imageR.setImageResource(R.mipmap.roundicon);
+		Typeface font = Typeface.createFromAsset(getContext.getAssets(),
+				(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي")) ?
+						"fonts/ArefRuqaa.ttf" : "fonts/Balton.ttf"
+		);
+		text.setTypeface(font);
+		if(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي")) {
+			text.setGravity(Gravity.RIGHT|Gravity.CENTER_VERTICAL);
+			imageR.setVisibility(View.VISIBLE);
+		}else{
+			imageL.setVisibility(View.VISIBLE);
+		}
+		text.setText(message);
+		toast = new Toast(getContext);
+		toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+		toast.setDuration(Toast.LENGTH_SHORT);
+		toast.setView(layout);
+		toast.show();
+		toast = null;
 	}
-
 	public static String getValue(Context getAppContext, String key) {
 		SharedPreferences prefs = getAppContext.getSharedPreferences(getApplicationName(getAppContext), MODE_PRIVATE);
 		return prefs.getString(key, "");
 	}
-
 	public static void saveFromText(Context getAppContext, String key, String text) {
 		SharedPreferences prefs = getAppContext.getSharedPreferences(getApplicationName(getAppContext), MODE_PRIVATE);
 		SharedPreferences.Editor editor = prefs.edit();
 		editor.putString(key, text).apply();
 	}
+	public static int getInt(Context getAppContext, String key) {
+		return Integer.parseInt(getValue(getAppContext, key));
+	}
+	public static void saveInt(Context getAppContext, String key, int value) {
+		saveFromText(getAppContext, key, String.valueOf(value));
+	}
 	public static boolean getBoolean(Context getAppContext, String key) {
 		SharedPreferences prefs = getAppContext.getSharedPreferences(getApplicationName(getAppContext), MODE_PRIVATE);
 		return prefs.getBoolean(key, false);
 	}
-
 	public static void saveFromBoolean(Context getAppContext, String key, boolean bool) {
 		SharedPreferences prefs = getAppContext.getSharedPreferences(getApplicationName(getAppContext), MODE_PRIVATE);
 		SharedPreferences.Editor editor = prefs.edit();
 		editor.putBoolean(key, bool).apply();
 	}
-	public static void doCopy(Context getAppContext, String text) {
+	public static void doCopy(Context getContext, String text, String textShow) {
+		if(textShow.isEmpty()) textShow = getContext.getString(R.string.copy_text_to_clip);
 		ClipboardManager clipboardManager;
-		clipboardManager = (ClipboardManager) getAppContext.getSystemService(Context.CLIPBOARD_SERVICE);
+		clipboardManager = (ClipboardManager) getContext.getSystemService(Context.CLIPBOARD_SERVICE);
 		ClipData clipData = ClipData.newPlainText("text", text);
 		clipboardManager.setPrimaryClip(clipData);
-		if (getValue(getAppContext, "screen").equals("true")) {
-			showToastMessage(getAppContext, getAppContext.getString(R.string.copy_text_to_clip));
+		showToastMessage(getContext, textShow);
+	}
+	public static void doPast(Context getAppContext, EditText edt)  {
+		ClipboardManager clipboard = (ClipboardManager) getAppContext.getSystemService(Context.CLIPBOARD_SERVICE);
+		CharSequence textToPaste;
+		try {
+			textToPaste = Objects.requireNonNull(clipboard.getPrimaryClip()).getItemAt(0).getText();
+		} catch (Exception e) {
+			return;
 		}
+		edt.setText(textToPaste);
 	}
 	public static void hideKeyboard(Context getAppContext, EditText edt) {
 		InputMethodManager inputManager = (InputMethodManager) getAppContext.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -178,17 +214,14 @@ public class Function extends Activity {
 		int stringId = applicationInfo.labelRes;
 		return stringId == 0 ? applicationInfo.nonLocalizedLabel.toString() : getAppContext.getString(stringId);
 	}
-
 	public static int dpToPx(int dp) {
 		return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
 	}
-
 	public static String PackageName, VersionName, LanguageName;
 	public static int VersionCode;
 	public static PermissionInfo[] Permissions;
 	public static String[][] resList = ResActivity.resList();
-
-	@SuppressLint("SuspiciousIndentation")
+	@SuppressLint({"SuspiciousIndentation", "SetTextI18n"})
 	public static void info(final Context getAppContext, final Activity myActivity) {
 		MediaPlayer click = MediaPlayer.create(getAppContext, R.raw.click);
 		final Dialog dialog = new Dialog(getAppContext, R.style.DialogStyle);
@@ -199,22 +232,7 @@ public class Function extends Activity {
 			Function.startSongs(getAppContext, click);
 			dialog.dismiss();
 		});
-		final LinearLayout lnyAll = dialog.findViewById(R.id.dialog_lny);
-		final LinearLayout lnyAllBig = dialog.findViewById(R.id.dialog_lny_Big);
-		String v3 = getAppContext.getString(R.string.page_about);
-		String v4 = "<a href=\"fb://profile/3203834\">" + "Barki Mohamed" + "</a>" +
-				"</p><p>" + "<a href=\"fb://profile/1049535328\">" + "محمد باركي" + "</a>" +
-				"</p><p>" + "<a href=\"fb://profile/100063588016416\">" + "صفحة فضاء التربية والتعليم في الوسط المتخصص" + "</a>" +
-				"</p><p>" + "<a href=\"fb://group/309682893728684\">" + "مجموعة فضاء التربية والتعليم في الوسط المتخصص" + "</a>";
-		String v30 = getAppContext.getString(R.string.email_about);
-		String v40 = "<font face=\"arial\" color=\"blue\">mohamedbarkimaths@gmail.com</font>";
-		String v33 = getAppContext.getString(R.string.update_app);
-		String v44 = "<a href=\"https://play.google.com/store/apps/details?id=" + getAppContext.getPackageName() + "\">" + "Google Play</a>";
-		String v7 = "(Copyright " + Calendar.getInstance().get(Calendar.YEAR) + " M. Barki)";
-		String value1 = "<html><p>" + v3 + "</p><p>" + v4 + "</p><p>" + v30 + "</p><p>" + v40 + "</p><p>" + v33 + "</p><p>" + v44 + "</p></html>";
-		((TextView) dialog.findViewById(R.id.dialog_infox)).setText(v7);
-		((TextView) dialog.findViewById(R.id.dialog_info)).setText(Html.fromHtml(value1));
-		((TextView) dialog.findViewById(R.id.dialog_info)).setMovementMethod(LinkMovementMethod.getInstance());
+		((TextView) dialog.findViewById(R.id.dialog_infox)).setText("(Copyright " + Calendar.getInstance().get(Calendar.YEAR) + " M. Barki)");
 		PackageManager manager = getAppContext.getPackageManager();
 		try {
 			PackageInfo info = manager.getPackageInfo(getAppContext.getPackageName(), PackageManager.GET_ACTIVITIES);
@@ -230,12 +248,7 @@ public class Function extends Activity {
 			facee = Typeface.createFromAsset(getAppContext.getAssets(), "fonts/naskh.ttf");
 		}
 		((TextView) dialog.findViewById(R.id.dialog_info)).setTypeface(facee);
-		String title;
-		if (Function.getValue(getAppContext, "screen").equals("true")) {
-			title = getApplicationName(getAppContext) +/*" (Free) "+"["+String.valueOf(VersionCode)+"] "+*/" v" + VersionName;
-		} else {
-			title = getApplicationName(getAppContext) +/*" (Pro) "+"["+String.valueOf(VersionCode)+"] "+*/" {v" + VersionName + "}";
-		}
+		String title = getApplicationName(getAppContext) +" v" + VersionName;
 		((TextView) dialog.findViewById(R.id.dialog_infoo)).setText(Html.fromHtml(title));
 		String v1 =
 				"</p><p>" +
@@ -243,7 +256,9 @@ public class Function extends Activity {
 						+ "</p><p>" +
 						getAppContext.getString(R.string.text_about)
 						+ "</p>";
-		if (Function.maxRam(myActivity) >= 1) {
+		if (Function.maxRam(myActivity) >= 4) {
+			if (Function.getValue(getAppContext, "numImage").isEmpty())
+				Function.saveFromText(getAppContext, "numImage", numIllustrations(getAppContext));
 			v1 = v1 +
 					"<p>" +
 					getAppContext.getString(R.string.contient) +
@@ -255,23 +270,15 @@ public class Function extends Activity {
 					getAppContext.getString(R.string.video)
 					+ "</p>";
 		}
-		TextView tv = new TextView(getAppContext);
-		tv.setGravity(Gravity.START);
-		tv.setTextIsSelectable(true);
-		tv.setPadding(Function.dpToPx(10), Function.dpToPx(10), Function.dpToPx(10), Function.dpToPx(10));
-		tv.setText(Html.fromHtml("<html>" + v1 + "</html>"));
-		tv.setMovementMethod(LinkMovementMethod.getInstance());
-		tv.setTextColor(Color.WHITE);
+		((TextView) dialog.findViewById(R.id.dialog_info)).setText(Html.fromHtml(v1));
+		((TextView) dialog.findViewById(R.id.dialog_info)).setMovementMethod(LinkMovementMethod.getInstance());
 		Typeface face = Typeface.createFromAsset(getAppContext.getAssets(), "fonts/casual.ttf");
 		if (LanguageName.contains("rab") || LanguageName.contains("عربي")) {
-			tv.setGravity(Gravity.RIGHT);
-			((LinearLayout) dialog.findViewById(R.id.dialog_lny)).setGravity(Gravity.RIGHT);
+			((TextView) dialog.findViewById(R.id.dialog_info)).setGravity(Gravity.RIGHT);
 			((TextView) dialog.findViewById(R.id.dialog_info)).setGravity(Gravity.RIGHT);
 			face = Typeface.createFromAsset(getAppContext.getAssets(), "fonts/naskh.ttf");
 		}
-		tv.setTextSize(20);
-		tv.setTypeface(face);
-		lnyAll.addView(tv);
+		((TextView) dialog.findViewById(R.id.dialog_info)).setTypeface(face);
 		Function.saveFromText(getAppContext, "bolhelp", "true");
 		Function.saveFromText(getAppContext, "bolref", "true");
 		((ImageButton) dialog.findViewById(R.id.dialog_help)).setImageResource(R.drawable.ic_help);
@@ -281,7 +288,9 @@ public class Function extends Activity {
 			Function.saveFromText(getAppContext, "bolref", "true");
 			((ImageButton) dialog.findViewById(R.id.dialog_ref)).setImageResource(R.drawable.ic_ref);
 			if (bol) {
-				lnyAllBig.removeAllViews();
+				dialog.findViewById(R.id.dialog_info).setVisibility(TextView.GONE);
+				dialog.findViewById(R.id.dialog_info_lny).setVisibility(TextView.GONE);
+				dialog.findViewById(R.id.dialog_info_scrlv).setVisibility(TextView.GONE);
 				final Button btn = new Button(getAppContext);
 				btn.setContentDescription(getAppContext.getString(R.string.btn_info));
 				btn.setGravity(Gravity.CENTER);
@@ -297,8 +306,8 @@ public class Function extends Activity {
 					}
 					Function.saveFromText(getAppContext, "boldalil", String.valueOf(!bold));
 				});
-				lnyAllBig.addView(btn);
 				((ImageButton) dialog.findViewById(R.id.dialog_help)).setImageResource(R.drawable.ic_check);
+				((LinearLayout)dialog.findViewById(R.id.dialog_lny_Big)).addView(btn);
 			} else {
 				dialog.dismiss();
 				Function.info(getAppContext, myActivity);
@@ -306,12 +315,14 @@ public class Function extends Activity {
 			Function.saveFromText(getAppContext, "bolhelp", String.valueOf(!bol));
 		});
 		dialog.findViewById(R.id.dialog_ref).setOnClickListener(v -> {
+			dialog.findViewById(R.id.dialog_info).setVisibility(TextView.VISIBLE);
+			dialog.findViewById(R.id.dialog_info_lny).setVisibility(TextView.VISIBLE);
+			dialog.findViewById(R.id.dialog_info_scrlv).setVisibility(TextView.VISIBLE);
 			Function.startSongs(getAppContext, click);
 			boolean bol = Boolean.parseBoolean(Function.getValue(getAppContext, "bolref"));
 			Function.saveFromText(getAppContext, "bolhelp", "true");
 			((ImageButton) dialog.findViewById(R.id.dialog_help)).setImageResource(R.drawable.ic_help);
 			if (bol) {
-				lnyAllBig.removeAllViews();
 				final String v11 =
 						"</p><p>" +
 								getAppContext.getString(R.string.title_ref)
@@ -326,21 +337,14 @@ public class Function extends Activity {
 								"<a href=\"https://m.youtube.com/@signeslsf396\">" +
 								"Signes LSF"
 								+ "</a>" + "</p>";
-				TextView tv1 = new TextView(getAppContext);
-				tv1.setTextIsSelectable(true);
-				tv1.setPadding(Function.dpToPx(10), Function.dpToPx(10), Function.dpToPx(10), Function.dpToPx(10));
-				tv1.setText(Html.fromHtml("<html>" + v11 + "</html>"));
-				tv1.setMovementMethod(LinkMovementMethod.getInstance());
-				tv1.setTextColor(Color.WHITE);
+				((TextView) dialog.findViewById(R.id.dialog_info)).setText(Html.fromHtml("<html>" + v11 + "</html>"));
+				((TextView) dialog.findViewById(R.id.dialog_info)).setMovementMethod(LinkMovementMethod.getInstance());
 				Typeface faceee = Typeface.createFromAsset(getAppContext.getAssets(), "fonts/casual.ttf");
 				if (LanguageName.contains("rab") || LanguageName.contains("عربي")) {
-					tv1.setGravity(Gravity.RIGHT);
-					((LinearLayout) dialog.findViewById(R.id.dialog_lny_Big)).setGravity(Gravity.RIGHT);
+					((TextView) dialog.findViewById(R.id.dialog_info)).setGravity(Gravity.RIGHT);
 					faceee = Typeface.createFromAsset(getAppContext.getAssets(), "fonts/naskh.ttf");
 				}
-				tv1.setTextSize(20);
-				tv1.setTypeface(faceee);
-				lnyAllBig.addView(tv1);
+				((TextView) dialog.findViewById(R.id.dialog_info)).setTypeface(faceee);
 				((ImageButton) dialog.findViewById(R.id.dialog_ref)).setImageResource(R.drawable.ic_check);
 			} else {
 				dialog.dismiss();
@@ -350,7 +354,6 @@ public class Function extends Activity {
 		});
 		dialog.show();
 	}
-
 	public static void share(final Context getAppContext, final Activity myActivity) {
 		MediaPlayer click = MediaPlayer.create(getAppContext, R.raw.click);
 		final Dialog dialog = new Dialog(getAppContext, R.style.DialogStyle);
@@ -383,7 +386,6 @@ public class Function extends Activity {
 		((TextView) dialog.findViewById(R.id.dialog_share)).setTypeface(face);
 		dialog.show();
 	}
-
 	/**
 	 * @noinspection CallToPrintStackTrace
 	 */
@@ -396,7 +398,6 @@ public class Function extends Activity {
 			BitMatrix bitMatrix = writer.encode(getAppContext.getString(R.string.app_url), BarcodeFormat.QR_CODE, size, size, hintMap);
 			int width = bitMatrix.getWidth();
 			int height = bitMatrix.getHeight();
-
 			Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
 			for (int x = 0; x < width; x++) {
 				for (int y = 0; y < height; y++) {
@@ -408,12 +409,30 @@ public class Function extends Activity {
 			e.printStackTrace();
 		}
 	}
-
 	private static String numVideo() {
 		int nbr = 0;
 		for (String[] strings : resList)
 			if (!strings[1].equals("url"))
 				nbr++;
+		return String.valueOf(nbr);
+	}
+	public static String numIllustrations(Context getAppContext) {
+		AssetManager assetManager = getAppContext.getAssets();
+		InputStream inputStream = null;
+		int nbr = 0;
+		for (int j = 1; j < resList.length; j++) {
+			try {
+				inputStream = assetManager.open(serchFolder(resList[j][0]) + "/" + resList[j][0] + "s" + ".br");
+				nbr++;
+			} catch (IOException ignored) {
+			}
+		}
+		if (null != inputStream) {
+			try {
+				inputStream.close();
+			} catch (IOException ignored) {
+			}
+		}
 		return String.valueOf(nbr);
 	}
 	public static Long maxRam(Activity myActivity) {
@@ -422,7 +441,6 @@ public class Function extends Activity {
 		activityManager.getMemoryInfo(mi);
 		return Function.formatSize(mi.totalMem / 1048576L);
 	}
-
 	private static Long formatSize(Long size) {
 		if (size >= 1024) {
 			size = size / 1024;
@@ -437,6 +455,23 @@ public class Function extends Activity {
 			commaOffset -= 3;
 		}
 		return Long.parseLong(resultBuffer.toString());
+	}
+	/**
+	 * @noinspection CallToPrintStackTrace
+	 */
+	public static Drawable getDrawableFromFile(Context getAppContext, String filename) {
+		AssetManager assetManager = getAppContext.getAssets();
+		Drawable d;
+		InputStream in;
+		try {
+			in = assetManager.open(serchFolder(filename) + "/" + filename + ".br");
+			d = Drawable.createFromStream(in, null);
+			in.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			d = null;
+		}
+		return d;
 	}
 	public static String serchFolder(String filename) {
 		if (filename.endsWith("s")) {
@@ -501,7 +536,6 @@ public class Function extends Activity {
 		}
 		return nameFoler[i + 1];
 	}
-
 	/**
 	 * @noinspection CallToPrintStackTrace
 	 */
@@ -516,7 +550,6 @@ public class Function extends Activity {
 			songs.start();
 		}
 	}
-
 	/**
 	 * @noinspection CallToPrintStackTrace
 	 */
@@ -531,18 +564,15 @@ public class Function extends Activity {
 			songs.seekTo(0);
 		}
 	}
-
 	@SuppressWarnings("rawtypes")
 	public static void startActivityFun(Context getAppContext, final Class ActivityClass) {
 		getAppContext.startActivity(new Intent(getAppContext, ActivityClass));
 	}
-
 	public static String toNoPalWord(String original) {
 		original = toNoPalArrayAr(original);
 		original = toNoPalArrayFr(original);
 		return original;
 	}
-
 	public static String toNoPalArrayAr(String original) {
 		original = normalizeArabic(original);
 		original = removeTashkeel(original);
@@ -554,7 +584,6 @@ public class Function extends Activity {
 		}
 		return original;
 	}
-
 	public static String normalizeArabic(String original) {
 		original = original.replaceAll("ؤ", "و");
 		original = original.replaceAll("ئ", "ي");
@@ -562,16 +591,13 @@ public class Function extends Activity {
 		String replacement = "ا";
 		return Pattern.compile(pattern).matcher(original).replaceAll(replacement);
 	}
-
 	public static String removeTashkeel(String original) {
 		String pattern = "[ؐ-ًؚ-ْ،,]";
 		return original.replaceAll(pattern, "");
 	}
-
 	public static String toNoPalArrayFr(String original) {
 		return Normalizer.normalize(original, Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
 	}
-
 	/**
 	 * @noinspection CallToPrintStackTrace
 	 */
@@ -585,7 +611,6 @@ public class Function extends Activity {
 			e.printStackTrace();
 		}
 	}
-
 	public static boolean deleteDir(File dir) {
 		if (dir != null && dir.isDirectory()) {
 			String[] children = dir.list();
@@ -600,24 +625,86 @@ public class Function extends Activity {
 		assert dir != null;
 		return dir.delete();
 	}
-
 	public static void setThemeDark(Activity getActivity, int layout) {
 		AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 		getActivity.setContentView(layout);
 	}
-
 	public static void setThemeLight(Activity getActivity, int layout) {
 		AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 		getActivity.setContentView(layout);
 	}
-
 	public static String setTime() {
 		String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 		String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
-
-		return currentDate.replaceAll("-", "") + currentTime.replaceAll(":", "");
+		return replaceArNumToFr(currentDate.replaceAll("-", "") + currentTime.replaceAll(":", ""));
+	}
+	private static String replaceArNumToFr(String s) {
+		s = s.replaceAll("٠", "0");
+		s = s.replaceAll("١", "1");
+		s = s.replaceAll("٢", "2");
+		s = s.replaceAll("٣", "3");
+		s = s.replaceAll("٤", "4");
+		s = s.replaceAll("٥", "5");
+		s = s.replaceAll("٦", "6");
+		s = s.replaceAll("٧", "7");
+		s = s.replaceAll("٨", "8");
+		s = s.replaceAll("٩", "9");
+		return s;
+	}
+	public static String[] getTime(String date) {
+		String[] time = new String[5];
+		time[0] = date.substring(0,4);
+		time[1] = date.substring(4,6);
+		time[2] = date.substring(6,8);
+		time[3] = date.substring(8,10);
+		time[4] = date.substring(10,12);
+		return time;
 	}
 	public static int getScreenWidth() {
 		return Resources.getSystem().getDisplayMetrics().widthPixels;
+	}
+	public static void launchActivityAdmin(Activity getContext, String key) {
+		if(Function.isAdmin(getContext)){
+			String activity = "", adminDemand="";
+			Intent launchIntent = new Intent(Intent.ACTION_VIEW);
+			Bundle extra = new Bundle();
+			switch (key){
+				case "ChatAdminActivity":
+					extra.putString("email", Function.getValue(getContext, "email"));
+					extra.putString("name", Function.getValue(getContext, "name"));
+					extra.putString("dark", String.valueOf(Function.getBoolean(getContext, "dark")));
+					launchIntent.putExtras(extra);
+					activity = getContext.getString(R.string.pkgadmin)+".barkiasl.support.activity"+".ChatAdminActivity";
+					adminDemand = getContext.getString(R.string.adminchat);
+					break;
+				case "SupportViewActivity":
+					extra.putString("email", Function.getValue(getContext, "email"));
+					extra.putString("name", Function.getValue(getContext, "name"));
+					extra.putString("dark", String.valueOf(Function.getBoolean(getContext, "dark")));
+					launchIntent.putExtras(extra);
+					activity = getContext.getString(R.string.pkgadmin)+".barkiasl"+".SupportViewActivity";
+					adminDemand = getContext.getString(R.string.adminsupport);
+					break;
+			}
+			Toast.makeText(getContext, adminDemand, Toast.LENGTH_LONG).show();
+			launchIntent.setComponent(new ComponentName(getContext.getString(R.string.pkgadmin),activity));
+			getContext.startActivity(launchIntent);
+		}
+	}
+	public static String setEmail(String toString) {
+		toString = toString.replaceAll(" ", "_");
+		return toString+"@barkiasl.com";
+	}
+	public static String getDeviceName(Context getContext) {
+		String name = Settings.System.getString(getContext.getContentResolver(), Settings.Secure.ANDROID_ID);
+		String manufacturer = Build.MANUFACTURER;
+		String model = Build.MODEL;
+		return (Function.isAdmin(getContext)) ? getContext.getString(R.string.app_name) : (((model.startsWith(manufacturer)) ? capitalize(model) : capitalize(manufacturer) + " " + model)+"_"+name);
+	}
+	private static String capitalize(String s) {
+		if (s == null || s.isEmpty())
+			return Function.setTime();
+		char first = s.charAt(0);
+		return (Character.isUpperCase(first)) ? s : Character.toUpperCase(first) + s.substring(1);
 	}
 }

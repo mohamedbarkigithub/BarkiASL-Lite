@@ -69,29 +69,25 @@
 		android:layout_weight="1.0"
 		android:gravity="top">
 		<ScrollView
+			android:id="@+id/dialog_info_scrlv"
 		    android:layout_width="match_parent"
             android:layout_height="wrap_content"
 			tools:ignore="UselessParent">
 			<LinearLayout
+				android:id="@+id/dialog_info_lny"
 				android:orientation="vertical"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="top">
-				<LinearLayout
-					android:id="@+id/dialog_lny"
-					android:orientation="vertical"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:gravity="top">
-				</LinearLayout>
 				<TextView
 					android:id="@+id/dialog_info"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:padding="10dp"
 					android:textIsSelectable="true"
-					android:textSize="20sp"
 					android:contentDescription="@string/info_dialog"
+					android:textSize="20sp"
+					android:textColor="@color/White"
 					tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 			</LinearLayout>
 		</ScrollView>

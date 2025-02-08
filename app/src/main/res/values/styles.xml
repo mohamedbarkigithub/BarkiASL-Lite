@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
-	<style name="App.Theme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-		<item name="colorPrimary">@color/colorPrimary</item>
-		<item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
-		<item name="colorOnPrimary">@color/colorOnPrimary</item>
+<resources>
+	<style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+		<item name="colorPrimary">@color/transparent</item>
+		<item name="colorPrimaryVariant">@color/transparent</item>
+		<item name="colorOnPrimary">@color/transparent</item>
+		<item name="android:windowNoTitle">true</item>
 		<item name="materialButtonStyle">@style/AppThemeButton</item>
 	</style>
 	<style name="AppThemeButton" parent="@android:style/Widget.Holo.Light.Button">
 	</style>
-	<style name="AppTheme" parent="@android:style/Theme.Light.NoTitleBar.Fullscreen">
-		<item name="android:forceDarkAllowed" tools:ignore="NewApi">false</item>
-	</style>
-	<style name="AppThemme" parent="@android:style/Theme.Holo.Light">
-        <item name="android:windowActionBarOverlay">false</item>
-        <item name="android:windowActionModeOverlay">false</item>
-       <item name="android:forceDarkAllowed" tools:ignore="NewApi">false</item>
-    </style>
 	<style name="DialogStyle" parent="@android:style/Theme.Dialog">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:windowNoTitle">true</item>
@@ -28,5 +21,37 @@
 		<item name="overlapAnchor">false</item>
 		<item name="android:dropDownVerticalOffset">16dp</item>
 		<item name="android:dropDownHorizontalOffset">-15dp</item>
+	</style>
+	<style name="CustomCardViewStyleLeft" parent="@style/Widget.MaterialComponents.CardView">
+		<item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_custom_corners_left</item>
+	</style>
+	<style name="ShapeAppearanceOverlay_card_custom_corners_left" parent="">
+		<item name="cornerFamily">rounded</item>
+		<item name="cornerSizeTopRight">15dp</item>
+		<item name="cornerSizeTopLeft">0dp</item>
+		<item name="cornerSizeBottomRight">15dp</item>
+		<item name="cornerSizeBottomLeft">15dp</item>
+		<item name="strokeWidth">1.5dp</item>
+		<item name="strokeColor">@color/textPrimaryInverse</item>
+	</style>
+	<style name="CustomCardViewStyleRight" parent="@style/Widget.MaterialComponents.CardView">
+		<item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_custom_corners_right</item>
+	</style>
+	<style name="ShapeAppearanceOverlay_card_custom_corners_right" parent="">
+		<item name="cornerFamily">rounded</item>
+		<item name="cornerSizeTopRight">15dp</item>
+		<item name="cornerSizeTopLeft">15dp</item>
+		<item name="cornerSizeBottomRight">0dp</item>
+		<item name="cornerSizeBottomLeft">15dp</item>
+		<item name="cardCornerRadius">10dp</item>
+		<item name="strokeWidth">1.5dp</item>
+		<item name="strokeColor">@color/textPrimaryInverse</item>
+	</style>
+	<style name="TextAppearance" parent="">
+		<item name="android:ellipsize">marquee</item>
+		<item name="android:fadingEdge">horizontal</item>
+		<item name="android:marqueeRepeatLimit">marquee_forever</item>
+		<item name="android:scrollHorizontally">true</item>
+		<item name="android:lines">1</item>
 	</style>
 </resources>

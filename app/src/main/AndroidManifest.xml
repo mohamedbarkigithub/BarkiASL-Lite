@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <queries>
         <package android:name="com.mohamed.barki.admin" />
+        <package android:name="com.mohamed.barki.asl" />
         <package android:name="com.facebook.katana" />
         <package android:name="com.facebook.lite" />
         <package android:name="com.instagram.android" />
@@ -45,7 +46,7 @@
     <permission
         android:name="com.mohamed.barki.asl.lite.MYPERMISSION"
         android:protectionLevel="signature"  />
-    <uses-permission android:name="com.mohamed.barki.asl.MYPERMISSION"/>
+    <uses-permission android:name="com.mohamed.barki.asl.lite.MYPERMISSION"/>
 
     <supports-screens
         android:anyDensity="true"
@@ -57,7 +58,7 @@
         android:label="@string/app_name"
         android:icon="@mipmap/icon"
         android:roundIcon="@mipmap/roundicon"
-        android:theme="@style/App.Theme"
+        android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config"
         android:name="com.mohamed.barki.asl.lite.MyApplication"
@@ -71,8 +72,7 @@
         <activity android:name="com.mohamed.barki.asl.lite.LoginActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize|screenLayout|uiMode"
             android:exported="true"
-            android:noHistory="true"
-            tools:ignore="DiscouragedApi">
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -82,23 +82,33 @@
             android:name="com.mohamed.barki.asl.lite.ScreenActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize|screenLayout|uiMode"
             android:windowSoftInputMode="stateHidden"
-            android:permission="com.mohamed.barki.asl.MYPERMISSION"
-            android:exported="false"
-            tools:ignore="DiscouragedApi" />
+            android:fitsSystemWindows="true"
+            android:permission="com.mohamed.barki.asl.lite.MYPERMISSION"
+            android:exported="false"/>
         <activity
             android:name="com.mohamed.barki.asl.lite.ASLActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize|screenLayout|uiMode"
             android:windowSoftInputMode="stateHidden"
-            android:permission="com.mohamed.barki.asl.MYPERMISSION"
-            android:exported="false"
-            tools:ignore="DiscouragedApi" />
+            android:permission="com.mohamed.barki.asl.lite.MYPERMISSION"
+            android:exported="false"/>
+        <activity
+            android:name="com.mohamed.barki.asl.lite.ChatActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize|screenLayout|uiMode"
+            android:windowSoftInputMode="stateHidden"
+            android:permission="com.mohamed.barki.asl.lite.MYPERMISSION"
+            android:exported="false"/>
+        <activity
+            android:name="com.mohamed.barki.asl.lite.ChatAdminActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize|screenLayout|uiMode"
+            android:windowSoftInputMode="stateHidden"
+            android:permission="com.mohamed.barki.asl.lite.MYPERMISSION"
+            android:exported="false"/>
         <activity
             android:name="com.mohamed.barki.asl.lite.ManageSpaceActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize|screenLayout|uiMode"
             android:windowSoftInputMode="adjustNothing"
             android:exported="true"
-            android:noHistory="true"
-            tools:ignore="DiscouragedApi"/>
+            android:noHistory="true"/>
 
         <meta-data android:name="SUPPORT_OLD_LAYOUT" android:value="true" />
         <meta-data android:name="SUPPORT_NEW_LAYOUT" android:value="true" />

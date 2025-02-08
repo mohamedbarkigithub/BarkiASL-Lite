@@ -4,13 +4,14 @@ import android.app.Application;
 import android.content.Intent;
 import android.util.Log;
 
+
 public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
         Thread.setDefaultUncaughtExceptionHandler((thread, ex) -> {
-            Log.e("BarkiASL Lite", "Uncaught exception is: ", ex);
-            Function.doCopy(getApplicationContext(), logError(ex));
+            Log.e("BarkiASL", "Uncaught exception is: ", ex);
+            Function.doCopy(getApplicationContext(), logError(ex), getString(R.string.copy_error_to_clip));
             Intent myIntent = new Intent(getApplicationContext(), UpdateActivity.class);
             myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getApplicationContext().startActivity(myIntent);

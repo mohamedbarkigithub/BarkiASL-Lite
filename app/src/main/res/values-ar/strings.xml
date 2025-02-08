@@ -1,32 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">BarkiASL</string>
-	<string name="ar_lan">"آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻء١٢٣٤٥٦٧٨٩٠ "</string>
-	<string name="ar_lanf">"abcdefghijklmnopqrstuvwxyzàäâáæèéêùûüîïíìôöóòœ 0123456789 "</string>
-	<string name="ar_lane">"abcdefghijklmnopqrstuvwxyz 0123456789 "</string>
-	<string name="email_lang">"abcdefghijklmnopqrstuvwxyz @"</string>
-	<string name="num_lang">0123456789</string>
-	<string name="ar_lang">آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻءًٌٍَُِّْ، abcdefghijklmnopqrstuvwxyzàäâáæèéêùûüîïíìôöóòœ, -12</string>
 	<string name="drawer_close">غلق</string>
-	<string name="drawer_open">فتح</string>
+    <string name="drawer_open">فتح</string>
 	<string name="search">أدخل عبارة للبحث</string>
-
+	
 	<string name="page_about">صفحة المطور على فيسبوك:</string>
 	<string name="email_about">البريد الإلكتروني للمطور:</string>
 	<string name="site_about">لتحديث التطبيق:</string>
-	<string name="copy_text_to_clip">تم نسخ النص بنجاح!!!</string>
-	<string name="saved_to_folder">تم الحفظ في مجلد</string>
+    <string name="copy_text_to_clip">تم نسخ النص بنجاح!!!</string>
+    <string name="saved_to_folder">تم الحفظ في مجلد</string>
 	<string name="oops_screenshot_file">عذرا!!! حدث خطأ أثناء حفظ ملفك</string>
 	<string name="oops_screenshot">عذرا!!! هاتفك لا يدعم هذه الخاصية</string>
-	<string name="validate_empty">رجاءً، يرجى إدخال نص!!!</string>
-	<string name="validate_more">عبارة طويلة جدًا!!!!!!</string>
-	<string name="validate_more_more">هناك أكثر من 10 أحرف!!!</string>
-	<string name="error">خطأ!!!</string>
+    <string name="validate_empty">رجاءً، يرجى إدخال نص!!!</string>
+    <string name="validate_more">عبارة طويلة جدًا!!!!!!</string>
+    <string name="validate_more_more">هناك أكثر من 10 أحرف!!!</string>
+    <string name="error">خطأ!!!</string>
 	<string name="title_about">هذا التطبيق يساعد على:</string>
-	<string name="text_about">البحث في قاموس لغة الإشارات الجزائرية</string>
+    <string name="text_about">البحث في قاموس لغة الإشارات الجزائرية</string>
 	<string name="not_connected_to_internet">لا يوجد أنترنت!!!</string>
 	<string name="not_connected_to_a_network">لا يوجد إتصال بالشبكة!!!</string>
-	<string name="welcom">مرحبا</string>
+	<string name="welcom">مرحبا، لنبدأ التعلم</string>
+	<string name="welcom_game">مرحبا، لنبدأ اللعب</string>
 	<string name="try_searching_in_arabic">جرب البحث باللغة العربية</string>
 	<string name="try_searching_in_french">جرب البحث باللغة الفرنسية</string>
 	<string name="time_20_s">الزمن أكبر من 20s !</string>
@@ -49,7 +43,7 @@
 	<string name="title_ref">المصادر والمراجع :</string>
 	<string name="text_ref_kamos">قاموس لغة الإشارات الجزائرية طبعة 2017 (نسخة إلكترونية)</string>
 	<string name="text_ref_kamos_video">قاموس لغة الإشارات الجزائرية طبعة 2017 (فيديوهات)</string>
-
+	
 	<string name="no_connection">لا يوجد اتصال بالأنترنت</string>
 	<string name="h1">عذرًا!</string>
 	<string name="h2">اتصال بطيء أو لايوجد اتصال بالإنترنت 😿</string>
@@ -60,7 +54,7 @@
 	<string name="save_video_offline">بعد تحميل الفيديو على جهازك ستتمكن من تشغيله لاحقا بدون أنترنت</string>
 
 	<string name="worng_package">اسم الحزمة خاطئ !!!</string>
-	<string name="worng_name">اسم التطبيق خاطئ !!!</string>
+    <string name="worng_name">اسم التطبيق خاطئ !!!</string>
 	<string name="worng_time">يجب تحديث التطبيق !!!</string>
 	<string name="re_exit">اضغط مرة أخرى للخروج من التطبيق</string>
 
@@ -124,15 +118,15 @@
 	<string name="info_dialog">عرض المعلومات</string>
 	<string name="btn_info">عرض الاستعلامات</string>
 	<string name="update_app">تحديث التطبيق</string>
-	<string name="start_update">تحديث</string>
-	<string name="jomhoriya">الجمهورية الجزائرية الديمقراطية الشعبية</string>
+    <string name="start_update">تحديث</string>
+    <string name="jomhoriya">الجمهورية الجزائرية الديمقراطية الشعبية</string>
 	<string name="wizara">وزارة التضامن الوطني والأسرة وقضايا المرأة</string>
-	<string name="share">مشاركة التطبيق:</string>
+    <string name="share">مشاركة التطبيق:</string>
 	<string name="sharesubject">
 		تحميل تطبيق BarkiASL
 	</string>
 
-	<string name="support_view">الدعم الفني</string>
+    <string name="support_view">الدعم الفني</string>
 	<string name="admininfo">معلومات صاحب ومطور التطبيق</string>
 	<string name="facebookpage">صفحة الفيسبوك</string>
 	<string name="facebook">حساب الفيسبوك</string>
@@ -143,7 +137,7 @@
 	<string name="email">البريد الإلكتروني</string>
 	<string name="action_settings">الإعدادات</string>
 	<string name="policy">سياسة الخصوصية</string>
-	<string name="phone">رقم الهاتف</string>
+    <string name="phone">رقم الهاتف</string>
 	<string name="facebookpageG">مجموعة الفيسبوك</string>
 	<string name="email_admin_txt">البريد الإلكتروني لصاحب التطبيق</string>
 	<string name="copy_email_to_clip">تم نسخ البريد الإلكتروني بنجاح!!!</string>
@@ -161,5 +155,6 @@
 	<string name="new_message">رسالة جديدة</string>
 	<string name="new_message_text">لقد تلقيت رسالة جديدة من</string>
 	<string name="new_message_test">هل تريد حقا الرد على هذه الرسالة؟</string>
-	<string name="support">الرد على الأسئلة</string>
+    <string name="support">الرد على الأسئلة</string>
+	<string name="ahlenWsahlen">أهلا وسهلا بك</string>
 </resources>

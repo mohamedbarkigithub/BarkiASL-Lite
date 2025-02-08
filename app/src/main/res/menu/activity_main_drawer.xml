@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_support"
+            app:actionLayout="@layout/item_menu_nav"
+            tools:ignore="MenuTitle"/>
+        <item tools:ignore="MenuTitle">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/nav_facebook"
+                        app:actionLayout="@layout/item_menu_nav"
+                        tools:ignore="MenuTitle" />
+                    <item
+                        android:id="@+id/nav_facebook2"
+                        app:actionLayout="@layout/item_menu_nav"
+                        tools:ignore="MenuTitle" />
+                    <item
+                        android:id="@+id/nav_facebookpage"
+                        app:actionLayout="@layout/item_menu_nav"
+                        tools:ignore="MenuTitle" />
+                    <item
+                        android:id="@+id/nav_facebookpagee"
+                        app:actionLayout="@layout/item_menu_nav"
+                        tools:ignore="MenuTitle" />
+                    <item
+                        android:id="@+id/nav_insta"
+                        app:actionLayout="@layout/item_menu_nav"
+                        tools:ignore="MenuTitle" />
+                    <item
+                        android:id="@+id/nav_mytelegram"
+                        app:actionLayout="@layout/item_menu_nav"
+                        tools:ignore="MenuTitle" />
+                    <item
+                        android:id="@+id/nav_telegram"
+                        app:actionLayout="@layout/item_menu_nav"
+                        tools:ignore="MenuTitle" />
+                    <item
+                        android:id="@+id/nav_email"
+                        app:actionLayout="@layout/item_menu_nav"
+                        tools:ignore="MenuTitle" />
+                    <!--item
+                        android:id="@+id/nav_telephone"
+                        app:actionLayout="@layout/item_menu_nav"
+                        tools:ignore="MenuTitle" /-->
+                </group>
+            </menu>
+        </item>
+        <!--item
+            android:id="@+id/nav_admin"
+            android:title="@string/adminitem">
+            <menu>
+                <group android:checkableBehavior="single">
+
+                    <item
+                        android:id="@+id/nav_token"
+                        android:icon="@drawable/ic_menu_crypted"
+                        android:title="@string/get_token"
+                        tools:ignore="HardcodedText" />
+                    <item
+                        android:id="@+id/nav_drive"
+                        android:icon="@drawable/ic_menu_drive"
+                        android:title="@string/get_id_from_drive"
+                        tools:ignore="HardcodedText" />
+                    <item
+                        android:id="@+id/nav_youtube_cut"
+                        android:icon="@drawable/ic_cut_youtube"
+                        android:title="@string/get_id_from_youtube"
+                        tools:ignore="HardcodedText" />
+                    <item
+                        android:id="@+id/nav_upload_file"
+                        android:icon="@drawable/ic_menu_upload_file"
+                        android:title="@string/upload_file"
+                        tools:ignore="HardcodedText" />
+                    <item
+                        android:id="@+id/nav_upload_app"
+                        android:icon="@drawable/ic_menu_upload_app"
+                        android:title="@string/upload_app"
+                        tools:ignore="HardcodedText" />
+                    <item
+                        android:id="@+id/nav_list_user"
+                        android:icon="@drawable/ic_menu_list_user"
+                        android:title="@string/list_user"
+                        tools:ignore="HardcodedText" />
+                    <item
+                        android:id="@+id/nav_list_crash"
+                        android:icon="@drawable/ic_menu_list_crash"
+                        android:title="@string/list_crash"
+                        tools:ignore="HardcodedText" />
+                </group>
+            </menu>
+        </item-->
+        <item tools:ignore="MenuTitle">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/nav_info"
+                        app:actionLayout="@layout/item_menu_nav"
+                        tools:ignore="MenuTitle" />
+                    <item
+                        android:id="@+id/nav_update"
+                        app:actionLayout="@layout/item_menu_nav"
+                        tools:ignore="MenuTitle" />
+                    <item
+                        android:id="@+id/nav_policy"
+                        app:actionLayout="@layout/item_menu_nav"
+                        tools:ignore="MenuTitle" />
+                </group>
+            </menu>
+        </item>
+    </group>
+</menu>

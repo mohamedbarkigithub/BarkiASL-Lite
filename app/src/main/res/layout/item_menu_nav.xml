@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_vertical">
+    <ImageButton
+        android:background="@color/transparent"
+        android:id="@+id/itemImageButtonL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        app:tint="@color/textPrimaryInverse"/>
+    <TextView
+        android:id="@+id/itemTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:ellipsize="marquee"
+        android:fadingEdge="horizontal"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:textColor="@color/textPrimaryInverse"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:ignore="HardcodedText,SpeakableTextPresentCheck,TextContrastCheck" />
+    <ImageButton
+        android:background="@color/transparent"
+        android:id="@+id/itemImageButtonR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        app:tint="@color/textPrimaryInverse"/>
+</LinearLayout>

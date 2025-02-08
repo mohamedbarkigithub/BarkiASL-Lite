@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-	<string name="app_name">BarkiASL Lite</string>
+	<string name="app_name" translatable="false">BarkiASL Lite</string>
 	<string name="barkiasl" translatable="false">BARKIASL LITE</string>
 	<string name="app_url" translatable="false">https://play.google.com/store/apps/details?id=com.mohamed.barki.asl.lite</string>
 	<string name="url_asset" translatable="false">https://github.com/mohamedbarkigithub/BarkiASL-Lite/raw/master/assets/</string>
 	<string name="privacy_policy" translatable="false">https://mohamedbarki.blogspot.com/2023/07/privacy-policy-of-barkiasl-lite.html</string>
 	<string name="pkgadmin" translatable="false">com.mohamed.barki.admin</string>
-	<string name="ar_lan">"آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻء١٢٣٤٥٦٧٨٩٠ "</string>
-	<string name="ar_lanf">"abcdefghijklmnopqrstuvwxyzàäâáæèéêùûüîïíìôöóòœ 0123456789 "</string>
-	<string name="ar_lane">"abcdefghijklmnopqrstuvwxyz 0123456789 "</string>
-	<string name="email_lang">"abcdefghijklmnopqrstuvwxyz @"</string>
-	<string name="num_lang">0123456789</string>
-	<string name="ar_lang">آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻء، abc\'defghijklmnopq()/؟?rstuvwxyzàäâáæèéêùûüîïíìôöóòœ, -123</string>
+    <string name="ar_lan" translatable="false">"آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻء١٢٣٤٥٦٧٨٩٠ "</string>
+    <string name="ar_lanf" translatable="false">"abcdefghijklmnopqrstuvwxyzàäâáæèéêùûüîïíìôöóòœ 0123456789 "</string>
+    <string name="ar_lane" translatable="false">"abcdefghijklmnopqrstuvwxyz 0123456789 "</string>
+    <string name="email_lang" translatable="false">"abcdefghijklmnopqrstuvwxyz @"</string>
+	<string name="num_lang" translatable="false">0123456789</string>
+	<string name="num_lang_ar" translatable="false">١٢٣٤٥٦٧٨٩٠</string>
+    <string name="ar_lang" translatable="false">آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻء، abc\'defghijklmnopq()/؟?rstuvwxyzàäâáæèéêùûüîïíìôöóòœ, -+1234567890</string>
 	<string name="drawer_close">Close</string>
-	<string name="drawer_open">Open</string>
+    <string name="drawer_open">Open</string>
 	<string name="search">Enter a search term</string>
-
+	
 	<string name="page_about">Developer Facebook Page:</string>
 	<string name="email_about">Developer Email:</string>
 	<string name="site_about">To update the application:</string>
-	<string name="copy_text_to_clip">Text copied successfully!!!</string>
-	<string name="saved_to_folder">Saved to folder</string>
-	<string name="oops_screenshot_file">Oops!!  An error occurred while saving your file</string>
+    <string name="copy_text_to_clip">Text copied successfully!!!</string>
+    <string name="saved_to_folder">Saved to folder</string>
+    <string name="oops_screenshot_file">Oops!!  An error occurred while saving your file</string>
 	<string name="oops_screenshot">Oops!!  Your phone does not support this feature</string>
 	<string name="validate_empty">Please enter a letter or symbol!!!</string>
-	<string name="validate_more">Very long sentence!!!!!!</string>
-	<string name="validate_more_more">There are more than 10 letter!!!</string>
-	<string name="error">Error!!!</string>
+    <string name="validate_more">Very long sentence!!!!!!</string>
+    <string name="validate_more_more">There are more than 10 letter!!!</string>
+    <string name="error">Error!!!</string>
 	<string name="title_about">This application helps to:</string>
-	<string name="text_about">Search in the Algerian Sign Language Dictionary</string>
+    <string name="text_about">Search in the Algerian Sign Language Dictionary</string>
 	<string name="not_connected_to_internet">Not connected to internet!!!</string>
 	<string name="not_connected_to_a_network">Not connected to a network!!!</string>
-	<string name="welcom">Welcom</string>
+	<string name="welcom">Hello, let\'s start learning</string>
+	<string name="welcom_game">Hello, let\'s start playing</string>
 	<string name="try_searching_in_arabic">Try searching in Arabic</string>
 	<string name="try_searching_in_french">Try searching in French</string>
 	<string name="time_20_s">Time is greater than 20s!</string>
@@ -55,7 +57,7 @@
 	<string name="text_ref_kamos">Algerian Sign Language Dictionary Edition 2017 (pdf)</string>
 	<string name="text_ref_kamos_video">Algerian Sign Language Dictionary Edition 2017 (video)</string>
 	<string name="numImage" tools:ignore="MissingTranslation">1008</string>
-
+	
 	<string name="no_connection">No Connection</string>
 	<string name="h1">Whoops!</string>
 	<string name="h2">Slow or No internet Connection 😿</string>
@@ -66,7 +68,7 @@
 	<string name="save_video_offline">After downloading the video to your device, you will be able to play it later without the Internet</string>
 
 	<string name="worng_package">The package name is wrong !!!</string>
-	<string name="worng_name">The app name is wrong !!!</string>
+    <string name="worng_name">The app name is wrong !!!</string>
 	<string name="worng_time">The application must be updated !!!</string>
 	<string name="re_exit">Press again to exit the application</string>
 	<string name="back_to_home">Click again to go back to the main page</string>
@@ -127,15 +129,15 @@
 	<string name="spinner_img">Show signes</string>
 	<string name="video_show_btn">Video play</string>
 	<string name="search_btn">Search</string>
-	<string name="info_dialog">Show information</string>
-	<string name="btn_info">Show queries</string>
-	<string name="update_app">Update the application</string>
+    <string name="info_dialog">Show information</string>
+    <string name="btn_info">Show queries</string>
+    <string name="update_app">Update the application</string>
 	<string name="start_update">Update</string>
 	<string name="success_update" translatable="false">Success update</string>
 	<string name="failure_update" translatable="false">Failure update</string>
 	<string name="jomhoriya">People\'s Democratic Republic of Algeria</string>
 	<string name="wizara">Ministry of National Solidarity, Family Affairs and the Status of Women</string>
-	<string name="share">Share the app:</string>
+    <string name="share">Share the app:</string>
 	<string name="sharesubject">Download the BarkiASL application</string>
 	<string name="idistagram" translatable="false">http://instagram.com/_u/medbarkinsta</string>
 	<string name="idtelegramapp" translatable="false">tg://resolve?domain=barkigram</string>
@@ -206,4 +208,5 @@
 	<string name="new_message_text">You have received a new message from</string>
 	<string name="new_message_test">Do you really want to reply to this message?</string>
 	<string name="support">Respond to questions</string>
+	<string name="ahlenWsahlen">Welcome</string>
 </resources>

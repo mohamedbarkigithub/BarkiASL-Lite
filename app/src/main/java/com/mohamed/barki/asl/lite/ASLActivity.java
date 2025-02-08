@@ -3,7 +3,9 @@ package com.mohamed.barki.asl.lite;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
@@ -66,11 +68,20 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.mohamed.barki.asl.lite.DataBase.DatabaseSupport;
 import com.mohamed.barki.asl.lite.resactivity.ResActivity;
+
+import org.apache.commons.lang3.math.NumberUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Random;
 
 @SuppressWarnings({"deprecation", "RedundantSuppression"})
@@ -81,7 +92,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 	private final Handler repeatLeftRightHandler = new Handler(), repeatUpdateHandler = new Handler();
 	private ImageButton btnShow, btnImage, btnVideo, btnLeft, btnRight, dimenDeafNegatif, dimenDeafPositif;
 	private ImageView imageView, photoView;
-	private int fSize, position = 0, scor, scor10, randomOfTest, nbrFalse;
+	private int fSize, position = 0, scor, scor10, nbrFalse;
 	private LinearLayout lnyBig;
     private LinearLayout lnyBigText;
     private LinearLayout lnyTextView;
@@ -93,7 +104,9 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 	private MediaPlayer clear, timerepond, redo_undo, nonono, failText, succText, clicUp, clicDown, click, skip, tasfiq, refresh, aide, clickSpinner;
 	private Runnable r;
 	private Spinner s1;
-	private String search, searchPhoto, intent = "2", scortxt;
+	private String search;
+    private String intent = "2";
+    private String scortxt;
 	private String[] nameArFr, nameArFrNoPal;
 	final String[][] resList = ResActivity.resList();
 	private final int nbrLenght = resList.length;
@@ -123,10 +136,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				Function.startSongs(this, click);
 				btnVideo.setImageResource(R.drawable.ic_video);
 				btnVideo.setBackgroundResource(R.drawable.button_f);
-				if(Function.getValue(this, "screen").equals("false")){
-					Function.doCopy(this, searchPhoto);
-					Function.showToastMessage(this, searchPhoto);
-				}
 				Function.saveFromText(this, "type", "image");
 				searchFun(search, "image");
 				break;
@@ -141,10 +150,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				if(Function.getValue(this, "type").equals("video")){
 					webView.evaluateJavascript("AndroidApp.SimulateScreenTap();", null);
 				}else{
-					if(Function.getValue(this, "screen").equals("false")){
-						Function.doCopy(this, searchPhoto);
-						Function.showToastMessage(this, searchPhoto);
-					}
 					Function.saveFromText(this, "type", "video");
 					searchFun(search, "video");
 				}
@@ -156,7 +161,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				}
 				break;
 			case (R.id.maindLinearLayout3): Function.startSongs(this, click);
-				Function.doCopy(this, tv.getText().toString()+" / "+tvv.getText().toString());
+				Function.doCopy(this, tv.getText().toString()+" / "+tvv.getText().toString(), "");
 				break;
 			case (R.id.maindButtonN): Function.startSongs(this, clicDown);
 				decrement(10);
@@ -237,7 +242,11 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 	}
 	@SuppressLint("ClickableViewAccessibility")
 	private void searchFun(String text, String type) {
-		if(bool){bool = false; if(Function.getValue(this, "screen").equals("true")){Function.showToastMessage(this, getString(R.string.welcom)+" 😊😊");}else{Function.showToastMessage(this, String.valueOf(resList.length));} return;}
+		if(bool){
+			bool = false;
+			Function.showToastMessage(this, getString(R.string.welcom)+" 😊😊");
+			return;
+		}
 		Function.hideKeyboard(ASLActivity.this, edt);
 		int nbr = resList.length;
 		if(type.equals("image")){
@@ -266,7 +275,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		int j=0;
 		while(j<nbr){if(text.equals(nameArFr[j])){break;}else{j++;}}
 		if(j<nbr){
-			searchPhoto = resList[j][0];
+            String searchPhoto = resList[j][0];
 			if(Function.isAdmin(this))
 				if(Function.getBoolean(this, "notify"))
 					Function.showToastMessage(this, searchPhoto);
@@ -275,9 +284,8 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			if(type.equals("image")) setPhotoToButtonPhoto(searchPhoto, imageView);
 			else setVideoToVideoView(j);
 
-			if(Function.getValue(this, "screen").equals("false")){Function.doCopy(this, searchPhoto);}
 			if(intent.equals("2")){
-				String txt=searchPhoto+"s";
+				String txt= searchPhoto +"s";
 				if(resList[j][2].endsWith("2") || resList[j][2].endsWith("3")){
 					int k=0;
 					while(k<j){
@@ -392,44 +400,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			ImageViewCompat.setImageTintList(btnVideo, ColorStateList.valueOf(colorInt));
 			btnVideo.setBackgroundResource(R.drawable.button_p);
 		}
-	}
-	@Override
-	protected void onResume() {
-		super.onResume();
-	}
-	@Override
-	protected void onPause() {
-		super.onPause();
-	}
-	@Override
-	protected void onStop() {
-		super.onStop();
-		if(webView!=null) webView.stopLoading();
-	}
-	@Override
-	protected void onRestart() {
-		super.onRestart();
-	}
-	/** @noinspection CallToPrintStackTrace*/
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		if(webView!=null) webView.destroy();
-		try {
-			Function.trimCache(ASLActivity.this);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	@Override
-	protected void onSaveInstanceState(@NonNull Bundle outState) {
-		super.onSaveInstanceState(outState);
-	}
-
-	@SuppressLint("SetTextI18n")
-	@Override
-	protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-		super.onRestoreInstanceState(savedInstanceState);
 	}
 	@SuppressLint({"SetJavaScriptEnabled", "ClickableViewAccessibility"})
 	private void setWebView() {
@@ -781,6 +751,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 	}
 	@SuppressLint("ResourceAsColor")
 	private void gameFun() {
+		Function.showToastMessage(this, getString(R.string.welcom_game)+" 😊😊");
 		photoView.setVisibility(View.GONE);
 		findViewById(R.id.maindButtonImage).setVisibility(View.GONE);
 		findViewById(R.id.maindButtonImageInvisible).setVisibility(View.GONE);
@@ -856,20 +827,21 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				break;
 		}
 	}
+	private String wordGenerated;
 	@SuppressLint("SuspiciousIndentation")
 	private void randomDeaf() {
 		int min = 1;
 		int max = resList.length - 1;
-		randomOfTest = randomGenerator(min, max);
-		search = nameArFr[randomOfTest];
-		new android.os.Handler().postDelayed(() -> searchFun(nameArFr[randomOfTest], "image"), 100);
+		int randomOfTest = randomGenerator(min, max);
+		wordGenerated = nameArFr[randomOfTest];
+		searchFun(wordGenerated, "image");
 	}
 	private int randomGenerator(int min, int max) {
 		Random random = new Random();
 		return random.nextInt((max-min)+1) + min;
 	}
 	private void testSameWord(String selection) {
-		if(selection.equals(nameArFr[randomOfTest])){
+		if(selection.equals(wordGenerated)){
 			scorFun("1");
 			new android.os.Handler().postDelayed(
 					this::randomDeaf, 500);
@@ -1395,6 +1367,186 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			}
 		}
 	}
+	private String lastMessage;
+	boolean boolMessage = true;
+	DatabaseReference messageReference;
+	ChildEventListener valueEventListenerMessage;
+	@Override
+	protected void onStart() {
+		super.onStart();
+		if(Function.isNetworkConnected(this)){
+			String name = Function.getValue(this, "name");
+			String email = Function.getValue(this, "email");
+			FirebaseDatabase SupportDatabase = FirebaseDatabase.getInstance(DatabaseSupport.getInstance(ASLActivity.this));
+			messageReference = (Function.isAdmin(this)) ? SupportDatabase.getReference().child("support") : SupportDatabase.getReference().child("support").child(name);
+			valueEventListenerMessage = new ChildEventListener() {
+				@Override
+				public void onChildAdded(@NonNull DataSnapshot dataSnapshot, String prevChildKey) {
+					if(!Function.isAdmin(ASLActivity.this)){
+						if(dataSnapshot.exists() && boolMessage){
+							if(testSnapshotTime(dataSnapshot.child("time")) && dataSnapshot.child("name").exists()){
+								long old_version = Long.parseLong(Function.getValue(ASLActivity.this, "message"));
+								long new_version = Long.parseLong(Objects.requireNonNull(dataSnapshot.child("time").getValue(String.class)));
+								if (old_version < new_version && !Objects.equals(dataSnapshot.child("name").getValue(String.class), Function.getValue(ASLActivity.this, "name"))){
+									lastMessage = dataSnapshot.getKey();
+									boolMessage = false;
+									openDialogMessage(name, email, dataSnapshot.child("name").getValue(String.class));
+								}else dialogMessage = null;
+							}
+						}
+					}else{
+						if(dataSnapshot.exists() && boolMessage){
+							for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+								if(testSnapshotTime(snapshot.child("time")) && snapshot.child("name").exists()){
+									long old_version = Long.parseLong(Function.getValue(ASLActivity.this, "message"));
+									long new_version = Long.parseLong(Objects.requireNonNull(snapshot.child("time").getValue(String.class)));
+									if (old_version < new_version && !Objects.equals(snapshot.child("name").getValue(String.class), Function.getValue(ASLActivity.this, "name"))){
+										boolMessage = false;
+										openDialogMessage(dataSnapshot.getKey(), Function.setEmail(dataSnapshot.getKey()), dataSnapshot.getKey());
+										break;
+									}else dialogMessage = null;
+								}
+							}
+						}
+					}
+				}
+				@Override
+				public void onChildChanged(@NonNull DataSnapshot dataSnapshot, String prevChildKey) {
+					if(Function.isAdmin(ASLActivity.this)){
+						if(dataSnapshot.exists() && boolMessage){
+							for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+								long old_version = Long.parseLong(Function.getValue(ASLActivity.this, "message"));
+								long new_version = Long.parseLong(Objects.requireNonNull(snapshot.child("time").getValue(String.class)));
+								if (old_version < new_version && !Objects.equals(snapshot.child("name").getValue(String.class), Function.getValue(ASLActivity.this, "name"))){
+									boolMessage = false;
+									openDialogMessage(dataSnapshot.getKey(), Function.setEmail(dataSnapshot.getKey()), dataSnapshot.getKey());
+									break;
+								}else dialogMessage = null;
+							}
+						}
+					}
+				}
+				@Override
+				public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+					if(dialogMessage!=null && dataSnapshot.exists() && !Function.isAdmin(ASLActivity.this)){
+						if(Objects.equals(dataSnapshot.getKey(), lastMessage)){
+							boolMessage = true;
+							dialogMessage.dismiss();
+						}
+					}
+				}
+				@Override
+				public void onChildMoved(@NonNull DataSnapshot dataSnapshot, String prevChildKey) {
+				}
+				@Override
+				public void onCancelled(@NonNull DatabaseError databaseError) {
+				}
+			};
+			if(!Function.getBoolean(this, "notify")){
+				removeAllEventListener();
+				Function.saveFromText(this, "message", Function.setTime());
+				boolMessage = true;
+			}else
+				messageReference.addChildEventListener(valueEventListenerMessage);
+		}
+	}
+	private boolean testSnapshotTime(DataSnapshot dataSnapshot) {
+		if(!dataSnapshot.exists()) return false;
+		if(dataSnapshot.getValue(String.class)==null) return false;
+		if(Objects.requireNonNull(dataSnapshot.getValue(String.class)).length()!=14) return false;
+		return NumberUtils.isParsable(dataSnapshot.getValue(String.class));
+	}
+	private Dialog dialogMessage;
+	@SuppressLint("SetTextI18n")
+	private void openDialogMessage(String nameMessage, String emailMessage, String nameRecive) {
+		dialogMessage = new Dialog(ASLActivity.this, R.style.DialogStyle);
+		dialogMessage.setContentView(R.layout.dialog);
+		dialogMessage.setCanceledOnTouchOutside(false);
+		dialogMessage.setCancelable(false);
+		((TextView) dialogMessage.findViewById(R.id.dialog_info)).setText(getString(R.string.new_message));
+		((TextView) dialogMessage.findViewById(R.id.dialog_infoo)).setText(getString(R.string.new_message_text)+" "+nameRecive);
+		((TextView) dialogMessage.findViewById(R.id.dialog_infooo)).setText(getString(R.string.new_message_test));
+
+		Typeface typeface = Typeface.createFromAsset(getAssets(),
+				(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي")) ?
+						"fonts/ArefRuqaa.ttf" : "fonts/casual.ttf"
+		);
+
+		((TextView) dialogMessage.findViewById(R.id.dialog_info)).setTypeface(typeface);
+		((TextView) dialogMessage.findViewById(R.id.dialog_infoo)).setTypeface(typeface);
+		((TextView) dialogMessage.findViewById(R.id.dialog_infooo)).setTypeface(typeface);
+		((ImageButton)dialogMessage.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_message);
+		dialogMessage.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
+			dialogMessage.dismiss();
+			dialogMessage = null;
+			removeAllEventListener();
+			Function.saveFromText(this, "message", Function.setTime());
+			Intent intent = new Intent(ASLActivity.this, (Function.isAdmin(this)) ? ChatAdminActivity.class : ChatActivity.class);
+			Bundle extra = new Bundle();
+			extra.putString("activity", "ASLActivity");
+			extra.putString("name", nameMessage);
+			extra.putString("email", emailMessage);
+			intent.putExtras(extra);
+			startActivity(intent);
+		});
+		((ImageButton)dialogMessage.findViewById(R.id.dialog_cancel)).setImageResource(R.drawable.popup_message_off);
+		dialogMessage.findViewById(R.id.dialog_cancel).setOnClickListener(v ->{
+			Function.saveFromText(this, "message", Function.setTime());
+			dialogMessage.dismiss();
+			dialogMessage = null;
+			boolMessage = true;
+		});
+		if(!this.isFinishing()){
+			dialogMessage.show();
+		}
+	}
+	private void removeAllEventListener() {
+		if(valueEventListenerMessage!=null && messageReference!=null) messageReference.removeEventListener(valueEventListenerMessage);
+	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+	}
+	@Override
+	protected void onPause() {
+		super.onPause();
+	}
+	@Override
+	protected void onStop() {
+		super.onStop();
+		if(webView!=null) webView.stopLoading();
+	}
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+	}
+	/** @noinspection CallToPrintStackTrace*/
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if(webView!=null) webView.destroy();
+		try {
+			Function.trimCache(ASLActivity.this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	@Override
+	protected void onSaveInstanceState(@NonNull Bundle outState) {
+		super.onSaveInstanceState(outState);
+	}
+
+	@SuppressLint("SetTextI18n")
+	@Override
+	protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+	}
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {super.onWindowFocusChanged(hasFocus);}
+	@Override
+	protected void onPostCreate(Bundle savedInstanceState) {super.onPostCreate(savedInstanceState);}
+	@Override
+	public void onConfigurationChanged(@NonNull Configuration newConfig) {super.onConfigurationChanged(newConfig);}
 }
 
 

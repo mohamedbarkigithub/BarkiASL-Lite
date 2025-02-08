@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
 	<color name="colorPrimary">#00ff00</color>
 	<color name="colorPrimaryVariant">#5fb0c9</color>
 	<color name="colorOnPrimary">#fff</color>
 	<color name="colorPrimaryASL">#C3E88D</color>
 	<color name="colorPrimaryGAME">#FFEFD5</color>
+	<color name="colorPrimaryChat">#ADFF2F</color>
 	<color name="primaryASL">#ff58ba53</color>
 	<color name="primaryGAME">#00ff00</color>
+	<color name="primaryChat">#008000</color>
 	<color name="colorPrimaryButton">#ff065e52</color>
 	<color name="colorText">#000000</color>
 	<color name="colorTextHint">#ff727272</color>

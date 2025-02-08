@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
-	<style name="App.Theme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-		<item name="colorPrimary">@color/colorPrimary</item>
-		<item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
-		<item name="colorOnPrimary">@color/colorOnPrimary</item>
+<resources>
+	<style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+		<item name="colorPrimary">@color/transparent</item>
+		<item name="colorPrimaryVariant">@color/transparent</item>
+		<item name="colorOnPrimary">@color/transparent</item>
 		<item name="materialButtonStyle">@style/AppThemeButton</item>
 	</style>
 	<style name="AppThemeButton" parent="@android:style/Widget.Holo.Light.Button">
 	</style>
-	<style name="AppTheme" parent="@android:style/Theme.Light.NoTitleBar.Fullscreen">
-		<item name="android:forceDarkAllowed" tools:ignore="NewApi">false</item>
-	</style>
-	<style name="AppThemme" parent="@android:style/Theme.Holo.Light">
-        <item name="android:windowActionBarOverlay">false</item>
-        <item name="android:windowActionModeOverlay">false</item>
-       <item name="android:forceDarkAllowed" tools:ignore="NewApi">false</item>
-    </style>
 	<style name="DialogStyle" parent="@android:style/Theme.Dialog">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:windowNoTitle">true</item>

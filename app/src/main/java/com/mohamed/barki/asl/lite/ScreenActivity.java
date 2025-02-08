@@ -2,33 +2,49 @@ package com.mohamed.barki.asl.lite;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.TextUtils;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.mohamed.barki.asl.lite.DataBase.DatabaseSupport;
+
+
+import org.apache.commons.lang3.math.NumberUtils;
 
 import java.util.Locale;
 import java.util.Objects;
 
 @SuppressWarnings({"deprecation", "RedundantSuppression"})
-public class ScreenActivity extends AppCompatActivity implements OnClickListener
-{
+public class ScreenActivity extends AppCompatActivity implements OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 	private boolean boolExit;
 	private Intent intent;
 	ImageButton btn_dark, btn_rign, btn_song;
@@ -36,6 +52,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 	boolean boolUpdate = true;
 	DatabaseReference updateReference;
 	ValueEventListener valueEventListener;
+	DrawerLayout drawer;
 	public ScreenActivity() {}
 	@SuppressLint("NonConstantResourceId")
 	@Override
@@ -48,16 +65,17 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 				Function.saveFromBoolean(this, "dark", !Function.getBoolean(this, "dark"));
 				recreate();
 				break;
-            case R.id.rign_button:
+			case R.id.rign_button:
 				startSongs(click);
 				Function.saveFromBoolean(this, "notify", !Function.getBoolean(this, "notify"));
+				Function.saveFromText(this, "message", Function.setTime());
 				recreate();
-                break;
+				break;
 			case R.id.song_button:
 				startSongs(click);
 				Function.saveFromBoolean(this, "song", !Function.getBoolean(this, "song"));
 				recreate();
-                break;
+				break;
 			case R.id.screenButton1:
 				startSongs(clickScreen);
 				if(Function.getValue(this, "startGame").isEmpty()){
@@ -80,13 +98,14 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 							.addOnFailureListener(e -> Function.showToastMessage(this, getString(R.string.failure_update)));
 				}
 				break;
-            case R.id.screenButton4:
+			case R.id.screenButton4:
 				startSongs(click);
-				Function.info(ScreenActivity.this, ScreenActivity.this); break;
+				drawer.openDrawer(GravityCompat.START);
+				break;
 			case R.id.screenButton5:
 				startSongs(click);
 				Function.share(ScreenActivity.this, ScreenActivity.this); break;
-        }
+		}
 	}
 
 	private void startActivityFun(Intent intent, String p1) {
@@ -96,18 +115,28 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 	}
 	@SuppressLint("SuspiciousIndentation")
 	@Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
 
 		if(Function.getBoolean(this, "dark")) Function.setThemeDark(this, R.layout.screen);
 		else Function.setThemeLight(this, R.layout.screen);
+
+		if(Function.getBoolean(this, "screen"))
+			Function.showToastMessage(this, getString(R.string.ahlenWsahlen)+" 😊😊");
+
+		if (Function.maxRam(ScreenActivity.this)>=4) {
+			if (Function.getValue(ScreenActivity.this, "numImage").isEmpty()) {
+				String numImage = Function.numIllustrations(this);
+				Function.saveFromText(ScreenActivity.this, "numImage", numImage);
+			}
+		}
 
 		click = MediaPlayer.create(ScreenActivity.this, R.raw.click);
 		clickScreen = MediaPlayer.create(ScreenActivity.this, R.raw.click_screen);
 
 		boolExit = false;
-		
+
 		intent = new Intent(ScreenActivity.this, ASLActivity.class);
 
 		Typeface face = Typeface.createFromAsset(getAssets(), "fonts/handwriter.ttf");
@@ -137,7 +166,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		btn_dark.setOnClickListener(this);
 		btn_rign = findViewById(R.id.rign_button);
 		btn_rign.setOnClickListener(this);
-        btn_song = findViewById(R.id.song_button);
+		btn_song = findViewById(R.id.song_button);
 		btn_song.setOnClickListener(this);
 
 		if(!Function.getBoolean(this, "dark")){
@@ -166,6 +195,106 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 			Function.startSongs(ScreenActivity.this, timerepond);
 			startHandler();
 		};
+		drawer = findViewById(R.id.drawer_layout);
+		drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+
+		NavigationView navigationView = findViewById(R.id.nav_view);
+		navigationView.setNavigationItemSelectedListener(this);
+		hideItem(navigationView);
+		View headerView = navigationView.getHeaderView(0);
+		((TextView) headerView.findViewById(R.id.textView)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/barkiasl.ttf"));
+	}
+	private void hideItem(@NonNull NavigationView navigationView) {
+		initialitationItem(this);
+		Menu nav_Menu = navigationView.getMenu();
+		for (int i=0;i<itemId.length;i++) {
+			applyFontToMenuItem(nav_Menu.findItem(itemId[i]), i);
+		}
+	}
+	private String[] itemTitle;
+	private int[] itemId;
+	private int[] itemDrawable;
+	private void initialitationItem(Context c) {
+		itemTitle = new String[]{
+				//	c.getString(R.string.admininfo),
+				//	c.getString(R.string.action_settings),
+				(Function.isAdmin(c)) ? c.getString(R.string.support) : c.getString(R.string.support_view),
+				c.getString(R.string.facebook),
+				c.getString(R.string.facebookk),
+				c.getString(R.string.facebookpage),
+				c.getString(R.string.facebookpageG),
+				c.getString(R.string.insta),
+				c.getString(R.string.mytelegram),
+				c.getString(R.string.telegram),
+				c.getString(R.string.email),
+				//	c.getString(R.string.phone),
+				c.getString(R.string.info),
+				c.getString(R.string.update_app),
+				c.getString(R.string.policy),
+		};
+		itemId = new int[]{
+				//	R.id.nav_admininfo,
+				//	R.id.nav_setting,
+				R.id.nav_support,
+				R.id.nav_facebook,
+				R.id.nav_facebook2,
+				R.id.nav_facebookpage,
+				R.id.nav_facebookpagee,
+				R.id.nav_insta,
+				R.id.nav_mytelegram,
+				R.id.nav_telegram,
+				R.id.nav_email,
+				//	R.id.nav_telephone,
+				R.id.nav_info,
+				R.id.nav_update,
+				R.id.nav_policy,
+		};
+		itemDrawable = new int[]{
+				//	R.drawable.ic_admin_info,
+				//	R.drawable.ic_setting,
+				(Function.isAdmin(c)) ? R.drawable.ic_menu_support_view_admin : R.drawable.ic_menu_support_view_user,
+				R.drawable.ic_menu_facebook,
+				R.drawable.ic_menu_facebook,
+				R.drawable.ic_menu_facebook_page_barki,
+				R.drawable.ic_menu_facebook_group,
+				R.drawable.ic_menu_insta,
+				R.drawable.mytelegram,
+				R.drawable.ic_menu_telegram,
+				R.drawable.ic_menu_email,
+				//R.drawable.ic_menu_telephone,
+				R.drawable.ic_menu_info,
+				R.drawable.ic_menu_update_app,
+				R.drawable.ic_menu_policy,
+		};
+	}
+	private void applyFontToMenuItem(MenuItem mi, int i) {
+		Typeface font = Typeface.createFromAsset(getAssets(),
+				(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي")) ?
+						"fonts/ArefRuqaa.ttf" : "fonts/Balton.ttf"
+		);
+		ImageButton IconL = Objects.requireNonNull(mi.getActionView()).findViewById(R.id.itemImageButtonL);
+		ImageButton IconR = Objects.requireNonNull(mi.getActionView()).findViewById(R.id.itemImageButtonR);
+		TextView Title = mi.getActionView().findViewById(R.id.itemTextView);
+		Title.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+		Title.setSingleLine(true);
+		Title.setHorizontallyScrolling(true);
+		Title.setHorizontalFadingEdgeEnabled(true);
+		Title.setMarqueeRepeatLimit(-1);
+		Title.setSelected(true);
+		SpannableString mNewTitle = new SpannableString(itemTitle[i]);
+		mNewTitle.setSpan(new CustomTypefaceSpan("" , font), 0 , mNewTitle.length(),  Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+		Title.setText(mNewTitle);
+		if(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي")){
+			IconR.setImageResource(itemDrawable[i]);
+			IconL.setVisibility(View.GONE);
+			IconR.setVisibility(View.VISIBLE);
+			((LinearLayout) mi.getActionView()).setGravity(Gravity.RIGHT|Gravity.CENTER_VERTICAL);
+		}else{
+			IconL.setImageResource(itemDrawable[i]);
+			IconR.setVisibility(View.GONE);
+			IconL.setVisibility(View.VISIBLE);
+			((LinearLayout) mi.getActionView()).setGravity(Gravity.LEFT|Gravity.CENTER_VERTICAL);
+		}
 	}
 	private MediaPlayer timerepond;
 	private Handler handler;
@@ -184,6 +313,10 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 	public void startHandler() {
 		handler.postDelayed(r, REPEAT_USER_DELAY *1000);
 	}
+	private String lastMessage;
+	boolean boolMessage = true;
+	DatabaseReference messageReference;
+	ChildEventListener valueEventListenerMessage;
 	@Override
 	protected void onStart() {
 		super.onStart();
@@ -203,14 +336,145 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 
 				}
 			};
-			updateReference.addValueEventListener(valueEventListener);
+			String name = Function.getValue(this, "name");
+			String email = Function.getValue(this, "email");
+			FirebaseDatabase SupportDatabase = FirebaseDatabase.getInstance(DatabaseSupport.getInstance(ScreenActivity.this));
+
+			messageReference = (Function.isAdmin(this)) ? SupportDatabase.getReference().child("support") : SupportDatabase.getReference().child("support").child(name);
+			valueEventListenerMessage = new ChildEventListener() {
+				@Override
+				public void onChildAdded(@NonNull DataSnapshot dataSnapshot, String prevChildKey) {
+					if(!Function.isAdmin(ScreenActivity.this)){
+						if(dataSnapshot.exists() && boolMessage){
+							if(testSnapshotTime(dataSnapshot.child("time")) && dataSnapshot.child("name").exists()){
+								long old_version = Long.parseLong(Function.getValue(ScreenActivity.this, "message"));
+								long new_version = Long.parseLong(Objects.requireNonNull(dataSnapshot.child("time").getValue(String.class)));
+								if (old_version < new_version && !Objects.equals(dataSnapshot.child("name").getValue(String.class), Function.getValue(ScreenActivity.this, "name"))){
+									lastMessage = dataSnapshot.getKey();
+									boolMessage = false;
+									openDialogMessage(name, email, dataSnapshot.child("name").getValue(String.class));
+								}else dialogMessage = null;
+							}
+						}
+					}else{
+						if(dataSnapshot.exists() && boolMessage){
+							for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+								if(testSnapshotTime(snapshot.child("time")) && snapshot.child("name").exists()){
+									long old_version = Long.parseLong(Function.getValue(ScreenActivity.this, "message"));
+									long new_version = Long.parseLong(Objects.requireNonNull(snapshot.child("time").getValue(String.class)));
+									if (old_version < new_version && !Objects.equals(snapshot.child("name").getValue(String.class), Function.getValue(ScreenActivity.this, "name"))){
+										boolMessage = false;
+										openDialogMessage(dataSnapshot.getKey(), Function.setEmail(dataSnapshot.getKey()), dataSnapshot.getKey());
+										break;
+									}else dialogMessage = null;
+								}
+							}
+						}
+					}
+				}
+				@Override
+				public void onChildChanged(@NonNull DataSnapshot dataSnapshot, String prevChildKey) {
+					if(Function.isAdmin(ScreenActivity.this)){
+						if(dataSnapshot.exists() && boolMessage){
+							for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+								long old_version = Long.parseLong(Function.getValue(ScreenActivity.this, "message"));
+								long new_version = Long.parseLong(Objects.requireNonNull(snapshot.child("time").getValue(String.class)));
+								if (old_version < new_version && !Objects.equals(snapshot.child("name").getValue(String.class), Function.getValue(ScreenActivity.this, "name"))){
+									boolMessage = false;
+									openDialogMessage(dataSnapshot.getKey(), Function.setEmail(dataSnapshot.getKey()), dataSnapshot.getKey());
+									break;
+								}else dialogMessage = null;
+							}
+						}
+					}
+				}
+				@Override
+				public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+					if(dialogMessage!=null && dataSnapshot.exists() && !Function.isAdmin(ScreenActivity.this)){
+						if(Objects.equals(dataSnapshot.getKey(), lastMessage)){
+							boolMessage = true;
+							dialogMessage.dismiss();
+						}
+					}
+				}
+				@Override
+				public void onChildMoved(@NonNull DataSnapshot dataSnapshot, String prevChildKey) {
+				}
+				@Override
+				public void onCancelled(@NonNull DatabaseError databaseError) {
+				}
+			};
+			if(!Function.getBoolean(this, "notify")){
+				removeAllEventListener();
+				Function.saveFromText(this, "message", Function.setTime());
+				boolMessage = true;
+			}else{
+				updateReference.addValueEventListener(valueEventListener);
+				messageReference.addChildEventListener(valueEventListenerMessage);
+			}
 		}
 		startHandler();
+	}
+	private boolean testSnapshotTime(DataSnapshot dataSnapshot) {
+		if(!dataSnapshot.exists()) return false;
+		if(dataSnapshot.getValue(String.class)==null) return false;
+		if(Objects.requireNonNull(dataSnapshot.getValue(String.class)).length()!=14) return false;
+		return NumberUtils.isParsable(dataSnapshot.getValue(String.class));
+	}
+	private Dialog dialogMessage;
+	@SuppressLint("SetTextI18n")
+	private void openDialogMessage(String nameMessage, String emailMessage, String nameRecive) {
+		dialogMessage = new Dialog(ScreenActivity.this, R.style.DialogStyle);
+		dialogMessage.setContentView(R.layout.dialog);
+		dialogMessage.setCanceledOnTouchOutside(false);
+		dialogMessage.setCancelable(false);
+		((TextView) dialogMessage.findViewById(R.id.dialog_info)).setText(getString(R.string.new_message));
+		((TextView) dialogMessage.findViewById(R.id.dialog_infoo)).setText(getString(R.string.new_message_text)+" "+nameRecive);
+		((TextView) dialogMessage.findViewById(R.id.dialog_infooo)).setText(getString(R.string.new_message_test));
+
+		Typeface typeface = Typeface.createFromAsset(getAssets(),
+				(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي")) ?
+						"fonts/ArefRuqaa.ttf" : "fonts/casual.ttf"
+		);
+
+		((TextView) dialogMessage.findViewById(R.id.dialog_info)).setTypeface(typeface);
+		((TextView) dialogMessage.findViewById(R.id.dialog_infoo)).setTypeface(typeface);
+		((TextView) dialogMessage.findViewById(R.id.dialog_infooo)).setTypeface(typeface);
+		((ImageButton)dialogMessage.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_message);
+		dialogMessage.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
+			dialogMessage.dismiss();
+			dialogMessage = null;
+			removeAllEventListener();
+			Function.saveFromText(this, "message", Function.setTime());
+			Intent intent = new Intent(ScreenActivity.this, (Function.isAdmin(this)) ? ChatAdminActivity.class : ChatActivity.class);
+			Bundle extra = new Bundle();
+			extra.putString("activity", "ScreenActivity");
+			extra.putString("name", nameMessage);
+			extra.putString("email", emailMessage);
+			intent.putExtras(extra);
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(intent);
+			finish();
+		});
+		((ImageButton)dialogMessage.findViewById(R.id.dialog_cancel)).setImageResource(R.drawable.popup_message_off);
+		dialogMessage.findViewById(R.id.dialog_cancel).setOnClickListener(v ->{
+			Function.saveFromText(this, "message", Function.setTime());
+			dialogMessage.dismiss();
+			dialogMessage = null;
+			boolMessage = true;
+		});
+		if(!this.isFinishing()){
+			dialogMessage.show();
+		}
+	}
+	private void removeAllEventListener() {
+		if(valueEventListenerMessage!=null && messageReference!=null) messageReference.removeEventListener(valueEventListenerMessage);
+		if(valueEventListener!=null && updateReference!=null) updateReference.removeEventListener(valueEventListener);
 	}
 	@Override
 	protected void onStop() {
 		super.onStop();
-		if(Function.isNetworkConnected(this)) updateReference.removeEventListener(valueEventListener);
+		removeAllEventListener();
 		stopHandler();
 	}
 	private void openDialog() {
@@ -222,7 +486,10 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		((TextView) dialog.findViewById(R.id.dialog_info)).setText(getString(R.string.save_app));
 		((TextView) dialog.findViewById(R.id.dialog_infoo)).setText(getString(R.string.save_this_app));
 		((TextView) dialog.findViewById(R.id.dialog_infooo)).setText(getString(R.string.save_app_offline));
-		Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/MolhimBold.ttf");
+		Typeface typeface = Typeface.createFromAsset(ScreenActivity.this.getAssets(),
+				(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي")) ?
+						"fonts/naskh.ttf" : "fonts/casual.ttf"
+		);
 		((TextView) dialog.findViewById(R.id.dialog_info)).setTypeface(typeface);
 		((TextView) dialog.findViewById(R.id.dialog_infoo)).setTypeface(typeface);
 		((TextView) dialog.findViewById(R.id.dialog_infooo)).setTypeface(typeface);
@@ -251,6 +518,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 	public void onBackPressed() {
 		if (boolExit) {
 			if(Function.isNetworkConnected(this)) updateReference.removeEventListener(valueEventListener);
+			if(Function.toast != null) Function.toast.cancel();
 			stopHandler();
 			finish();
 			finishAffinity();
@@ -260,11 +528,183 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 			boolExit = true;
 		}
 	}
-	
+
 	private void startSongs(MediaPlayer songs)
-    {
-        if(Function.getBoolean(this, "song")){
-            songs.start();
-        }
-    }
+	{
+		if(Function.getBoolean(this, "song")){
+			songs.start();
+		}
+	}
+
+	@Override
+	public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+		boolExit = false;
+		int id = item.getItemId();
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+
+		if (id == R.id.nav_info) {
+			Function.info(this, this);
+		} else if (id == R.id.nav_email) {
+			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
+			emailOpen();
+		} /*else if (id == R.id.nav_telephone) {
+			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
+			phoneOpen();
+		} */else if (id == R.id.nav_update) {
+			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
+			openDialog();
+		} else if (id == R.id.nav_facebookpage) {
+			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
+			intent.setData(Uri.parse(getString(R.string.idfacebookpageappbarki)));
+			String pkg = getString(R.string.pkgfacebooklite);
+			if (Function.isPackageInstalled(this, getString(R.string.pkgfacebook)))
+				pkg = getString(R.string.pkgfacebook);
+			intent.setPackage(pkg);
+			try {
+				startActivity(intent);
+			} catch (ActivityNotFoundException e) {
+				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.idfacebookpagebarki))));
+			}
+		} else if (id == R.id.nav_facebookpagee) {
+			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
+			intent.setData(Uri.parse(getString(R.string.idfacebookgroupapp)));
+			String pkg = getString(R.string.pkgfacebooklite);
+			if (Function.isPackageInstalled(this, getString(R.string.pkgfacebook)))
+				pkg = getString(R.string.pkgfacebook);
+			intent.setPackage(pkg);
+			try {
+				startActivity(intent);
+			} catch (ActivityNotFoundException e) {
+				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.idfacebookgroup))));
+			}
+		} else if (id == R.id.nav_facebook) {
+			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
+			intent.setData(Uri.parse(getString(R.string.idfacebookdevlopperapp)));
+			String pkg = getString(R.string.pkgfacebooklite);
+			if (Function.isPackageInstalled(this, getString(R.string.pkgfacebook)))
+				pkg = getString(R.string.pkgfacebook);
+			intent.setPackage(pkg);
+			try {
+				startActivity(intent);
+			} catch (ActivityNotFoundException e) {
+				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.idfacebookdevlopper))));
+			}
+		} else if (id == R.id.nav_facebook2) {
+			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
+			intent.setData(Uri.parse(getString(R.string.idfacebookdevlopper2app)));
+			String pkg = getString(R.string.pkgfacebooklite);
+			if (Function.isPackageInstalled(this, getString(R.string.pkgfacebook)))
+				pkg = getString(R.string.pkgfacebook);
+			intent.setPackage(pkg);
+			try {
+				startActivity(intent);
+			} catch (ActivityNotFoundException e) {
+				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.idfacebookdevlopper2))));
+			}
+		} else if (id == R.id.nav_insta) {
+			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
+			intent.setData(Uri.parse(getString(R.string.idistagram)));
+			String pkg = getString(R.string.pkginstagramlite);
+			if (Function.isPackageInstalled(this, getString(R.string.pkginstagram)))
+				pkg = getString(R.string.pkginstagram);
+			intent.setPackage(pkg);
+			try {
+				startActivity(intent);
+			} catch (ActivityNotFoundException e) {
+				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.idistagram))));
+			}
+		} else if (id == R.id.nav_mytelegram) {
+			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
+			intent.setData(Uri.parse(getString(R.string.idtelegramapp)));
+			String pkg = getString(R.string.pkgtelegramweb);
+			if (Function.isPackageInstalled(this, getString(R.string.pkgtelegram)))
+				pkg = getString(R.string.pkgtelegram);
+			intent.setPackage(pkg);
+			try {
+				startActivity(intent);
+			} catch (ActivityNotFoundException e) {
+				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.idtelegram))));
+			}
+		} else if (id == R.id.nav_telegram) {
+			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
+			intent.setData(Uri.parse(getString(R.string.idtelegramappG)));
+			String pkg = getString(R.string.pkgtelegramweb);
+			if (Function.isPackageInstalled(this, getString(R.string.pkgtelegram)))
+				pkg = getString(R.string.pkgtelegram);
+			intent.setPackage(pkg);
+			try {
+				startActivity(intent);
+			} catch (ActivityNotFoundException e) {
+				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.idtelegramG))));
+			}
+		} else if (id == R.id.nav_support) {
+			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
+			if(Function.isAdmin(this))
+				Function.launchActivityAdmin(this, "SupportViewActivity");
+			else{
+				intent = new Intent(ScreenActivity.this, ChatActivity.class);
+				Bundle extra = new Bundle();
+				extra.putString("email", Function.getValue(ScreenActivity.this, "email"));
+				extra.putString("name", Function.getValue(ScreenActivity.this, "name"));
+				intent.putExtras(extra);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(intent);
+				finish();
+			}
+		} else if (id == R.id.nav_policy) {
+			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.privacy_policy))));
+		}
+		return true;
+	}
+	private void emailOpen() {
+		String txt = getString(R.string.email_admin_txt),
+				email = getString(R.string.email_dev);
+		final String emailF = email;
+		final Dialog dialog = new Dialog(this, R.style.DialogStyle);
+		dialog.setContentView(R.layout.dialog);
+		dialog.setCanceledOnTouchOutside(false);
+		dialog.setCancelable(false);
+		((TextView) dialog.findViewById(R.id.dialog_info)).setText(txt);
+		Typeface typeface = Typeface.createFromAsset(ScreenActivity.this.getAssets(),
+				(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي")) ?
+						"fonts/naskh.ttf" : "fonts/casual.ttf"
+		);
+		((TextView) dialog.findViewById(R.id.dialog_info)).setTypeface(typeface);
+		((TextView) dialog.findViewById(R.id.dialog_infoo)).setText(email);
+		dialog.findViewById(R.id.dialog_infooo).setVisibility(View.GONE);
+		((ImageButton) dialog.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_copy);
+		dialog.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
+			Function.doCopy(ScreenActivity.this, emailF, getString(R.string.copy_email_to_clip));
+			dialog.dismiss();
+		});
+		((ImageButton) dialog.findViewById(R.id.dialog_cancel)).setImageResource(R.drawable.ic_close);
+		dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> dialog.dismiss());
+		dialog.show();
+	}
+	/** @noinspection unused*/
+	private void phoneOpen() {
+		String txt = getString(R.string.phone_admin_txt),
+				email = getString(R.string.phone_dev);
+		final String emailF = email;
+		final Dialog dialog = new Dialog(this, R.style.DialogStyle);
+		dialog.setContentView(R.layout.dialog);
+		dialog.setCanceledOnTouchOutside(false);
+		dialog.setCancelable(false);
+		((TextView) dialog.findViewById(R.id.dialog_info)).setText(txt);
+		Typeface typeface = Typeface.createFromAsset(ScreenActivity.this.getAssets(),
+				(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي")) ?
+						"fonts/naskh.ttf" : "fonts/casual.ttf"
+		);
+		((TextView) dialog.findViewById(R.id.dialog_info)).setTypeface(typeface);
+		((TextView) dialog.findViewById(R.id.dialog_infoo)).setText(email);
+		dialog.findViewById(R.id.dialog_infooo).setVisibility(View.GONE);
+		((ImageButton) dialog.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_copy);
+		dialog.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
+			Function.doCopy(ScreenActivity.this, emailF, getString(R.string.copy_phone_to_clip));
+			dialog.dismiss();
+		});
+		((ImageButton) dialog.findViewById(R.id.dialog_cancel)).setImageResource(R.drawable.ic_close);
+		dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> dialog.dismiss());
+		dialog.show();
+	}
 }
