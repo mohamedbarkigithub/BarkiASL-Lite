@@ -998,7 +998,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			String[] words = objects[position].split("\\s+");
 			int start = 0;
 			for (String word : words) {
-				Typeface typeface = word.replaceAll("[0-9]", "").matches("\\p{InArabic}+") ? faceAr : faceFr;
+				Typeface typeface = word.replaceAll("[\\d()-+]", "").matches("\\p{InArabic}+") ? faceAr : faceFr;
 				int end = start + word.length();
 				setSpans(spannableString, typeface, start, end);
 				start = end + 1;
@@ -1075,7 +1075,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 					String[] words = edt.getText().toString().split("\\s+");
 					int start = 0;
 					for (String word : words) {
-						Typeface typeface = word.replaceAll("[0-9]", "").matches("\\p{InArabic}+") ? faceAr : faceFr;
+						Typeface typeface = word.replaceAll("[\\d()-+]", "").matches("\\p{InArabic}+") ? faceAr : faceFr;
 						int end = start + word.length();
 						setSpans(e, typeface, start, end);
 						start = end + 1;
@@ -1287,7 +1287,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				String[] words = item.split("\\s+");
 				int start = 0;
 				for (String word : words) {
-					Typeface typeface = word.replaceAll("[0-9]", "").matches("\\p{InArabic}+") ? faceAr : faceFr;
+					Typeface typeface = word.replaceAll("[\\d()-+]", "").matches("\\p{InArabic}+") ? faceAr : faceFr;
 					int end = start + word.length();
 					setSpans(spannableString, typeface, start, end);
 					start = end + 1;
