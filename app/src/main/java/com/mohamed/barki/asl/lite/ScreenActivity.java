@@ -124,7 +124,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 
 		if(Function.getBoolean(this, "screen"))
 			Function.showToastMessage(this, getString(R.string.ahlenWsahlen)+" 😊😊");
-
+		Function.saveFromBoolean(this, "screen", false);
 		if (Function.maxRam(ScreenActivity.this)>=4) {
 			if (Function.getValue(ScreenActivity.this, "numImage").isEmpty()) {
 				String numImage = Function.numIllustrations(this);

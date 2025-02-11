@@ -61,5 +61,6 @@ public class ResActivityY extends Activity
 			{"y53", "url", "gant3", "قفاز3"},
 			{"y54", "url", "tricot", "حياكة"},
 			{"y55", "url", "couture", "خياطة"},
+			{"y56", "url", "couche", "حفاظة"},
 	};
 }

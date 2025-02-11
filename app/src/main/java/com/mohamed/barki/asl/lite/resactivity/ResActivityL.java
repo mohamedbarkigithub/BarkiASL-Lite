@@ -65,5 +65,8 @@ public class ResActivityL extends Activity
 			{"l57", "url", "cinéma", "سينما"},
 			{"l58", "url", "ville2", "مدينة2"},
 			{"l59", "url", "campagne2", "ريف2"},
+			{"l60", "url", "cirque", "سيرك"},
+			{"l61", "url", "chapiteau", "سرادق (خيمة كبيرة)"},
+			{"l62", "url", "gradins", "مدرجات"},
 	};
 }

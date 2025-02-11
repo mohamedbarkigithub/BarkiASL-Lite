@@ -65,5 +65,12 @@ public class ResActivityR extends Activity
 			{"r57", "url", "chimio", "علاج كيميائي"},
 			{"r58", "url", "solidarité", "تضامن، تكافل"},
 			{"r59", "url", "guérison", "شفاء"},
+			{"r60", "url", "fécondation", "إخصاب"},
+			{"r61", "url", "sage-femme, maïeuticien", "قابلة"},
+			{"r62", "url", "accouchement", "ولادة"},
+			{"r63", "url", "grossesse", "حَبَلٌ، حَمْلٌ"},
+			{"r64", "url", "embryon", "جنين (من الإخصاب حتى نهاية الأسبوع العاشر)"},
+			{"r65", "url", "fœtus, fétus", "جنين (من الأسبوع العاشر حتى الولادة)"},
+			{"r66", "url", "allaiter, allaitement", "رضاعة طبيعية"},
 	};
 }

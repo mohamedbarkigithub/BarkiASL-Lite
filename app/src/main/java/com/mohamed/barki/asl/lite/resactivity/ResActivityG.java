@@ -65,5 +65,6 @@ public class ResActivityG extends Activity
 			{"g57", "url", "ballon", "كرة"},
 			{"g58", "url", "puzzle", "لغز، أحجية"},
 			{"g59", "url", "jeux de societé, plateau", "ألعاب الطاولة، اللوحة"},
+			{"g60", "url", "mouvement acrobatique", "حركة بهلوانية"},
 	};
 }

@@ -72,5 +72,9 @@ public class ResActivityO extends Activity
 			{"o64", "url", "chasseur", "صياد"},
 			{"o65", "url", "sculpture, sculpteur", "نحت، نحات"},
 			{"o66", "url", "jardinage", "بستنة، بستاتي"},
+			{"o67", "url", "clown", "مهرج"},
+			{"o68", "url", "magie, magicien", "سحر، ساحر"},
+			{"o69", "url", "funambule", "بهلوان"},
+			{"o70", "url", "dompteur", "مروض"},
 	};
 }

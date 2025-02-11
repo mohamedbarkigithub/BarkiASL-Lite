@@ -126,7 +126,7 @@ public class ResActivityC extends Activity
 			{"c118", "11MQ6-SwGABCHiV8FjKbYhhaIVn1CAEVC", "calculatrice", "آلة حاسبة"},
 			{"c119", "1_gkZIYj-wH4wFibiwKtSTykhEqhiMjYE", "ballon d'air", "بالون هوائي"},
 			{"c120", "1G7cKdcivPtjtGPhs6C1cQEtFzFmIWB5i", "cafetière", "إبريق"},
-			{"c121", "1UCGEJPHuSLdE7qWRFuiFhETyNBh6HNnd", "balançoire", "أرجوحة"},
+			{"c121", "1UCGEJPHuSLdE7qWRFuiFhETyNBh6HNnd", "balançoire, trapèze1", "أرجوحة1"},
 			{"c122", "15EQuBCVBblSH1dpOyGesUZFsUqvDnBne", "bouton", "زر"},
 			{"c123", "1wzPS4A0EvrwRXKbwxjVO3efsNNnNSDmJ", "téléphone fixe", "هاتف ثابت"},
 			{"c124", "1Mm5WEkmarZMxqAxp2tQ4DYtL5y3PC1C6", "satellite artificiel", "قمر صناعي"},
@@ -174,5 +174,8 @@ public class ResActivityC extends Activity
 			{"c166", "url", "poupée2", "دمية2"},
 			{"c167", "url", "ruban", "شريط"},
 			{"c168", "url", "pétrole2", "بترول2"},
+			{"c169", "url", "biberon", "زجاجة الرضاعة"},
+			{"c170", "url", "poussette", "عربة أطفال"},
+			{"c171", "url", "balançoire, trapèze2", "أرجوحة2"},
 	};
 }

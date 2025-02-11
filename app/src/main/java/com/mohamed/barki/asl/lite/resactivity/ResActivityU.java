@@ -282,5 +282,8 @@ public class ResActivityU extends Activity
 			{"u274", "url", "se faire dépister", "اختبر (فعل)"},
 			{"u275", "url", "trouver4", "وجد (فعل)4"},
 			{"u276", "url", "rechercher", "بحث (فعل)"},
+			{"u277", "url", "bercer", "هزَّز، هدهد (فعل)"},
+			{"u278", "url", "changer", "بَدَّل، غَيَّر (فعل)"},
+			{"u279", "url", "jongler", "تلاعب (فعل)"},
 	};
 }
