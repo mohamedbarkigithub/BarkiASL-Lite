@@ -396,13 +396,13 @@
 
 		<ImageButton
 			android:id="@+id/maindButtonN"
-			android:layout_width="wrap_content"
+			android:layout_width="50dp"
 			android:layout_height="50.0dp"
-			android:layout_weight="0.5"
 			android:layout_marginRight="1.0dip"
-			android:background="@drawable/button"
+			android:background="@drawable/button_z"
 			android:src="@drawable/ic_minus"
 			android:contentDescription="@string/minus"
+			app:tint="@color/textPrimaryInverse"
 			tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
 			android:importantForAccessibility="no" />
 
@@ -420,8 +420,9 @@
 
 		<ImageButton
 			android:id="@+id/maindButtonLeft"
-			android:layout_width="50.0dip"
+			android:layout_width="0dp"
 			android:layout_height="50.0dip"
+			android:layout_weight="0.5"
 			android:layout_marginLeft="1.0dip"
 			android:layout_marginRight="1.0dip"
 			android:background="@drawable/button_slide"
@@ -433,8 +434,9 @@
 
 		<ImageButton
 			android:id="@+id/maindButtonRight"
-			android:layout_width="50.0dip"
+			android:layout_width="0dp"
 			android:layout_height="50.0dp"
+			android:layout_weight="0.5"
 			android:layout_marginLeft="1.0dip"
 			android:layout_marginRight="1.0dip"
 			android:background="@drawable/button_slide"
@@ -457,13 +459,13 @@
 
 		<ImageButton
 			android:id="@+id/maindButtonP"
-			android:layout_width="wrap_content"
+			android:layout_width="50dp"
 			android:layout_height="50.0dp"
-			android:layout_weight="0.5"
 			android:layout_marginLeft="1.0dip"
-			android:background="@drawable/button"
+			android:background="@drawable/button_z"
 			android:src="@drawable/ic_plus"
 			android:contentDescription="@string/plus"
+			app:tint="@color/textPrimaryInverse"
 			tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 	</LinearLayout>
 </LinearLayout>
