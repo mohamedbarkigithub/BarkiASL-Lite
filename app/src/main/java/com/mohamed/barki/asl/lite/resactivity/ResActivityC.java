@@ -148,7 +148,7 @@ public class ResActivityC extends Activity
 			{"c140", "url", "métal", "معدن"},
 			{"c141", "url", "bois", "خشب"},
 			{"c142", "url", "papier2", "ورقة2"},
-			{"c143", "url", "or", "ذهب"},
+			{"c143", "url", "or", "معدن الذهب"},
 			{"c144", "url", "verre2", "زجاج2"},
 			{"c145", "url", "sable1", "رمل1"},
 			{"c146", "url", "tissu", "قماش"},

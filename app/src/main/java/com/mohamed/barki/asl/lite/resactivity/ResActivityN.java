@@ -105,5 +105,7 @@ public class ResActivityN extends Activity
 			{"n97", "url", "forestation, boisement", "تشجير"},
 			{"n98", "url", "déforestation", "إزالة الغابات"},
 			{"n99", "url", "biodiversité", "تنوع بيولوجي"},
+			{"n100", "url", "feuille", "ورقة الشجر"},
+			{"n101", "url", "champignon", "فطر"},
 	};
 }

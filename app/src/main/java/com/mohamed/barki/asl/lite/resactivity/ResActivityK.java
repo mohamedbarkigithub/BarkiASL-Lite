@@ -7,7 +7,7 @@ public class ResActivityK extends Activity
 			//الحيوانات
 			{"k0", "15bza_h7GoHQVxF-awhVrC3EqDV37jZen", "animaux", "حيوانات"},
 			{"k1", "url", "insectes1", "حشرات1"},
-			{"k2", "1dNuAcfwZfQEJB5PBfL2ef4cZgLrVH7Sc", "poule", "دجاجة"},
+			{"k2", "1dNuAcfwZfQEJB5PBfL2ef4cZgLrVH7Sc", "poule1", "دجاجة1"},
 			{"k3", "18aR86Ph1lLCwqP0MA0guDfXwnc6Mp150", "mouche1", "ذبابة1"},
 			{"k4", "1OQdLHgGnDQGhvYuBkukXrTN4mkSsdanX", "ver de terre", "دودة"},
 			{"k5", "1X-LFPmLeNTs37R18C69cOt6pWd540_bB", "dauphin1", "دلفين1"},
@@ -134,5 +134,8 @@ public class ResActivityK extends Activity
 			{"k126", "url", "sirène", "حورية البحر"},
 			{"k127", "url", "dragon", "تنين"},
 			{"k128", "url", "géant", "عملاق"},
+			{"k129", "url", "bogue", "حشرة البق"},
+			{"k130", "url", "poussin", "كتكوت"},
+			{"k131", "url", "poule2", "دجاجة2"},
 	};
 }

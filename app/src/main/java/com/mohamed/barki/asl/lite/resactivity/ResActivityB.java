@@ -122,5 +122,6 @@ public class ResActivityB extends Activity
 			{"b114", "url", "gras", "سمين"},
 			{"b115", "url", "confort, confortable", "راحة، مريحة"},
 			{"b116", "url", "repos", "استراحة"},
+			{"b117", "url", "câlin", "محبوب"},
 	};
 }

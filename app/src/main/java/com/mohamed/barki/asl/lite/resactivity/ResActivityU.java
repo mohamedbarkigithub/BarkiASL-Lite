@@ -280,5 +280,7 @@ public class ResActivityU extends Activity
 			{"u272", "url", "c'est bon", "جيد، لا بأس، انتهى، حسناً، كفى"},
 			{"u273", "url", "jouer", "لعِب (فعل)"},
 			{"u274", "url", "se faire dépister", "اختبر (فعل)"},
+			{"u275", "url", "trouver4", "وجد (فعل)4"},
+			{"u276", "url", "rechercher", "بحث (فعل)"},
 	};
 }
