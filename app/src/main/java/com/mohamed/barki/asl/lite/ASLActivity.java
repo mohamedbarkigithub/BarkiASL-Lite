@@ -322,7 +322,10 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 	}
 	private String VIDEO_ID, VIDEO_NAME;
 	private void setVideoToVideoView(int videoIndex) {
-		if(intent.equals("1")) randomDeaf();
+		if(intent.equals("1")){
+			randomDeaf();
+			return;
+		}
 
 		VIDEO_ID = resList[videoIndex][1];
 		VIDEO_NAME = resList[videoIndex][0] + ".MPG" ;
@@ -332,7 +335,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			btnVideo.setBackgroundResource(R.drawable.button_f);
 			Function.saveFromText(this, "type", "image");
 			searchFun(search, "image");
-			if(Function.getValue(this, "screen").equals("true")){Function.showToastMessage(this, getString(R.string.no_video_fond));}
+			Function.showToastMessage(this, getString(R.string.no_video_fond));
 			return;
 		}
 		if(!Function.isNetworkConnected(this)){
@@ -340,7 +343,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			btnVideo.setBackgroundResource(R.drawable.button_f);
 			Function.saveFromText(this, "type", "image");
 			searchFun(search, "image");
-			if(Function.getValue(this, "screen").equals("true")){Function.showToastMessage(this, getString(R.string.not_connected_to_a_network));}
+			Function.showToastMessage(this, getString(R.string.not_connected_to_a_network));
 			return;
 		}
 		setWebView();
