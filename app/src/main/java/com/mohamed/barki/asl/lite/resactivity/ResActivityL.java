@@ -68,5 +68,6 @@ public class ResActivityL extends Activity
 			{"l60", "url", "cirque", "سيرك"},
 			{"l61", "url", "chapiteau", "سرادق (خيمة كبيرة)"},
 			{"l62", "url", "gradins", "مدرجات"},
+			{"l63", "url", "entreprise", "مقاولة"},
 	};
 }

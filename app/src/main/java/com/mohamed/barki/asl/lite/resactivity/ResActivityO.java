@@ -53,7 +53,7 @@ public class ResActivityO extends Activity
 			{"o45", "url", "ferronier", "حداد"},
 			{"o46", "13aTWgXJq-TVMypeZ1kvsSUvKNPeQzJFv", "plombier", "رصاص"},
 			{"o47", "13dRDfa3Hr3CxPCuWZF-PonTtxkxIxgWG", "mécanicien", "ميكانيكي"},
-			{"o48", "13rD5zbG7Bre08Ara_wF1DyoyaXCNEQVu", "directeur2", "مدير2"},
+			{"o48", "url", "directeur2", "مدير2"},
 			{"o49", "1iuVl2HyFOMTi5C4XHf6-Laty1zW2Fhu3", "roi", "الملك"},
 			{"o50", "url", "professeur2", "أستاذ2"},
 			{"o51", "url", "architecte2", "مهندس معماري2"},
@@ -76,5 +76,14 @@ public class ResActivityO extends Activity
 			{"o68", "url", "magie, magicien", "سحر، ساحر"},
 			{"o69", "url", "funambule", "بهلوان"},
 			{"o70", "url", "dompteur", "مروض"},
+			{"o71", "url", "chef", "رئيس، قائد، زعيم"},
+			{"o72", "13rD5zbG7Bre08Ara_wF1DyoyaXCNEQVu", "directeur3", "مدير3"},
+			{"o73", "url", "pause", "استراحة (توقف مؤقت)"},
+			{"o74", "url", "collègue", "زميل العمل"},
+			{"o75", "url", "contrat", "عقد"},
+			{"o76", "url", "salaire", "راتب، أجرة"},
+			{"o77", "url", "prime", "منحة"},
+			{"o78", "url", "rôle", "دور"},
+			{"o79", "url", "chômage", "بطالة"},
 	};
 }

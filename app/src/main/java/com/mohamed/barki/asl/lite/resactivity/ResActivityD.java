@@ -17,7 +17,7 @@ public class ResActivityD extends Activity
 			{"d9", "1Xm3iRv4zZr4fR7bjVUSMN5kmwqXvJdxb", "nations unies", "الأمم متحدة"},
 			{"d10", "1GR9jFgvx1BO9ICLvydpSjfOz4Bftc_PX", "dictature", "ديكتاتورية"},
 			{"d11", "1NzU85N3U-f2_f24Gn11nwKwMWtSycxmo", "démocratie", "ديموقراطية"},
-			{"d12", "1jR__tUeKuUDkqCf8PLNneJTBDoJ6MCNQ", "réunion", "إجتماع"},
+			{"d12", "1jR__tUeKuUDkqCf8PLNneJTBDoJ6MCNQ", "réunion1", "إجتماع1"},
 			{"d13", "1jZMJ3Ee3emhSNSEc5mH9sRUc-CsXAT_y", "occupation", "إحتلال"},
 			{"d14", "1YpMnJmlMgILv7_hmGD9zf6wWDo-POKTt", "indépendance", "إستقلال"},
 			{"d15", "1qtdEMYmIUS9uePm6Xlu2Q17aMe6aIqmT", "guerre1", "حرب1"},
@@ -43,5 +43,6 @@ public class ResActivityD extends Activity
 			{"d35", "1pWVEeBBJs_HkF_3pe7zhlW3iVCE_uuRB", "guerre2", "حرب2"},
 			{"d36", "1j3nH8RxQBfQBquEv8GA1IrGrKHGaKeJg", "unicef", "يونيساف"},
 			{"d37", "1j5CyAXXyrHrSowN42Z7gGZBlXlI7Oycs", "nationalisation", "تأميم"},
+			{"d38", "url", "réunion2", "إجتماع2"},
 	};
 }

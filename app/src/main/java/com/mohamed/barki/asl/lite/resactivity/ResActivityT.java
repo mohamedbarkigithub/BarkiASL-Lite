@@ -18,11 +18,11 @@ public class ResActivityT extends Activity
 			{"t10", "18VC_0PG2du6Co9sW8kz0XEVpNPJA6TVm", "plusieurs", "عِدَّة"},
 			{"t11", "18XpQmAu8wj3lVRPcV_SmJxuNaBcjAYtz", "unique", "وحيد، فريد من نوعه"},
 			{"t12", "18bs789hr5zQU2YXaQtvx5R2r0fejnAVp", "paire", "زوجي"},
-			{"t13", "18dChmwKJWiA9AoETlbtJqU2JKjkGJIZp", "double1", "ضعف1"},
+			{"t13", "18dChmwKJWiA9AoETlbtJqU2JKjkGJIZp", "double1", "ضِعْف1"},
 			{"t14", "18rd19H6_IElov1Q0ld9qZytckZ1wslsn", "hauteur", "ارتفاع"},
 			{"t15", "18wM_hS7J-VHwjvoYRuYahx4Yuoow_paM", "plus", "أكثر"},
 			{"t16", "18yHb81xC6tPlWDbL6Q0XlBqm5zIkfwoY", "moins", "أقل"},
-			{"t17", "19-TMKLPZNCwH3LhjUVhf7HsZtllJyUrv", "moitié", "نصف"},
+			{"t17", "19-TMKLPZNCwH3LhjUVhf7HsZtllJyUrv", "moitié1", "نِصْف1"},
 			{"t18", "url", "presque", "تقريبا"},
 			{"t19", "url", "kilomètre", "كيلومتر"},
 			{"t20", "193__Hk2kUpig4shjwl98LPeseM94ZfwR", "surface", "مساحة"},
@@ -35,5 +35,7 @@ public class ResActivityT extends Activity
 			{"t27", "19DfLMMjWFnpQtSJuzXbGB8hVujSHylsE", "tout", "كل"},
 			{"t28", "19DxmYRJg8Yp7RD9Wms4RdeVOBRwibC1p", "diamètre", "قطر"},
 			{"t29", "19K-CscQyWVHURd6PkzM8DjPDy-VBZBt4", "peu", "قليل"},
+			{"t30", "url", "double2", "ضِعْف2"},
+			{"t31", "url", "moitié2", "نِصْف2"},
 	};
 }

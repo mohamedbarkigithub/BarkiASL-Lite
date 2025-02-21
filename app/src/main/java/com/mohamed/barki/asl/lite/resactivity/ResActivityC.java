@@ -82,7 +82,7 @@ public class ResActivityC extends Activity
 			{"c74", "1P0AT-05-BYaTev-2wwn3fNk-ON6v5Msg", "table", "مائدة"},
 			{"c75", "1dAuXTF8cCkL-hqi3S6YuXvuFeBrvcFpe", "caméra", "كاميرا"},
 			{"c76", "1VDClskz7f-UgD60-imQsEjalKBGVeCtc", "violon", "كمان"},
-			{"c77", "19d5Hnz1TfZsu6eWvV626d8nHdEi-6jK3", "bille", "كرية"},
+			{"c77", "19d5Hnz1TfZsu6eWvV626d8nHdEi-6jK3", "bille1", "كُجَّةٌ، كرية زجاجية1"},
 			{"c78", "1x_nIZVCD5y3C3gvIXbV6uxL_tsCR7KSi", "guitare", "قيثارة"},
 			{"c79", "1o7-nmUns0tQHdaz2pOtuDSL_r4ZOy3ps", "coton", "قطن"},
 			{"c80", "1cksx3o53X7hXjIdgnQrwRs4Foz2JzEO9", "cage", "قفص"},
@@ -177,5 +177,6 @@ public class ResActivityC extends Activity
 			{"c169", "url", "biberon", "زجاجة الرضاعة"},
 			{"c170", "url", "poussette", "عربة أطفال"},
 			{"c171", "url", "balançoire, trapèze2", "أرجوحة2"},
+			{"c172", "url", "bille2", "كُجَّةٌ، كرية زجاجية2"},
 	};
 }

@@ -97,6 +97,7 @@ public class ResActivityZ extends Activity
 			{"zu40", "url", "célibataire", "أعزب"},
 			{"zu41", "url", "bébé, nourrisson2", "رضيع2"},
 			{"zu42", "url", "parents2", "ولي، أولياء2"},
+			{"zu43", "url", "camarad", "رفيق"},
 			//جسم الإنسان
 			{"zv0", "url", "organe", "عضو"},
 			{"zv1", "1HzpNNavUi-bwiokRtidmAGoc3ZU6Tv71", "os", "عظام"},

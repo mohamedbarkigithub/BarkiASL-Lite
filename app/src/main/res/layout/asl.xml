@@ -230,12 +230,93 @@
 					android:textStyle="bold"/>
 			</LinearLayout>
 			<LinearLayout
+				android:id="@+id/maindLinearLayout4"
+				android:gravity="center"
+				android:layout_width="match_parent"
+				android:layout_height="0dp"
+				android:layout_weight="1.0"
+				android:orientation="vertical"
+				android:weightSum="1">
+				<LinearLayout
+					android:id="@+id/maindLinearLayout0"
+					android:layout_marginBottom="10dp"
+					android:layout_width="match_parent"
+					android:layout_height="0dp"
+					android:layout_weight="0.25"
+					android:gravity="center"
+					android:layout_marginTop="5dp"
+					tools:ignore="NestedWeights">
+					<ImageButton
+						android:id="@+id/maindButtonImageInvisible"
+						android:layout_width="50dp"
+						android:layout_height="50dp"
+						android:visibility="invisible"
+						android:contentDescription="@string/smile_gone_invisible"
+						tools:ignore="SpeakableTextPresentCheck" />
+					<androidx.constraintlayout.widget.ConstraintLayout
+						android:layout_width="wrap_content"
+						android:layout_height="match_parent">
+
+						<ImageView
+							android:id="@+id/maindButtonView"
+							android:layout_width="0dp"
+							android:layout_height="match_parent"
+							app:layout_constraintDimensionRatio="1:1"
+							app:layout_constraintEnd_toEndOf="parent"
+							app:layout_constraintStart_toStartOf="parent"
+							tools:ignore="MissingConstraints,ImageContrastCheck" />
+					</androidx.constraintlayout.widget.ConstraintLayout>
+					<ImageButton
+						android:id="@+id/maindButtonImage"
+						android:layout_width="50dp"
+						android:layout_height="50dp"
+						android:background="@android:color/transparent"
+						android:src="@drawable/ic_smalle"
+						android:contentDescription="@string/smile_gone"
+						app:tint="@color/textPrimaryInverse"
+						tools:ignore="SpeakableTextPresentCheck" />
+				</LinearLayout>
+				<LinearLayout
+					android:id="@+id/maindLinearLayout1"
+					android:layout_width="match_parent"
+					android:layout_height="0dp"
+					android:layout_weight="0.75"
+					tools:ignore="Orientation,WebViewLayout">
+					<ImageView
+						android:id="@+id/maindImageView"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:padding="1dp"
+						android:visibility="gone"
+						android:clickable="false"
+						android:saveEnabled="false"
+						android:focusable="false"
+						android:focusableInTouchMode="false"
+						android:focusedByDefault="false"
+						android:touchscreenBlocksFocus="false"
+						android:screenReaderFocusable="false"
+						android:layout_gravity="center"
+						android:scaleType="fitXY"
+						android:contentDescription="@string/image_view"
+						tools:ignore="SpeakableTextPresentCheck,UnusedAttribute" />
+					<WebView
+						android:id="@+id/maindWebView"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:visibility="gone"
+						android:minWidth="50dp"
+						android:minHeight="100dp"
+						android:contentDescription="@string/video_view"
+						tools:ignore="SpeakableTextPresentCheck,TooDeepLayout" />
+				</LinearLayout>
+			</LinearLayout>
+			<LinearLayout
 				android:id="@+id/maindLinearLayoutTop"
 				android:gravity="center"
 				android:orientation="horizontal"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				tools:ignore="DisableBaselineAlignment,VisualLintBounds">
+				tools:ignore="DisableBaselineAlignment">
 				<LinearLayout
 					android:background="@drawable/background_bottom"
 					android:orientation="vertical"
@@ -243,14 +324,14 @@
 					android:id="@+id/maindLinearLayout3"
 					android:layout_width="0dp"
 					android:layout_height="wrap_content"
-					android:layout_weight="1.0">
+					android:layout_weight="1.0"
+					tools:ignore="UselessParent">
 					<LinearLayout
 						android:gravity="left"
 						android:orientation="vertical"
 						android:id="@+id/maindTextViewL1"
 						android:background="@android:color/transparent"
 						android:paddingLeft="2.0dp"
-						android:paddingTop="2.0dp"
 						android:paddingRight="2.0dp"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
@@ -273,9 +354,9 @@
 						android:orientation="vertical"
 						android:id="@+id/maindTextViewL2"
 						android:background="@android:color/transparent"
-						android:paddingLeft="2.0dp"
+						android:paddingLeft="5.0dp"
 						android:paddingBottom="2.0dip"
-						android:paddingRight="2.0dp"
+						android:paddingRight="5.0dp"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						tools:ignore="RtlHardcoded">
@@ -292,93 +373,6 @@
 					</LinearLayout>
 				</LinearLayout>
 			</LinearLayout>
-			<LinearLayout
-				android:layout_weight="1.0"
-				android:gravity="center"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				tools:ignore="InefficientWeight,VisualLintBounds">
-				<HorizontalScrollView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content">
-					<ScrollView
-						android:contentDescription="@string/scrollOfImage"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content">
-						<LinearLayout
-							android:gravity="center"
-							android:orientation="vertical"
-							android:id="@+id/maindLinearLayout4"
-							android:layout_weight="1.0"
-							android:layout_width="match_parent"
-							android:layout_height="wrap_content"
-							tools:ignore="ObsoleteLayoutParam">
-							<LinearLayout
-								android:layout_marginBottom="10dp"
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:layout_marginTop="5dp">
-								<ImageButton
-									android:id="@+id/maindButtonImageInvisible"
-									android:layout_width="50dp"
-									android:layout_height="50dp"
-									android:visibility="invisible"
-									android:contentDescription="@string/smile_gone_invisible"
-									tools:ignore="SpeakableTextPresentCheck" />
-
-								<ImageView
-									android:id="@+id/maindButtonView"
-									android:layout_width="wrap_content"
-									android:layout_height="wrap_content"
-									android:contentDescription="@string/smile"/>
-
-								<ImageButton
-									android:id="@+id/maindButtonImage"
-									android:layout_width="50dp"
-									android:layout_height="50dp"
-									android:background="@android:color/transparent"
-									android:src="@drawable/ic_smalle"
-									android:contentDescription="@string/smile_gone"
-									app:tint="@color/textPrimaryInverse"
-									tools:ignore="SpeakableTextPresentCheck" />
-							</LinearLayout>
-							<LinearLayout
-								android:id="@+id/maindLinearLayout1"
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"
-								android:orientation="vertical"
-								tools:ignore="WebViewLayout">
-								<ImageView
-									android:id="@+id/maindImageView"
-									android:layout_width="wrap_content"
-									android:layout_height="wrap_content"
-									android:visibility="gone"
-									android:minWidth="50dp"
-									android:minHeight="100dp"
-									android:clickable="false"
-									android:saveEnabled="false"
-									android:focusable="false"
-									android:focusableInTouchMode="false"
-									android:focusedByDefault="false"
-									android:touchscreenBlocksFocus="false"
-									android:screenReaderFocusable="false"
-									android:scaleType="fitXY"
-									android:contentDescription="@string/image_view"
-									tools:ignore="SpeakableTextPresentCheck,UnusedAttribute" />
-								<WebView
-									android:id="@+id/maindWebView"
-									android:layout_width="wrap_content"
-									android:layout_height="wrap_content"
-									android:visibility="gone"
-									android:minWidth="50dp"
-									android:minHeight="100dp"
-									android:contentDescription="@string/video_view"
-									tools:ignore="SpeakableTextPresentCheck,TooDeepLayout" />
-							</LinearLayout>
-						</LinearLayout>
-					</ScrollView>
-				</HorizontalScrollView>
-			</LinearLayout>
 		</LinearLayout>
 	</LinearLayout>
 	<LinearLayout
@@ -393,18 +387,6 @@
 		android:layout_marginRight="5dp"
 		android:layout_marginTop="2dp"
 		android:layout_marginBottom="5dp">
-
-		<ImageButton
-			android:id="@+id/maindButtonN"
-			android:layout_width="50dp"
-			android:layout_height="50.0dp"
-			android:layout_marginRight="1.0dip"
-			android:background="@drawable/button_z"
-			android:src="@drawable/ic_minus"
-			android:contentDescription="@string/minus"
-			app:tint="@color/textPrimaryInverse"
-			tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-			android:importantForAccessibility="no" />
 
 		<ImageButton
 			android:id="@+id/maindButton3"
@@ -456,16 +438,5 @@
 			android:contentDescription="@string/image"
 			app:tint="@color/button_d"
 			tools:ignore="RtlHardcoded,SpeakableTextPresentCheck" />
-
-		<ImageButton
-			android:id="@+id/maindButtonP"
-			android:layout_width="50dp"
-			android:layout_height="50.0dp"
-			android:layout_marginLeft="1.0dip"
-			android:background="@drawable/button_z"
-			android:src="@drawable/ic_plus"
-			android:contentDescription="@string/plus"
-			app:tint="@color/textPrimaryInverse"
-			tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 	</LinearLayout>
 </LinearLayout>

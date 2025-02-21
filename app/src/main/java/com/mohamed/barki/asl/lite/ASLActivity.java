@@ -87,12 +87,12 @@ import java.util.Random;
 @SuppressWarnings({"deprecation", "RedundantSuppression"})
 public class ASLActivity extends AppCompatActivity implements OnClickListener, OnLongClickListener{
 	private AutoCompleteEditText edt;
-	private boolean autoDecrement = false, autoIncrement = false, autoLeftcrement = false, autoRightcrement = false, bool, boolSelect = true, boolExit, boolClose = false, boolFocus = false;
+	private boolean autoLeftcrement = false, autoRightcrement = false, bool, boolSelect = true, boolExit, boolClose = false, boolFocus = false;
 	private Handler handler;
-	private final Handler repeatLeftRightHandler = new Handler(), repeatUpdateHandler = new Handler();
-	private ImageButton btnShow, btnImage, btnVideo, btnLeft, btnRight, dimenDeafNegatif, dimenDeafPositif;
+	private final Handler repeatLeftRightHandler = new Handler();
+	private ImageButton btnShow, btnImage, btnVideo, btnLeft, btnRight;
 	private ImageView imageView, photoView;
-	private int fSize, position = 0, scor, scor10, nbrFalse;
+	private int position = 0, scor, scor10, nbrFalse;
 	private LinearLayout lnyBig;
     private LinearLayout lnyBigText;
     private LinearLayout lnyTextView;
@@ -100,7 +100,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
     private LinearLayout lnyBottom;
     private LinearLayout lnyTextViewView;
     private LinearLayout lnyScor;
-	private LinearLayout.LayoutParams paramsM, paramsMS, paramsMW, paramsM0;
+	private LinearLayout.LayoutParams paramsMW, paramsM0;
 	private MediaPlayer clear, timerepond, redo_undo, nonono, failText, succText, clicUp, clicDown, click, skip, tasfiq, refresh, aide, clickSpinner;
 	private Runnable r;
 	private Spinner s1;
@@ -124,7 +124,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		}else if(Function.validateApplicationName(this)){return;}
 		restartExit();
 		boolExit = false;
-		fSize = Integer.parseInt(Function.getValue(ASLActivity.this, "dimenPhoto"));
 		switch (p1.getId()) {
 			case (R.id.maindButton2):
 				if(intent.equals("1")){
@@ -163,12 +162,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			case (R.id.maindLinearLayout3): Function.startSongs(this, click);
 				Function.doCopy(this, tv.getText().toString()+" / "+tvv.getText().toString(), "");
 				break;
-			case (R.id.maindButtonN): Function.startSongs(this, clicDown);
-				decrement(10);
-				break;
-			case (R.id.maindButtonP): Function.startSongs(this, clicUp);
-				increment(10);
-				break;
 			case (R.id.maindButtonLeft): Function.startSongs(this, redo_undo);
 				slideFun(1);
 				break;
@@ -177,47 +170,10 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				break;
 		}
 	}
-	class repetiveAdapter implements Runnable {
-		public void run() {
-			long REPEAT_DELAY = 50;
-			if( autoIncrement ){
-				increment(5);
-				repeatUpdateHandler.postDelayed( new repetiveAdapter(), REPEAT_DELAY);
-			}else if( autoDecrement ){
-				decrement(5);
-				repeatUpdateHandler.postDelayed( new repetiveAdapter(), REPEAT_DELAY);
-			}
-		}
-	}
-	public void increment(int addSize){
-		if(fSize <= Function.getScreenWidth()){
-			fSize = fSize + addSize;
-			Function.saveFromText(ASLActivity.this, "dimenPhoto", String.valueOf(fSize));
-			paramDeaf(fSize, fSize+20*(fSize/100));
-		}
-	}
-	public void decrement(int addSize){
-		if(fSize >= Function.dpToPx(100)){
-			fSize = fSize - addSize;
-			Function.saveFromText(ASLActivity.this, "dimenPhoto", String.valueOf(fSize));
-			paramDeaf(fSize, fSize+20*(fSize/100));
-		}
-	}
 	@Override
 	public boolean onLongClick(View p1) {
 		restartExit();
-		fSize = Integer.parseInt(Function.getValue(ASLActivity.this, "dimenPhoto"));
 		switch (p1.getId()) {
-			case (R.id.maindButtonP):
-				Function.startSongs(this, clicUp);
-				autoIncrement = true;
-				repeatUpdateHandler.post( new repetiveAdapter() );
-				break;
-			case (R.id.maindButtonN):
-				Function.startSongs(this, clicDown);
-				autoDecrement = true;
-				repeatUpdateHandler.post( new repetiveAdapter() );
-				break;
 			case (R.id.maindButtonLeft):
 				Function.startSongs(this, redo_undo);
 				autoLeftcrement = true;
@@ -251,7 +207,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		int nbr = resList.length;
 		if(type.equals("image")){
 			imageView = findViewById(R.id.maindImageView);
-			imageView.setLayoutParams(paramsM);
 			imageView.setVisibility(View.VISIBLE);
 			if(webView!=null) webView.stopLoading();
 			findViewById(R.id.maindWebView).setVisibility(View.GONE);
@@ -260,7 +215,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			lnyBig.setBackgroundColor(Color.BLACK);
 		}else{
 			webView = findViewById(R.id.maindWebView);
-			webView.setLayoutParams(paramsM);
 			webView.setVisibility(View.VISIBLE);
 			findViewById(R.id.maindImageView).setVisibility(View.GONE);
 			btnImage.setEnabled(true);
@@ -305,8 +259,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			}else{startHandler();}
 			tv.setText(resList[j][3]);
 			tvv.setText(resList[j][2]);
-			dimenDeafPositif.setEnabled(true);
-			dimenDeafNegatif.setEnabled(true);
 			lnyTextViewView.setVisibility(View.VISIBLE);
 			lnyTextView.setVisibility(View.VISIBLE);
 			lnyBigText.setVisibility(View.VISIBLE);
@@ -314,8 +266,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			lnyBottom.setVisibility(View.VISIBLE);
 			btnImage.setVisibility(View.VISIBLE);
 			btnVideo.setVisibility(View.VISIBLE);
-			dimenDeafPositif.setVisibility(View.VISIBLE);
-			dimenDeafNegatif.setVisibility(View.VISIBLE);
 		}else {
 			if (type.equals("image")) {imageView.setBackgroundResource(R.drawable.question_mark);}
 			lnyTextView.setVisibility(View.INVISIBLE);
@@ -546,15 +496,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		});
 		dialog.show();
 	}
-	private void paramDeaf(int p0, int p1)
-	{
-		paramsM = new LinearLayout.LayoutParams(p0, p1);
-		String type = Function.getValue(this, "type");
-		if(type.equals("image")){if(imageView!=null){imageView.setLayoutParams(paramsM);}
-		}else if(webView!=null){webView.setLayoutParams(paramsM);}
-		paramsMS = new LinearLayout.LayoutParams(p1/2, p1/2);
-		photoView.setLayoutParams(paramsMS);
-	}
 	@SuppressLint({"ClickableViewAccessibility", "SuspiciousIndentation"})
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -624,34 +565,8 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		autoCompleteAdapter(nameArFr, nameArFrNoPal);
 		search = "";
 		Function.saveFromText(this, "type", "image");
-		dimenDeafPositif = findViewById(R.id.maindButtonP);
-		dimenDeafPositif.setOnClickListener(this);
-		dimenDeafPositif.setOnLongClickListener(this);
-		dimenDeafPositif.setOnTouchListener((v, event) -> {
-			restartExit();
-			if( event.getAction() == MotionEvent.ACTION_UP && autoIncrement ){autoIncrement = false;}
-			return false;
-		});
-		dimenDeafNegatif = findViewById(R.id.maindButtonN);
-		dimenDeafNegatif.setOnClickListener(this);
-		dimenDeafNegatif.setOnLongClickListener(this);
-		dimenDeafNegatif.setOnTouchListener((v, event) -> {
-			restartExit();
-			if( event.getAction() == MotionEvent.ACTION_UP && autoDecrement ){autoDecrement = false;}
-			return false;
-		});
 		photoView = findViewById(R.id.maindButtonView);
 		photoView.setEnabled(false);
-		if(Function.getValue(ASLActivity.this, "dimenPhoto").isEmpty()){
-			paramDeaf(500, 600);
-			Function.saveFromText(ASLActivity.this, "dimenPhoto", "500");
-		}else{
-			int p = Integer.parseInt(Function.getValue(ASLActivity.this, "dimenPhoto"));
-			paramDeaf(p, p+20*(p/100));
-		}
-		int pSize = Integer.parseInt(Function.getValue(ASLActivity.this, "dimenPhoto"));
-		paramsM = new LinearLayout.LayoutParams(pSize, pSize +20*(pSize /100));
-		paramsMS = new LinearLayout.LayoutParams(pSize /2,(pSize +20*(pSize /100))/2);
 		btnLeft = findViewById(R.id.maindButtonLeft);
 		btnLeft.setOnClickListener(this);
 		btnLeft.setOnLongClickListener(this);
