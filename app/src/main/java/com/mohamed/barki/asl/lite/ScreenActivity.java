@@ -234,7 +234,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 				//	c.getString(R.string.phone),
 				c.getString(R.string.info),
 				c.getString(R.string.update_app),
-				c.getString(R.string.lite_app),
+				(getPackageName().endsWith("e")) ? c.getString(R.string.full_app) : c.getString(R.string.lite_app),
 				c.getString(R.string.policy),
 		};
 		itemId = new int[]{
@@ -524,9 +524,9 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		dialog.setContentView(R.layout.dialog);
 		dialog.setCanceledOnTouchOutside(false);
 		dialog.setCancelable(false);
-		((TextView) dialog.findViewById(R.id.dialog_info)).setText(getString(R.string.install_lite));
-		((TextView) dialog.findViewById(R.id.dialog_infoo)).setText(getString(R.string.save_this_lite));
-		((TextView) dialog.findViewById(R.id.dialog_infooo)).setText(getString(R.string.save_lite_offline));
+		((TextView) dialog.findViewById(R.id.dialog_info)).setText(getString((getPackageName().endsWith("e")) ? R.string.install_full : R.string.install_lite));
+		((TextView) dialog.findViewById(R.id.dialog_infoo)).setText(getString((getPackageName().endsWith("e")) ? R.string.save_this_full : R.string.save_this_lite));
+		((TextView) dialog.findViewById(R.id.dialog_infooo)).setText(getString((getPackageName().endsWith("e")) ? R.string.save_full_offline : R.string.save_lite_offline));
 		Typeface typeface = Typeface.createFromAsset(ScreenActivity.this.getAssets(),
 				(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي")) ?
 						"fonts/naskh.ttf" : "fonts/casual.ttf"
