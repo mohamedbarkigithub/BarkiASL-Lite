@@ -166,4 +166,7 @@
 	<string name="install_full">تحميل النسخة الكاملة</string>
 	<string name="save_this_full">هل تريد حقا تحميل النسخة الكاملة من هذا التطبيق؟</string>
 	<string name="save_full_offline">تعمل النسخة الكاملة بدون أنترنت</string>
+	<string name="install_braille">تحميل تطبيق BarkiBraille</string>
+	<string name="save_this_braille">هل تريد حقا تحميل تحميل تطبيق BarkiBraille؟</string>
+	<string name="save_braille_offline">تطبيق BarkiBraille هو تطبيق للتعامل مع بيئة البرايل</string>
 </resources>

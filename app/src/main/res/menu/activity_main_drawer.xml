@@ -110,6 +110,10 @@
                         app:actionLayout="@layout/item_menu_nav"
                         tools:ignore="MenuTitle" />
                     <item
+                        android:id="@+id/nav_braille"
+                        app:actionLayout="@layout/item_menu_nav"
+                        tools:ignore="MenuTitle" />
+                    <item
                         android:id="@+id/nav_policy"
                         app:actionLayout="@layout/item_menu_nav"
                         tools:ignore="MenuTitle" />

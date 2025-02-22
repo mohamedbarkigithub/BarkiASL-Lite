@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <queries>
         <package android:name="com.mohamed.barki.admin" />
+        <package android:name="com.mohamed.barki.xbraille" />
         <package android:name="com.mohamed.barki.asl" />
         <package android:name="com.facebook.katana" />
         <package android:name="com.facebook.lite" />

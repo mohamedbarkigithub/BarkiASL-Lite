@@ -6,7 +6,8 @@
 	<string name="url_asset" translatable="false">https://github.com/mohamedbarkigithub/BarkiASL-Lite/raw/master/assets/</string>
 	<string name="privacy_policy" translatable="false">https://mohamedbarki.blogspot.com/2023/07/privacy-policy-of-barkiasl-lite.html</string>
 	<string name="pkgadmin" translatable="false">com.mohamed.barki.admin</string>
-    <string name="ar_lan" translatable="false">"آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻء١٢٣٤٥٦٧٨٩٠ "</string>
+	<string name="pkgBraille" translatable="false">com.mohamed.barki.xbraille</string>
+	<string name="ar_lan" translatable="false">"آابتثجحخدذرزسشصضطظعغقفكلمن هويىأؤئةإﻻء١٢٣٤٥٦٧٨٩٠ "</string>
     <string name="ar_lanf" translatable="false">"abcdefghijklmnopqrstuvwxyzàäâáæèéêùûüîïíìôöóòœ 0123456789 "</string>
     <string name="ar_lane" translatable="false">"abcdefghijklmnopqrstuvwxyz 0123456789 "</string>
     <string name="email_lang" translatable="false">"abcdefghijklmnopqrstuvwxyz @"</string>
@@ -218,4 +219,8 @@
 	<string name="install_full">Download Full version</string>
 	<string name="save_this_full">Do you really want to download the Full version of this app?</string>
 	<string name="save_full_offline">The Full version works without Internet</string>
+	<string name="braille_app" translatable="false">BarkiBraille</string>
+	<string name="install_braille">Download BarkiBraille app</string>
+	<string name="save_this_braille">Do you really want to download BarkiBraille app?</string>
+	<string name="save_braille_offline">BarkiBraille app is an app for dealing with the braille environment</string>
 </resources>

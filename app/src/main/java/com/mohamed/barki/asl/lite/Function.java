@@ -32,6 +32,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -83,6 +84,9 @@ public class Function extends Activity {
 	}
 	public static boolean isLiteFull(Context context) {
 		return Function.isPackageInstalled(context, ((context.getPackageName().endsWith("e")) ? context.getPackageName().replace(".lite", "") : context.getPackageName()+".lite"));
+	}
+	public static boolean isBraille(Context context) {
+		return Function.isPackageInstalled(context, context.getString(R.string.pkgBraille));
 	}
 	public static boolean isPackageInstalled(Context getAppContext, String packageName) {
 		PackageManager packageManager = getAppContext.getPackageManager();
@@ -607,10 +611,14 @@ public class Function extends Activity {
 	}
 	public static void setThemeDark(Activity getActivity, int layout) {
 		AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+		if(!Function.isAdmin(getActivity))
+			getActivity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 		getActivity.setContentView(layout);
 	}
 	public static void setThemeLight(Activity getActivity, int layout) {
 		AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+		if(!Function.isAdmin(getActivity))
+			getActivity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 		getActivity.setContentView(layout);
 	}
 	public static String setTime() {

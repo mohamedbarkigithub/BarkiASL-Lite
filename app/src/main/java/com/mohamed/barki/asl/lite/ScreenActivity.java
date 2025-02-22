@@ -211,9 +211,11 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		for (int i=0;i<itemId.length;i++) {
 			applyFontToMenuItem(nav_Menu.findItem(itemId[i]), i);
 		}
-		if(Function.isLiteFull(this)){
+		if(Function.isLiteFull(this))
 			nav_Menu.findItem(R.id.nav_lite).setVisible(false);
-		}
+		if(Function.isBraille(this))
+			nav_Menu.findItem(R.id.nav_braille).setVisible(false);
+
 	}
 	private String[] itemTitle;
 	private int[] itemId;
@@ -235,6 +237,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 				c.getString(R.string.info),
 				c.getString(R.string.update_app),
 				(getPackageName().endsWith("e")) ? c.getString(R.string.full_app) : c.getString(R.string.lite_app),
+				c.getString(R.string.braille_app),
 				c.getString(R.string.policy),
 		};
 		itemId = new int[]{
@@ -253,6 +256,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 				R.id.nav_info,
 				R.id.nav_update,
 				R.id.nav_lite,
+				R.id.nav_braille,
 				R.id.nav_policy,
 		};
 		itemDrawable = new int[]{
@@ -271,6 +275,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 				R.drawable.ic_menu_info,
 				R.drawable.ic_menu_update_app,
 				R.drawable.ic_menu_lite_app,
+				R.drawable.ic_menu_braille_app,
 				R.drawable.ic_menu_policy,
 		};
 	}
@@ -553,6 +558,39 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 			dialog.show();
 		}
 	}
+	private void openDialogBraille() {
+		boolUpdate = false;
+		final Dialog dialog = new Dialog(ScreenActivity.this, R.style.DialogStyle);
+		dialog.setContentView(R.layout.dialog);
+		dialog.setCanceledOnTouchOutside(false);
+		dialog.setCancelable(false);
+		((TextView) dialog.findViewById(R.id.dialog_info)).setText(getString(R.string.install_braille));
+		((TextView) dialog.findViewById(R.id.dialog_infoo)).setText(getString(R.string.save_this_braille));
+		((TextView) dialog.findViewById(R.id.dialog_infooo)).setText(getString(R.string.save_braille_offline));
+		Typeface typeface = Typeface.createFromAsset(ScreenActivity.this.getAssets(),
+				(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي")) ?
+						"fonts/naskh.ttf" : "fonts/casual.ttf"
+		);
+		((TextView) dialog.findViewById(R.id.dialog_info)).setTypeface(typeface);
+		((TextView) dialog.findViewById(R.id.dialog_infoo)).setTypeface(typeface);
+		((TextView) dialog.findViewById(R.id.dialog_infooo)).setTypeface(typeface);
+		((ImageButton)dialog.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_download);
+		dialog.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
+			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id="+getString(R.string.pkgBraille)));
+			startActivity(browserIntent);
+			dialog.dismiss();
+			finishAffinity();
+			finishAndRemoveTask();
+		});
+		((ImageButton)dialog.findViewById(R.id.dialog_cancel)).setImageResource(R.drawable.popup_download_off);
+		dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> {
+			dialog.dismiss();
+			boolUpdate = true;
+		});
+		if(!this.isFinishing()){
+			dialog.show();
+		}
+	}
 	@SuppressLint("NewApi")
 	@Override
 	public void onBackPressed() {
@@ -596,6 +634,9 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		} else if (id == R.id.nav_lite) {
 			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
 			openDialogLite();
+		} else if (id == R.id.nav_braille) {
+			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
+			openDialogBraille();
 		} else if (id == R.id.nav_facebookpage) {
 			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
 			intent.setData(Uri.parse(getString(R.string.idfacebookpageappbarki)));
