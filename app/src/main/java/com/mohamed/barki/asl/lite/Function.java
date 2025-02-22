@@ -640,9 +640,6 @@ public class Function extends Activity {
 		time[4] = date.substring(10,12);
 		return time;
 	}
-	public static int getScreenWidth() {
-		return Resources.getSystem().getDisplayMetrics().widthPixels;
-	}
 	public static void launchActivityAdmin(Activity getContext, String key) {
 		if(Function.isAdmin(getContext)){
 			String activity = "", adminDemand="";
