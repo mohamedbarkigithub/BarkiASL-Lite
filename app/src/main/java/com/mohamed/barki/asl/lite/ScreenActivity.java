@@ -35,7 +35,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.mohamed.barki.asl.lite.DataBase.DatabaseSupport;
 
 
 import org.apache.commons.lang3.math.NumberUtils;
@@ -125,12 +124,15 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		if(Function.getBoolean(this, "screen"))
 			Function.showToastMessage(this, getString(R.string.ahlenWsahlen)+" 😊😊");
 		Function.saveFromBoolean(this, "screen", false);
+
 		if (Function.maxRam(ScreenActivity.this)>=4) {
 			if (Function.getValue(ScreenActivity.this, "numImage").isEmpty()) {
 				String numImage = Function.numIllustrations(this);
 				Function.saveFromText(ScreenActivity.this, "numImage", numImage);
 			}
-		}
+		}else
+			Function.saveFromText(ScreenActivity.this, "numImage", "0");
+
 
 		click = MediaPlayer.create(ScreenActivity.this, R.raw.click);
 		clickScreen = MediaPlayer.create(ScreenActivity.this, R.raw.click_screen);
@@ -139,10 +141,9 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 
 		intent = new Intent(ScreenActivity.this, ASLActivity.class);
 
-		Typeface face = Typeface.createFromAsset(getAssets(), "fonts/handwriter.ttf");
-		if(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي")){
-			face = Typeface.createFromAsset(getAssets(), "fonts/MolhimBold.ttf");
-		}
+		Typeface face = Typeface.createFromAsset(getAssets(), "fonts/"+
+				((Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي")) ? "MolhimBold" : "handwriter")+
+				".ttf");
 
 		Button btn_game = findViewById(R.id.screenButton1);
 		btn_game.setTypeface(face);
@@ -210,6 +211,9 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		for (int i=0;i<itemId.length;i++) {
 			applyFontToMenuItem(nav_Menu.findItem(itemId[i]), i);
 		}
+		if(Function.isLiteFull(this)){
+			nav_Menu.findItem(R.id.nav_lite).setVisible(false);
+		}
 	}
 	private String[] itemTitle;
 	private int[] itemId;
@@ -230,6 +234,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 				//	c.getString(R.string.phone),
 				c.getString(R.string.info),
 				c.getString(R.string.update_app),
+				c.getString(R.string.lite_app),
 				c.getString(R.string.policy),
 		};
 		itemId = new int[]{
@@ -247,6 +252,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 				//	R.id.nav_telephone,
 				R.id.nav_info,
 				R.id.nav_update,
+				R.id.nav_lite,
 				R.id.nav_policy,
 		};
 		itemDrawable = new int[]{
@@ -264,6 +270,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 				//R.drawable.ic_menu_telephone,
 				R.drawable.ic_menu_info,
 				R.drawable.ic_menu_update_app,
+				R.drawable.ic_menu_lite_app,
 				R.drawable.ic_menu_policy,
 		};
 	}
@@ -338,9 +345,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 			};
 			String name = Function.getValue(this, "name");
 			String email = Function.getValue(this, "email");
-			FirebaseDatabase SupportDatabase = FirebaseDatabase.getInstance(DatabaseSupport.getInstance(ScreenActivity.this));
-
-			messageReference = (Function.isAdmin(this)) ? SupportDatabase.getReference().child("support") : SupportDatabase.getReference().child("support").child(name);
+			messageReference = (Function.isAdmin(this)) ? FirebaseDatabase.getInstance().getReference().child("support") : FirebaseDatabase.getInstance().getReference().child("support").child(name);
 			valueEventListenerMessage = new ChildEventListener() {
 				@Override
 				public void onChildAdded(@NonNull DataSnapshot dataSnapshot, String prevChildKey) {
@@ -513,6 +518,41 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 			dialog.show();
 		}
 	}
+	private void openDialogLite() {
+		boolUpdate = false;
+		final Dialog dialog = new Dialog(ScreenActivity.this, R.style.DialogStyle);
+		dialog.setContentView(R.layout.dialog);
+		dialog.setCanceledOnTouchOutside(false);
+		dialog.setCancelable(false);
+		((TextView) dialog.findViewById(R.id.dialog_info)).setText(getString(R.string.install_lite));
+		((TextView) dialog.findViewById(R.id.dialog_infoo)).setText(getString(R.string.save_this_lite));
+		((TextView) dialog.findViewById(R.id.dialog_infooo)).setText(getString(R.string.save_lite_offline));
+		Typeface typeface = Typeface.createFromAsset(ScreenActivity.this.getAssets(),
+				(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي")) ?
+						"fonts/naskh.ttf" : "fonts/casual.ttf"
+		);
+		((TextView) dialog.findViewById(R.id.dialog_info)).setTypeface(typeface);
+		((TextView) dialog.findViewById(R.id.dialog_infoo)).setTypeface(typeface);
+		((TextView) dialog.findViewById(R.id.dialog_infooo)).setTypeface(typeface);
+		((ImageButton)dialog.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_download);
+		dialog.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
+			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id="+
+					((getPackageName().endsWith("e")) ? getPackageName().replace(".lite", "") : getPackageName()+".lite")
+			));
+			startActivity(browserIntent);
+			dialog.dismiss();
+			finishAffinity();
+			finishAndRemoveTask();
+		});
+		((ImageButton)dialog.findViewById(R.id.dialog_cancel)).setImageResource(R.drawable.popup_download_off);
+		dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> {
+			dialog.dismiss();
+			boolUpdate = true;
+		});
+		if(!this.isFinishing()){
+			dialog.show();
+		}
+	}
 	@SuppressLint("NewApi")
 	@Override
 	public void onBackPressed() {
@@ -553,6 +593,9 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		} */else if (id == R.id.nav_update) {
 			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
 			openDialog();
+		} else if (id == R.id.nav_lite) {
+			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
+			openDialogLite();
 		} else if (id == R.id.nav_facebookpage) {
 			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
 			intent.setData(Uri.parse(getString(R.string.idfacebookpageappbarki)));

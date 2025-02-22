@@ -157,4 +157,12 @@
 	<string name="new_message_test">Voulez-vous vraiment répondre à ce message ?</string>
 	<string name="support">Répondre aux questions</string>
 	<string name="ahlenWsahlen">Bienvenue</string>
+	<string name="lite_app">version allégée</string>
+	<string name="install_lite">Télécharger la version allégée</string>
+	<string name="save_this_lite">Voulez-vous vraiment télécharger la version allégée de cette application ?</string>
+	<string name="save_lite_offline">La version allégée fonctionne entièrement en ligne, elle prend donc en charge les appareils faibles</string>
+	<string name="full_app">Version complète</string>
+	<string name="install_full">Télécharger la version complète</string>
+	<string name="save_this_full">Voulez-vous vraiment télécharger la version complète de cette application ?</string>
+	<string name="save_full_offline">La version complète fonctionne sans Internet</string>
 </resources>

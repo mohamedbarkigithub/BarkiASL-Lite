@@ -77,8 +77,12 @@ public class Function extends Activity {
 	}
 	public static boolean isAdmin(Activity activity) {
 		return Function.isPackageInstalled(activity, activity.getString(R.string.pkgadmin));
-	}public static boolean isAdmin(Context context) {
+	}
+	public static boolean isAdmin(Context context) {
 		return Function.isPackageInstalled(context, context.getString(R.string.pkgadmin));
+	}
+	public static boolean isLiteFull(Context context) {
+		return Function.isPackageInstalled(context, ((context.getPackageName().endsWith("e")) ? context.getPackageName().replace(".lite", "") : context.getPackageName()+".lite"));
 	}
 	public static boolean isPackageInstalled(Context getAppContext, String packageName) {
 		PackageManager packageManager = getAppContext.getPackageManager();

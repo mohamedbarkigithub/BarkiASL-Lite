@@ -158,4 +158,12 @@
 	<string name="new_message_test">هل تريد حقا الرد على هذه الرسالة؟</string>
     <string name="support">الرد على الأسئلة</string>
 	<string name="ahlenWsahlen">أهلا وسهلا بك</string>
+	<string name="lite_app">النسخة المخففة</string>
+	<string name="install_lite">تحميل النسخة المخففة</string>
+	<string name="save_this_lite">هل تريد حقا تحميل النسخة المخففة من هذا التطبيق؟</string>
+	<string name="save_lite_offline">تعمل النسخة المخففة بالكامل على الأنترنت، بحيث تدعم الأجهزة الضعيفة</string>
+	<string name="full_app">النسخة الكاملة</string>
+	<string name="install_full">تحميل النسخة الكاملة</string>
+	<string name="save_this_full">هل تريد حقا تحميل النسخة الكاملة من هذا التطبيق؟</string>
+	<string name="save_full_offline">تعمل النسخة الكاملة بدون أنترنت</string>
 </resources>
