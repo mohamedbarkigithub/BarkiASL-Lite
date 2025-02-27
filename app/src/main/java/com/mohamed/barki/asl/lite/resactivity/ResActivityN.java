@@ -6,7 +6,7 @@ public class ResActivityN extends Activity
 	public static String[][] resList = new String[][]{
 			//الطبيعة والكون
 			{"n0", "11v4ALNYa5TBup76GYMl7vUDefo7lg6yX", "terre", "الأرض"},
-			{"n1", "11zpU7yh1nWzECMw9bgReu3tdtLEIZ8ww", "tourbillon", "زوبعة، إعصار"},
+			{"n1", "11zpU7yh1nWzECMw9bgReu3tdtLEIZ8ww", "tourbillon", "زوبعة"},
 			{"n2", "1323q966u33NlyokJ12V3UtQbrx3lCzpO", "terre", "بر، برية"},
 			{"n3", "13mmkW6l7BYkiL4ZvG6oU4U4vsiRqyYYe", "désert1", "صحراء1"},
 			{"n4", "14SUSDBjFOqMCnhsobEAB-EK2mj3Wnpmz", "soleil1", "شمس1"},
@@ -18,7 +18,7 @@ public class ResActivityN extends Activity
 			{"n10", "129AW2NAadmLLgTHXIg6Ou1C_My7oJml4", "ciel", "سماء"},
 			{"n11", "12ASHzrXWFWea_eeXqAVbEbKW25ZSYKTf", "plage", "شاطئ"},
 			{"n12", "12BUsBxjBC_3xon6CTNhcIFKP7UltYkv7", "vent", "ريح"},
-			{"n13", "12CSEQ-ODX4ZLOKWxtxGy3nnAqfkOM2fV", "séisme", "زلزال"},
+			{"n13", "12CSEQ-ODX4ZLOKWxtxGy3nnAqfkOM2fV", "tremblement de terre, séisme1", "زلزال1"},
 			{"n14", "12IaiuGvT-az2jovZntdrJ1mlz4xpiHa3", "rose", "زهرة"},
 			{"n15", "12TzVaQiyqGkE8gHwn9ISlCsFI7HTsu8P", "champ1", "حقل1"},
 			{"n16", "12X3kYAE-xBrYkA3TwqvHg21SA8VHp4Cf", "éclipse lunaire", "خسوف القمر"},
@@ -34,7 +34,7 @@ public class ResActivityN extends Activity
 			{"n26", "13Oluz9dSjONEmUw2vljSZ36KZgmNJvRH", "nature", "طبيعة"},
 			{"n27", "13aAtPBLchBjPmdhISKK-1LaCkpjPp2Yv", "éclipse solaire", "كسوف الشمس"},
 			{"n28", "13ceCGh5dZBDyU_KRWJuGIC0sJtXnHz1n", "lune", "قمر"},
-			{"n29", "13d3ureiDhTe_98vRXEIymz67uTITsQmQ", "inondation", "فيضان"},
+			{"n29", "13d3ureiDhTe_98vRXEIymz67uTITsQmQ", "inondation1", "فيضان1"},
 			{"n30", "13pZlAoOsPUIzIP12PlnZ-EcaK6t2veqR", "univers1", "كون1"},
 			{"n31", "13wL1rbhKINTa1S9ozt70X6OoGrXIS1L_", "planète", "كوكب"},
 			{"n32", "142as-EgQP5CTvjVg9NOlJ_XKKqXoLbpn", "grotte", "كهف"},
@@ -107,5 +107,14 @@ public class ResActivityN extends Activity
 			{"n99", "url", "biodiversité", "تنوع بيولوجي"},
 			{"n100", "url", "feuille", "ورقة الشجر"},
 			{"n101", "url", "champignon", "فطر"},
+			{"n102", "url", "cyclone", "إعصار"},
+			{"n103", "url", "tempête", "عاصفة"},
+			{"n104", "url", "sécheresse", "جفاف"},
+			{"n105", "url", "inondation2", "فيضان2"},
+			{"n106", "url", "tsunami", "تسونامي"},
+			{"n107", "url", "tremblement de terre, séisme2", "زلزال2"},
+			{"n108", "url", "incendie", "حريق"},
+			{"n109", "url", "éruption", "ثوران"},
+			{"n110", "url", "avalanche", "انهيار جليدي"},
 	};
 }

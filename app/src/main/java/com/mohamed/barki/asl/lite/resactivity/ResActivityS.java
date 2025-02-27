@@ -6,7 +6,7 @@ public class ResActivityS extends Activity
 	public static String[][] resList = new String[][]{
 			//التواصل
 			{"s0", "url", "image", "صورة"},
-			{"s1", "url", "toujours", "دائما"},
+			{"s1", "url", "toujours", "يوميا، دائما"},
 			{"s2", "url", "nécessaire", "ضروري"},
 			{"s3", "url", "proposition", "إقتراح"},
 			{"s4", "url", "il n'y a pas", "لا يوجد"},
@@ -106,5 +106,10 @@ public class ResActivityS extends Activity
 			{"s98", "url", "politesse", "أدب، خُلُق"},
 			{"s99", "url", "au revoir2", "إلى اللقاء2"},
 			{"s100", "url", "bon appétit2", "شهية طيبة2"},
+			{"s101", "url", "rare, rarement", "نادر، نادراً"},
+			{"s102", "url", "souvent", "غالباً"},
+			{"s103", "url", "pareil, même, aussi", "نفس الشيء، نفسه، أيضاً"},
+			{"s104", "url", "avec", "مع (حرف عطف)"},
+			{"s105", "url", "ensemble", "معاً"},
 	};
 }

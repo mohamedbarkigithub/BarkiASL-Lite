@@ -21,7 +21,7 @@ public class ResActivityX extends Activity
 			{"x13", "1O1b9TQV-Yh3uJhJnYyu4QcBbXB1zU8IF", "soir1", "مساء1"},
 			{"x14", "url", "soir2", "مساء2"},
 			{"x15", "1O5Aw6quh0g2sGDuNx8IsokSaI2YnosgH", "minuit", "منتصف الليل"},
-			{"x16", "1OBnRVmpGdDaGIqg0uMkFMhu03GSSoO2U", "avant", "قبل"},
+			{"x16", "1OBnRVmpGdDaGIqg0uMkFMhu03GSSoO2U", "avant1", "قبل1"},
 			{"x17", "1OGMvsnHG5V_xWwu5NYpwxjNreDgAniQi", "bientôt", "قريبا"},
 			{"x18", "1OKbJ0LHBZvm75JE3aAaVj4GqRDW5Y1ph", "nuit", "ليل"},
 			{"x19", "1OYf57NckGae4NflDqCUKRz18TN8bFRiM", "vacances", "عطلة"},
@@ -85,5 +85,6 @@ public class ResActivityX extends Activity
 			{"x77", "url", "pirate", "قرصان"},
 		        {"x78", "url", "semaine3", "أسبوع3"},
 		        {"x79", "url", "férié", "عيد"},
+			{"x80", "url", "avant2", "قبل2"},
 	};		
 }

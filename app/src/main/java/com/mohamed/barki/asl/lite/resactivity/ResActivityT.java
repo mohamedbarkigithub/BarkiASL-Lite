@@ -31,11 +31,12 @@ public class ResActivityT extends Activity
 			{"t23", "198W12odIEZFv0cqrWpIe509Z5KMPTvHs", "rien", "لا شيء"},
 			{"t24", "19AK5xjzGfFVj6Ks4HiC4qa_naNUFbcpx", "litre", "لتر"},
 			{"t25", "19BL-dhoS3GonneTIu7VPXXLbuRiSFv8G", "mètre", "متر"},
-			{"t26", "19Bwfc6nQBB2aVfhHO_R_xS5rf-evjWe9", "beaucoup", "كثير"},
+			{"t26", "19Bwfc6nQBB2aVfhHO_R_xS5rf-evjWe9", "beaucoup1", "كثير1"},
 			{"t27", "19DfLMMjWFnpQtSJuzXbGB8hVujSHylsE", "tout", "كل"},
 			{"t28", "19DxmYRJg8Yp7RD9Wms4RdeVOBRwibC1p", "diamètre", "قطر"},
 			{"t29", "19K-CscQyWVHURd6PkzM8DjPDy-VBZBt4", "peu", "قليل"},
 			{"t30", "url", "double2", "ضِعْف2"},
 			{"t31", "url", "moitié2", "نِصْف2"},
+			{"t32", "url", "beaucoup2", "كثير2"},
 	};
 }

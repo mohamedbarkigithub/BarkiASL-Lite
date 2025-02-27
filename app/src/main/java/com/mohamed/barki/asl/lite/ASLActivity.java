@@ -759,7 +759,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		return random.nextInt((max-min)+1) + min;
 	}
 	private void testSameWord(String selection) {
-		if(selection.equals(wordGenerated)){
+		if(testEquals(selection, wordGenerated)){
 			scorFun("1");
 			new android.os.Handler().postDelayed(
 					this::randomDeaf, 500);
@@ -794,6 +794,13 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				}
 			}
 		}
+	}
+	private boolean testEquals(String s, String w) {
+		if(w.matches(".*[0-9].*")){
+			s = s.replaceAll("[\\d()]", "");
+			w = w.replaceAll("[\\d()]", "");
+		}
+		return s.equals(w);
 	}
 	@SuppressLint({"SetTextI18n", "ResourceAsColor"})
 	private void scorFun(String p0) {
