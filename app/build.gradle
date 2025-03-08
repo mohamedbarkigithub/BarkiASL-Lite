@@ -7,10 +7,10 @@ android {
     compileSdk = 35
     defaultConfig {
         applicationId "com.mohamed.barki.asl.lite"
-        minSdk = 23
+        minSdk = 21
         targetSdk = 35
-        versionCode 25022700
-        versionName "2025.02.27"
+        versionCode 25030800
+        versionName "2025.03.08"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -60,6 +60,7 @@ android {
                 configureEach {
                     configurations.configureEach { conf ->
                         if (conf.canBeResolved && !(conf.name in excludedConfigurations)) {
+                            //noinspection ForeignDelegate
                             add(conf.name, enforcedPlatform(project(":project-dependencies")))
                         }
                     }
@@ -70,11 +71,11 @@ android {
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation platform('com.google.firebase:firebase-bom:33.9.0')
+    implementation platform('com.google.firebase:firebase-bom:33.10.0')
+    implementation 'com.firebaseui:firebase-ui-database:8.0.2'
     implementation 'com.google.api-client:google-api-client:2.2.0'
     implementation 'com.google.firebase:firebase-database:21.0.0'
     implementation 'com.google.zxing:core:3.5.1'
-    implementation 'com.firebaseui:firebase-ui-database:8.0.2'
     implementation 'com.github.bumptech.glide:glide:4.15.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
     implementation 'com.github.bumptech.glide:okhttp3-integration:4.15.1'
