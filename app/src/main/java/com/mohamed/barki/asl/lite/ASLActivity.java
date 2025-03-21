@@ -1384,6 +1384,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 	private Dialog dialogMessage;
 	@SuppressLint("SetTextI18n")
 	private void openDialogMessage(String nameMessage, String emailMessage, String nameRecive) {
+		Function.startSongs(this, MediaPlayer.create(this, R.raw.new_message));
 		dialogMessage = new Dialog(ASLActivity.this, R.style.DialogStyle);
 		dialogMessage.setContentView(R.layout.dialog);
 		dialogMessage.setCanceledOnTouchOutside(false);
@@ -1402,6 +1403,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		((TextView) dialogMessage.findViewById(R.id.dialog_infooo)).setTypeface(typeface);
 		((ImageButton)dialogMessage.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_message);
 		dialogMessage.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
+			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
 			dialogMessage.dismiss();
 			dialogMessage = null;
 			Function.saveFromText(this, "message", Function.setTime());
@@ -1415,6 +1417,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		});
 		((ImageButton)dialogMessage.findViewById(R.id.dialog_cancel)).setImageResource(R.drawable.popup_message_off);
 		dialogMessage.findViewById(R.id.dialog_cancel).setOnClickListener(v ->{
+			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
 			Function.saveFromText(this, "message", Function.setTime());
 			dialogMessage.dismiss();
 			dialogMessage = null;

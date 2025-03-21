@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +34,7 @@ public class UpdateActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
     }
     private void openDialog() {
+        Function.startSongs(this, MediaPlayer.create(this, R.raw.update));
         final Dialog dialog = new Dialog(UpdateActivity.this, R.style.DialogStyle);
         dialog.setContentView(R.layout.dialog);
         dialog.setCanceledOnTouchOutside(false);
@@ -46,6 +48,7 @@ public class UpdateActivity extends AppCompatActivity {
         ((TextView) dialog.findViewById(R.id.dialog_infooo)).setTypeface(typeface);
         ((ImageButton)dialog.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_download);
         dialog.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
+            Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id="+getPackageName()));
             startActivity(browserIntent);
             dialog.dismiss();

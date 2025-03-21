@@ -434,6 +434,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 	private Dialog dialogMessage;
 	@SuppressLint("SetTextI18n")
 	private void openDialogMessage(String nameMessage, String emailMessage, String nameRecive) {
+		Function.startSongs(this, MediaPlayer.create(this, R.raw.new_message));
 		dialogMessage = new Dialog(ScreenActivity.this, R.style.DialogStyle);
 		dialogMessage.setContentView(R.layout.dialog);
 		dialogMessage.setCanceledOnTouchOutside(false);
@@ -452,6 +453,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		((TextView) dialogMessage.findViewById(R.id.dialog_infooo)).setTypeface(typeface);
 		((ImageButton)dialogMessage.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_message);
 		dialogMessage.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
+			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
 			dialogMessage.dismiss();
 			dialogMessage = null;
 			removeAllEventListener();
@@ -468,6 +470,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		});
 		((ImageButton)dialogMessage.findViewById(R.id.dialog_cancel)).setImageResource(R.drawable.popup_message_off);
 		dialogMessage.findViewById(R.id.dialog_cancel).setOnClickListener(v ->{
+			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
 			Function.saveFromText(this, "message", Function.setTime());
 			dialogMessage.dismiss();
 			dialogMessage = null;
@@ -488,6 +491,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		stopHandler();
 	}
 	private void openDialog() {
+		Function.startSongs(this, MediaPlayer.create(this, R.raw.update));
 		boolUpdate = false;
 		final Dialog dialog = new Dialog(ScreenActivity.this, R.style.DialogStyle);
 		dialog.setContentView(R.layout.dialog);
@@ -505,6 +509,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		((TextView) dialog.findViewById(R.id.dialog_infooo)).setTypeface(typeface);
 		((ImageButton)dialog.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_download);
 		dialog.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
+			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
 			Function.saveFromText(this, "update", Function.setTime());
 			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id="+getPackageName()));
 			startActivity(browserIntent);
@@ -514,6 +519,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		});
 		((ImageButton)dialog.findViewById(R.id.dialog_cancel)).setImageResource(R.drawable.popup_download_off);
 		dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> {
+			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
 			Function.saveFromText(this, "update", Function.setTime());
 			dialog.dismiss();
 			boolUpdate = true;
@@ -541,6 +547,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		((TextView) dialog.findViewById(R.id.dialog_infooo)).setTypeface(typeface);
 		((ImageButton)dialog.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_download);
 		dialog.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
+			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
 			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id="+
 					((getPackageName().endsWith("e")) ? getPackageName().replace(".lite", "") : getPackageName()+".lite")
 			));
@@ -551,6 +558,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		});
 		((ImageButton)dialog.findViewById(R.id.dialog_cancel)).setImageResource(R.drawable.popup_download_off);
 		dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> {
+			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
 			dialog.dismiss();
 			boolUpdate = true;
 		});
@@ -576,6 +584,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		((TextView) dialog.findViewById(R.id.dialog_infooo)).setTypeface(typeface);
 		((ImageButton)dialog.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_download);
 		dialog.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
+			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
 			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id="+getString(R.string.pkgBraille)));
 			startActivity(browserIntent);
 			dialog.dismiss();
@@ -584,6 +593,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		});
 		((ImageButton)dialog.findViewById(R.id.dialog_cancel)).setImageResource(R.drawable.popup_download_off);
 		dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> {
+			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
 			dialog.dismiss();
 			boolUpdate = true;
 		});
@@ -606,16 +616,14 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 			boolExit = true;
 		}
 	}
-
-	private void startSongs(MediaPlayer songs)
-	{
+	private void startSongs(MediaPlayer songs) {
 		if(Function.getBoolean(this, "song")){
 			songs.start();
 		}
 	}
-
 	@Override
 	public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+		Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
 		boolExit = false;
 		int id = item.getItemId();
 		Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -759,11 +767,15 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		dialog.findViewById(R.id.dialog_infooo).setVisibility(View.GONE);
 		((ImageButton) dialog.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_copy);
 		dialog.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
+			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
 			Function.doCopy(ScreenActivity.this, emailF, getString(R.string.copy_email_to_clip));
 			dialog.dismiss();
 		});
 		((ImageButton) dialog.findViewById(R.id.dialog_cancel)).setImageResource(R.drawable.ic_close);
-		dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> dialog.dismiss());
+		dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> {
+			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
+			dialog.dismiss();
+		});
 		dialog.show();
 	}
 	/** @noinspection unused*/
@@ -785,11 +797,15 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		dialog.findViewById(R.id.dialog_infooo).setVisibility(View.GONE);
 		((ImageButton) dialog.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_copy);
 		dialog.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
+			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
 			Function.doCopy(ScreenActivity.this, emailF, getString(R.string.copy_phone_to_clip));
 			dialog.dismiss();
 		});
 		((ImageButton) dialog.findViewById(R.id.dialog_cancel)).setImageResource(R.drawable.ic_close);
-		dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> dialog.dismiss());
+		dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> {
+			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
+			dialog.dismiss();
+		});
 		dialog.show();
 	}
 }

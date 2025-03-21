@@ -6,7 +6,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -76,9 +78,6 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(!Function.isAdmin(this))
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-
         if(Function.getBoolean(this, "dark")) setThemeDark(this, R.layout.chat);
         else Function.setThemeLight(this, R.layout.chat);
         baa = "exitt";
@@ -146,7 +145,8 @@ public class ChatActivity extends AppCompatActivity {
             baa = "exitt";
             String messageText = edit_message.getText().toString();
             if(messageText.isEmpty()){
-
+                Function.startSongs(this, MediaPlayer.create(this, R.raw.error));
+                edit_message.setError(Html.fromHtml("<font color='red'>" + getString(R.string.error) + "</font>"));
             }else{
                 Map<String, Object> message = new HashMap<>();
                 message.put("time", Function.setTime());
@@ -190,8 +190,14 @@ public class ChatActivity extends AppCompatActivity {
             messageReference.child("support").child(nameSender)
                     .child(Objects.requireNonNull(key))
                     .setValue(message)
-                    .addOnSuccessListener(unused -> edit_message.setText(""))
-                    .addOnFailureListener(e ->Function.showToastMessage(ChatActivity.this, getString(R.string.send_failed)));
+                    .addOnSuccessListener(unused -> {
+                        Function.startSongs(this, MediaPlayer.create(this, R.raw.send));
+                        edit_message.setText("");
+                    })
+                    .addOnFailureListener(e -> {
+                        Function.startSongs(this, MediaPlayer.create(this, R.raw.error));
+                        Function.showToastMessage(ChatActivity.this, getString(R.string.send_failed));
+                    });
         }catch (Exception e){
             e.printStackTrace();
         }

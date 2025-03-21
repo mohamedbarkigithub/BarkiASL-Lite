@@ -3,7 +3,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -128,7 +130,8 @@ public class ChatAdminActivity extends AppCompatActivity {
             baa = "exitt";
             String messageText = edit_message.getText().toString();
             if(messageText.isEmpty()){
-
+                Function.startSongs(this, MediaPlayer.create(this, R.raw.error));
+                edit_message.setError(Html.fromHtml("<font color='red'>" + getString(R.string.error) + "</font>"));
             }else{
                 Map<String, Object> message = new HashMap<>();
                 message.put("time", Function.setTime());
@@ -173,8 +176,14 @@ public class ChatAdminActivity extends AppCompatActivity {
             messageReference.child("support").child(nameReceiver)
                     .child(Objects.requireNonNull(key))
                     .setValue(message)
-                    .addOnSuccessListener(unused -> edit_message.setText(""))
-                    .addOnFailureListener(e ->Function.showToastMessage(ChatAdminActivity.this, getString(R.string.send_failed)));
+                    .addOnSuccessListener(unused -> {
+                        Function.startSongs(this, MediaPlayer.create(this, R.raw.send));
+                        edit_message.setText("");
+                    })
+                    .addOnFailureListener(e -> {
+                        Function.startSongs(this, MediaPlayer.create(this, R.raw.error));
+                        Function.showToastMessage(ChatAdminActivity.this, getString(R.string.send_failed));
+                    });
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,10 +111,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.myViewHo
             }
 
             holder.lnyLayout.setOnLongClickListener(view -> {
+                Function.startSongs(context, MediaPlayer.create(context, R.raw.click));
                 openDialog(message);
                 return false;
             });
             holder.lnyLayout.setOnClickListener(v -> {
+                Function.startSongs(context, MediaPlayer.create(context, R.raw.click));
                 FrameLayout.LayoutParams params;
                 if(boolLarge){
                     params =  new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, Math.min(Function.dpToPx(200), FrameLayout.LayoutParams.WRAP_CONTENT));
@@ -160,14 +164,17 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.myViewHo
         );
         ((TextView) dialog.findViewById(R.id.dialog_info)).setTypeface(typeface);
         dialog.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
+            Function.startSongs(context, MediaPlayer.create(context, R.raw.click));
             editFile(message);
             dialog.dismiss();
         });
         dialog.findViewById(R.id.dialog_copy).setOnClickListener(v -> {
+            Function.startSongs(context, MediaPlayer.create(context, R.raw.click));
             Function.doCopy(getActivity, message.getMessage(), getActivity.getString(R.string.copy_message_to_clip));
             dialog.dismiss();
         });
         dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> {
+            Function.startSongs(context, MediaPlayer.create(context, R.raw.click));
             openDialogRemove(message);
             dialog.dismiss();
         });
@@ -190,7 +197,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.myViewHo
         ((ImageButton)dialog.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_remove);
         dialog.findViewById(R.id.dialog_ok).setOnClickListener(v -> saveRemovefile(dialog, message.getKey()));
         ((ImageButton)dialog.findViewById(R.id.dialog_cancel)).setImageResource(R.drawable.popup_remove_off);
-        dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> dialog.dismiss());
+        dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> {
+            Function.startSongs(context, MediaPlayer.create(context, R.raw.click));
+            dialog.dismiss();
+        });
         if(!getActivity.isFinishing()) dialog.show();
     }
     @SuppressLint("NotifyDataSetChanged")
@@ -200,11 +210,15 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.myViewHo
 
         SupportDatabase.getReference().child("support").child(idSender).child(refKey).removeValue()
                 .addOnSuccessListener(unused -> {
+                    Function.startSongs(context, MediaPlayer.create(context, R.raw.click));
                     notifyDataSetChanged();
                     Function.showToastMessage(getActivity, getActivity.getString(intString[0]));
                     dialog.dismiss();
                 })
-                .addOnFailureListener(e -> Function.showToastMessage(getActivity, getActivity.getString(intString[1])));
+                .addOnFailureListener(e -> {
+                    Function.startSongs(context, MediaPlayer.create(context, R.raw.error));
+                    Function.showToastMessage(getActivity, getActivity.getString(intString[1]));
+                });
     }
     private void editFile(Message message) {
         boolAnim = false;
@@ -229,9 +243,15 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.myViewHo
             String new_message = edtMessage.getText().toString();
             if(!new_message.isEmpty() && new_message.length()<200){
                 saveEditFile(dialog, message.getKey(), message.getName(), message.getTime(), new_message);
+            }else{
+                Function.startSongs(context, MediaPlayer.create(context, R.raw.error));
+                edtMessage.setError(Html.fromHtml("<font color='red'>" + getActivity.getString(R.string.error) + "</font>"));
             }
         });
-        dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> dialog.dismiss());
+        dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> {
+            Function.startSongs(context, MediaPlayer.create(context, R.raw.click));
+            dialog.dismiss();
+        });
         dialog.show();
     }
     @SuppressLint("NotifyDataSetChanged")
@@ -247,11 +267,15 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.myViewHo
 
         SupportDatabase.getReference().child("support").child(idSender).child(refKey).updateChildren(map)
                 .addOnSuccessListener(unused -> {
+                    Function.startSongs(context, MediaPlayer.create(context, R.raw.click));
                     dialog.dismiss();
                     notifyDataSetChanged();
                     Function.showToastMessage(getActivity, getActivity.getString(intString[0]));
                 })
-                .addOnFailureListener(e -> Function.showToastMessage(getActivity, getActivity.getString(intString[1])));
+                .addOnFailureListener(e -> {
+                    Function.startSongs(context, MediaPlayer.create(context, R.raw.click));
+                    Function.showToastMessage(getActivity, getActivity.getString(intString[1]));
+                });
     }
     private boolean boolLarge = false;
     @Override
