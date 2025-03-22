@@ -88,6 +88,8 @@ public class ChatActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         listView.setLayoutManager(layoutManager);
 
+        findViewById(R.id.exit).setOnClickListener(v -> {Function.startSongs(this, MediaPlayer.create(this, R.raw.click)); onBackPressedFun();});
+
         nameReceiver = "BarkiASL";
 
         if (savedInstanceState == null) {
@@ -204,6 +206,9 @@ public class ChatActivity extends AppCompatActivity {
     @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {
+        onBackPressedFun();
+    }
+    private void onBackPressedFun(){
         if (baa.equals("exit")) goToHome();
         else {
             Function.saveFromBoolean(this, "screen", false);

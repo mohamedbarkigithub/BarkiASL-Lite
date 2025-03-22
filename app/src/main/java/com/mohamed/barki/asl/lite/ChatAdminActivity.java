@@ -88,6 +88,8 @@ public class ChatAdminActivity extends AppCompatActivity {
             activity = (String) savedInstanceState.getSerializable("activity");
         }
 
+        findViewById(R.id.exit).setOnClickListener(v -> {Function.startSongs(this, MediaPlayer.create(this, R.raw.click)); onBackPressedFun();});
+
         nameSender = "BarkiASL";
 
         ((TextView)findViewById(R.id.tvName_toolbar)).setText(nameReceiver);
@@ -191,6 +193,9 @@ public class ChatAdminActivity extends AppCompatActivity {
     @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {
+        onBackPressedFun();
+    }
+    private void onBackPressedFun(){
         if (baa.equals("exit")) goToHome();
         else {
             Function.saveFromBoolean(this, "screen", false);

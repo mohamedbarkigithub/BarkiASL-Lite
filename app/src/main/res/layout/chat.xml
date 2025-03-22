@@ -93,6 +93,17 @@
                     tools:ignore="VisualLintBounds" />
             </LinearLayout>
         </LinearLayout>
+        <ImageButton
+            android:id="@+id/exit"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/group_exit"
+            android:background="@drawable/button_menu"
+            android:contentDescription="@string/img_message_left"
+            app:tint="@color/textPrimaryInverse"
+            tools:ignore="ImageContrastCheck,DuplicateSpeakableTextCheck" />
     </LinearLayout>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/pullToRefresh"

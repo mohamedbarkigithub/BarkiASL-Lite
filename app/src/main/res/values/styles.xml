@@ -10,9 +10,10 @@
 	<style name="AppThemeButton" parent="@android:style/Widget.Holo.Light.Button">
 	</style>
 	<style name="DialogStyle" parent="@android:style/Theme.Dialog">
-		<item name="android:layout_width">match_parent</item>
 		<item name="android:windowNoTitle">true</item>
 		<item name="android:windowIsFloating">true</item>
+		<item name="android:windowMinWidthMajor">95%</item>
+		<item name="android:windowMinWidthMinor">95%</item>
 	</style>
 	<style name="ListViewStyle" parent="@android:style/Widget.Holo.Light.ListView">
         <item name="android:overScrollMode">always</item>
