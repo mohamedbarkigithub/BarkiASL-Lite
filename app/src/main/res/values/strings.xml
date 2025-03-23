@@ -223,4 +223,12 @@
 	<string name="install_braille">Download BarkiBraille app</string>
 	<string name="save_this_braille">Do you really want to download BarkiBraille app?</string>
 	<string name="save_braille_offline">BarkiBraille app is an app for dealing with the braille environment</string>
+	<string name="error_upload_successfull">Bug report sent successfully!!!</string>
+	<string name="error_upload_failed">Sorry, bug report not sent!!!</string>
+	<string name="sorry_you_blocked">Sorry, you\'ve been blocked from using this app!!!</string>
+	<string name="adminblock" translatable="false">BlockUserActivity</string>
+	<string name="adminitem">This section is for developers</string>
+	<string name="upload_app">New update notification</string>
+	<string name="list_user">User list</string>
+	<string name="admincrach" translatable="false">CrashViewActivityLite</string>
 </resources>

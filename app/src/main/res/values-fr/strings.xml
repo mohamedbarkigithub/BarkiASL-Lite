@@ -168,4 +168,10 @@
 	<string name="install_braille">Téléchargez l\'application BarkiBraille</string>
 	<string name="save_this_braille">Voulez-vous vraiment télécharger l\'application BarkiBraille ?</string>
 	<string name="save_braille_offline">BarkiBraille est une application permettant de gérer l\'environnement braille</string>
+	<string name="error_upload_successfull">Rapport de bogue soumis avec succès !!!</string>
+	<string name="error_upload_failed">Désolé, le rapport de bogue n\'a pas été envoyé !!!</string>
+	<string name="sorry_you_blocked">Désolé, vous n\'avez pas pu utiliser cette application !!!</string>
+	<string name="adminitem">Cette section est destinée au développeur</string>
+	<string name="upload_app">Notification de nouvelle mise à jour</string>
+	<string name="list_user">Liste des utilisateurs</string>
 </resources>

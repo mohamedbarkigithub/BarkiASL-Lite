@@ -132,36 +132,4 @@
             android:textColor="@color/colorText"
             tools:ignore="TextContrastCheck" />
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/screenButtonly3"
-        android:layout_below="@id/screenButtonly2"
-        android:gravity="center"
-        android:background="@drawable/button_empty"
-        android:layout_marginTop="20dip"
-        android:layout_marginRight="20dip"
-        android:layout_marginLeft="20dip"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="100.0dp"
-        android:layout_centerInParent="true">
-        <ImageView
-            android:id="@+id/screenImage3"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="5dp"
-            android:src="@mipmap/roundicon"
-            tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
-        <Button
-            android:id="@+id/screenButton3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/button_screen"
-            android:minHeight="48dp"
-            android:text="@string/start_update"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/colorText"
-            tools:ignore="TextContrastCheck" />
-    </LinearLayout>
 </RelativeLayout>

@@ -35,11 +35,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.mohamed.barki.asl.lite.DataBase.DatabaseSupport;
 
 
 import org.apache.commons.lang3.math.NumberUtils;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 
 @SuppressWarnings({"deprecation", "RedundantSuppression"})
@@ -48,9 +51,9 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 	private Intent intent;
 	ImageButton btn_dark, btn_rign, btn_song;
 	private MediaPlayer click, clickScreen;
-	boolean boolUpdate = true;
-	DatabaseReference updateReference;
-	ValueEventListener valueEventListener;
+	boolean boolUpdate = true, boolEmail = true;
+	DatabaseReference updateReference, emailReference;
+	ValueEventListener valueEventListener, valueEventListenerEmail;
 	DrawerLayout drawer;
 	public ScreenActivity() {}
 	@SuppressLint("NonConstantResourceId")
@@ -87,16 +90,6 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 				startSongs(clickScreen);
 				if(Function.isNetworkConnected(this)) updateReference.removeEventListener(valueEventListener);
 				startActivityFun(intent, "2"); break;
-			case R.id.screenButton3:
-				startSongs(clickScreen);
-				if(Function.isNetworkConnected(this)){
-					String update = Function.setTime();
-					FirebaseDatabase.getInstance().getReference().child("update")
-							.setValue(update)
-							.addOnSuccessListener(unused -> Function.showToastMessage(this, getString(R.string.success_update)))
-							.addOnFailureListener(e -> Function.showToastMessage(this, getString(R.string.failure_update)));
-				}
-				break;
 			case R.id.screenButton4:
 				startSongs(click);
 				drawer.openDrawer(GravityCompat.START);
@@ -153,10 +146,6 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		btn_search.setTypeface(face);
 		btn_search.setOnClickListener(this);
 		btn_search.setBackgroundResource(R.drawable.button_screen);
-		Button btn_update = findViewById(R.id.screenButton3);
-		btn_update.setTypeface(face);
-		btn_update.setOnClickListener(this);
-
 
 		ImageButton btn_info = findViewById(R.id.screenButton4);
 		btn_info.setOnClickListener(this);
@@ -185,11 +174,6 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		}else{
 			btn_song.setImageResource(R.drawable.group_song);
 		}
-		if(Function.isAdmin(this)){
-			findViewById(R.id.screenButtonly3).setVisibility(View.VISIBLE);
-		}else{
-			findViewById(R.id.screenButtonly3).setVisibility(View.GONE);
-		}
 		timerepond = MediaPlayer.create(this, R.raw.timerepond);
 		handler = new Handler();
 		r = () -> {
@@ -215,7 +199,8 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 			nav_Menu.findItem(R.id.nav_lite).setVisible(false);
 		if(Function.isBraille(this))
 			nav_Menu.findItem(R.id.nav_braille).setVisible(false);
-
+		if(!Function.isAdmin(this))
+			nav_Menu.findItem(R.id.nav_admin).setVisible(false);
 	}
 	private String[] itemTitle;
 	private int[] itemId;
@@ -350,7 +335,9 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 			};
 			String name = Function.getValue(this, "name");
 			String email = Function.getValue(this, "email");
-			messageReference = (Function.isAdmin(this)) ? FirebaseDatabase.getInstance().getReference().child("support") : FirebaseDatabase.getInstance().getReference().child("support").child(name);
+			messageReference = (Function.isAdmin(this))
+					? FirebaseDatabase.getInstance(DatabaseSupport.getInstance(this)).getReference().child("support")
+					: FirebaseDatabase.getInstance(DatabaseSupport.getInstance(this)).getReference().child("support").child(name);
 			valueEventListenerMessage = new ChildEventListener() {
 				@Override
 				public void onChildAdded(@NonNull DataSnapshot dataSnapshot, String prevChildKey) {
@@ -422,6 +409,42 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 				updateReference.addValueEventListener(valueEventListener);
 				messageReference.addChildEventListener(valueEventListenerMessage);
 			}
+			emailReference = FirebaseDatabase.getInstance().getReference().child("all-users");
+			valueEventListenerEmail = new ValueEventListener() {
+				@Override
+				public void onDataChange(@NonNull DataSnapshot snapshot) {
+					if(boolEmail){
+						if(!snapshot.hasChild(name)){
+							Map<String, Object> map = new HashMap<>();
+							String block = "unblock";
+							if(Function.isAdmin(ScreenActivity.this)) block = "admin";
+							map.put("state", block);
+							map.put("date", Function.setTime());
+							emailReference.child(name).updateChildren(map).addOnSuccessListener(unused -> boolEmail = false);
+						}else{
+							if(Objects.equals(snapshot.child(name).child("state").getValue(String.class), "block")){
+								removeAllEventListener();
+								Function.removeAllSaveText(ScreenActivity.this);
+								Function.showToastMessage(ScreenActivity.this, ScreenActivity.this.getString(R.string.sorry_you_blocked));
+								finish();
+								finishAffinity();
+								finishAndRemoveTask();
+							}else
+								emailReference.child(name).child("date").setValue(Function.setTime()).addOnSuccessListener(unused ->{
+									if(Function.isAdmin(ScreenActivity.this))
+										emailReference.child(name).child("state").setValue("admin").addOnSuccessListener(u -> boolEmail = false);
+									else
+										emailReference.child(name).child("state").setValue("unblock").addOnSuccessListener(u -> boolEmail = false);
+								});
+						}
+					}
+				}
+				@Override
+				public void onCancelled(@NonNull DatabaseError error) {
+
+				}
+			};
+			emailReference.addValueEventListener(valueEventListenerEmail);
 		}
 		startHandler();
 	}
@@ -453,7 +476,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		((TextView) dialogMessage.findViewById(R.id.dialog_infooo)).setTypeface(typeface);
 		((ImageButton)dialogMessage.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_message);
 		dialogMessage.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
-			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
+			startSongs(MediaPlayer.create(this, R.raw.click));
 			dialogMessage.dismiss();
 			dialogMessage = null;
 			removeAllEventListener();
@@ -470,7 +493,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		});
 		((ImageButton)dialogMessage.findViewById(R.id.dialog_cancel)).setImageResource(R.drawable.popup_message_off);
 		dialogMessage.findViewById(R.id.dialog_cancel).setOnClickListener(v ->{
-			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
+			startSongs(MediaPlayer.create(this, R.raw.click));
 			Function.saveFromText(this, "message", Function.setTime());
 			dialogMessage.dismiss();
 			dialogMessage = null;
@@ -509,7 +532,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		((TextView) dialog.findViewById(R.id.dialog_infooo)).setTypeface(typeface);
 		((ImageButton)dialog.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_download);
 		dialog.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
-			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
+			startSongs(MediaPlayer.create(this, R.raw.click));
 			Function.saveFromText(this, "update", Function.setTime());
 			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id="+getPackageName()));
 			startActivity(browserIntent);
@@ -519,7 +542,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		});
 		((ImageButton)dialog.findViewById(R.id.dialog_cancel)).setImageResource(R.drawable.popup_download_off);
 		dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> {
-			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
+			startSongs(MediaPlayer.create(this, R.raw.click));
 			Function.saveFromText(this, "update", Function.setTime());
 			dialog.dismiss();
 			boolUpdate = true;
@@ -547,7 +570,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		((TextView) dialog.findViewById(R.id.dialog_infooo)).setTypeface(typeface);
 		((ImageButton)dialog.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_download);
 		dialog.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
-			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
+			startSongs(MediaPlayer.create(this, R.raw.click));
 			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id="+
 					((getPackageName().endsWith("e")) ? getPackageName().replace(".lite", "") : getPackageName()+".lite")
 			));
@@ -558,7 +581,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		});
 		((ImageButton)dialog.findViewById(R.id.dialog_cancel)).setImageResource(R.drawable.popup_download_off);
 		dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> {
-			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
+			startSongs(MediaPlayer.create(this, R.raw.click));
 			dialog.dismiss();
 			boolUpdate = true;
 		});
@@ -584,7 +607,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		((TextView) dialog.findViewById(R.id.dialog_infooo)).setTypeface(typeface);
 		((ImageButton)dialog.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_download);
 		dialog.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
-			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
+			startSongs(MediaPlayer.create(this, R.raw.click));
 			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id="+getString(R.string.pkgBraille)));
 			startActivity(browserIntent);
 			dialog.dismiss();
@@ -593,7 +616,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		});
 		((ImageButton)dialog.findViewById(R.id.dialog_cancel)).setImageResource(R.drawable.popup_download_off);
 		dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> {
-			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
+			startSongs(MediaPlayer.create(this, R.raw.click));
 			dialog.dismiss();
 			boolUpdate = true;
 		});
@@ -605,7 +628,8 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 	@Override
 	public void onBackPressed() {
 		if (boolExit) {
-			if(Function.isNetworkConnected(this)) updateReference.removeEventListener(valueEventListener);
+			removeAllEventListener();
+			if(valueEventListenerEmail!=null && emailReference!=null) emailReference.removeEventListener(valueEventListenerEmail);
 			if(Function.toast != null) Function.toast.cancel();
 			stopHandler();
 			finish();
@@ -616,18 +640,18 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 			boolExit = true;
 		}
 	}
-	private void startSongs(MediaPlayer songs) {
+
+	private void startSongs(MediaPlayer songs){
 		if(Function.getBoolean(this, "song")){
 			songs.start();
 		}
 	}
 	@Override
 	public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-		Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
 		boolExit = false;
 		int id = item.getItemId();
 		Intent intent = new Intent(Intent.ACTION_VIEW);
-
+		startSongs(MediaPlayer.create(this, R.raw.click));
 		if (id == R.id.nav_info) {
 			Function.info(this, this);
 		} else if (id == R.id.nav_email) {
@@ -746,6 +770,22 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 			}
 		} else if (id == R.id.nav_policy) {
 			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.privacy_policy))));
+		} else if (id == R.id.nav_list_user) {
+			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
+			removeAllEventListener();
+			Function.launchActivityAdmin(this, "BlockUserActivity");
+		} else if (id == R.id.nav_list_crash) {
+			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
+			removeAllEventListener();
+			Function.launchActivityAdmin(this, "CrashViewActivity");
+		} else if (id == R.id.nav_upload_app) {
+			if(Function.isNetworkConnected(this)){
+				String update = Function.setTime();
+				FirebaseDatabase.getInstance().getReference().child("update")
+						.setValue(update)
+						.addOnSuccessListener(unused -> Function.showToastMessage(this, getString(R.string.success_update)))
+						.addOnFailureListener(e -> Function.showToastMessage(this, getString(R.string.failure_update)));
+			}
 		}
 		return true;
 	}
@@ -767,13 +807,13 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		dialog.findViewById(R.id.dialog_infooo).setVisibility(View.GONE);
 		((ImageButton) dialog.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_copy);
 		dialog.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
-			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
+			startSongs(MediaPlayer.create(this, R.raw.click));
 			Function.doCopy(ScreenActivity.this, emailF, getString(R.string.copy_email_to_clip));
 			dialog.dismiss();
 		});
 		((ImageButton) dialog.findViewById(R.id.dialog_cancel)).setImageResource(R.drawable.ic_close);
 		dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> {
-			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
+			startSongs(MediaPlayer.create(this, R.raw.click));
 			dialog.dismiss();
 		});
 		dialog.show();
@@ -797,13 +837,13 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		dialog.findViewById(R.id.dialog_infooo).setVisibility(View.GONE);
 		((ImageButton) dialog.findViewById(R.id.dialog_ok)).setImageResource(R.drawable.popup_copy);
 		dialog.findViewById(R.id.dialog_ok).setOnClickListener(v -> {
-			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
+			startSongs(MediaPlayer.create(this, R.raw.click));
 			Function.doCopy(ScreenActivity.this, emailF, getString(R.string.copy_phone_to_clip));
 			dialog.dismiss();
 		});
 		((ImageButton) dialog.findViewById(R.id.dialog_cancel)).setImageResource(R.drawable.ic_close);
 		dialog.findViewById(R.id.dialog_cancel).setOnClickListener(v -> {
-			Function.startSongs(this, MediaPlayer.create(this, R.raw.click));
+			startSongs(MediaPlayer.create(this, R.raw.click));
 			dialog.dismiss();
 		});
 		dialog.show();

@@ -16,10 +16,10 @@ public class DatabaseSupport {
     }
     private static FirebaseApp getSecondProject(Context context) {
         FirebaseOptions options1 = new FirebaseOptions.Builder()
-                .setApiKey("AIzaSyAQeSk8xcPipQq2s15AdG_8M8ZL8rSy_Lc")
-                .setApplicationId("1:555783393132:android:0f84559266aab92958ed49")
-                .setProjectId("barkiasl")
-                .setDatabaseUrl("https://barkiasl-default-rtdb.firebaseio.com/")
+                .setApiKey("AIzaSyB1CKpxlrG8Y9AIkv3QH8otkpv3iSyMudM")
+                .setApplicationId("1:702211601811:android:4a8aa9f7091d1e65e36466")
+                .setProjectId("supportasl-33e46")
+                .setDatabaseUrl("https://supportasl-33e46-default-rtdb.firebaseio.com/")
                 .build();
 
         FirebaseApp.initializeApp(context, options1, "admin");

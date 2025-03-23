@@ -131,7 +131,7 @@ public class Function extends Activity {
 				}
 		));
 	}
-	public static String st = "com.moh", stt = "amed.ba", sttt = "rki.a", stttt = "sl.lite", sttttt = "BarkiASL Lite";
+	public static String st = "com.moh", stt = "amed.ba", sttt = "rki.as", stttt = "l.lite", sttttt = "BarkiASL Lite";
 	public static Toast toast;
 	@SuppressLint({"InflateParams", "MissingInflatedId"})
 	public static void showToastMessage(Context getContext, String message) {
@@ -169,6 +169,11 @@ public class Function extends Activity {
 		SharedPreferences prefs = getAppContext.getSharedPreferences(getApplicationName(getAppContext), MODE_PRIVATE);
 		SharedPreferences.Editor editor = prefs.edit();
 		editor.putString(key, text).apply();
+	}
+	public static void removeAllSaveText(Context context) {
+		SharedPreferences prefs = context.getSharedPreferences(getApplicationName(context), MODE_PRIVATE);
+		SharedPreferences.Editor editor = prefs.edit();
+		editor.clear().apply();
 	}
 	public static boolean getBoolean(Context getAppContext, String key) {
 		SharedPreferences prefs = getAppContext.getSharedPreferences(getApplicationName(getAppContext), MODE_PRIVATE);
@@ -270,6 +275,10 @@ public class Function extends Activity {
 					getAppContext.getString(R.string.contient) +
 					" " + numVideo() + " " +
 					getAppContext.getString(R.string.video)
+					+ "</p><p>" +
+					getAppContext.getString(R.string.contient) +
+					" " + Function.getValue(getAppContext, "numImage") + " " +
+					getAppContext.getString(R.string.image)
 					+ "</p>";
 		}
 		((TextView) dialog.findViewById(R.id.dialog_info)).setText(Html.fromHtml(v1));
@@ -658,25 +667,30 @@ public class Function extends Activity {
 			String activity = "", adminDemand="";
 			Intent launchIntent = new Intent(Intent.ACTION_VIEW);
 			Bundle extra = new Bundle();
+			extra.putString("name", Function.getValue(getContext, "name"));
+			extra.putString("dark", String.valueOf(Function.getBoolean(getContext, "dark")));
 			switch (key){
 				case "ChatAdminActivity":
 					extra.putString("email", Function.getValue(getContext, "email"));
-					extra.putString("name", Function.getValue(getContext, "name"));
-					extra.putString("dark", String.valueOf(Function.getBoolean(getContext, "dark")));
-					launchIntent.putExtras(extra);
 					activity = getContext.getString(R.string.pkgadmin)+".barkiasl.support.activity"+".ChatAdminActivity";
 					adminDemand = getContext.getString(R.string.adminchat);
 					break;
 				case "SupportViewActivity":
 					extra.putString("email", Function.getValue(getContext, "email"));
-					extra.putString("name", Function.getValue(getContext, "name"));
-					extra.putString("dark", String.valueOf(Function.getBoolean(getContext, "dark")));
-					launchIntent.putExtras(extra);
 					activity = getContext.getString(R.string.pkgadmin)+".barkiasl"+".SupportViewActivity";
 					adminDemand = getContext.getString(R.string.adminsupport);
 					break;
+				case "BlockUserActivity":
+					activity = getContext.getString(R.string.pkgadmin)+".barkiasl"+".BlockUserActivityLite";
+					adminDemand = getContext.getString(R.string.adminblock);
+					break;
+				case "CrashViewActivity":
+					activity = getContext.getString(R.string.pkgadmin)+".barkiasl"+".CrashViewActivityLite";
+					adminDemand = getContext.getString(R.string.admincrach);
+					break;
 			}
 			Toast.makeText(getContext, adminDemand, Toast.LENGTH_LONG).show();
+			launchIntent.putExtras(extra);
 			launchIntent.setComponent(new ComponentName(getContext.getString(R.string.pkgadmin),activity));
 			getContext.startActivity(launchIntent);
 		}

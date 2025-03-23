@@ -50,32 +50,11 @@
                 </group>
             </menu>
         </item>
-        <!--item
+        <item
             android:id="@+id/nav_admin"
             android:title="@string/adminitem">
             <menu>
                 <group android:checkableBehavior="single">
-
-                    <item
-                        android:id="@+id/nav_token"
-                        android:icon="@drawable/ic_menu_crypted"
-                        android:title="@string/get_token"
-                        tools:ignore="HardcodedText" />
-                    <item
-                        android:id="@+id/nav_drive"
-                        android:icon="@drawable/ic_menu_drive"
-                        android:title="@string/get_id_from_drive"
-                        tools:ignore="HardcodedText" />
-                    <item
-                        android:id="@+id/nav_youtube_cut"
-                        android:icon="@drawable/ic_cut_youtube"
-                        android:title="@string/get_id_from_youtube"
-                        tools:ignore="HardcodedText" />
-                    <item
-                        android:id="@+id/nav_upload_file"
-                        android:icon="@drawable/ic_menu_upload_file"
-                        android:title="@string/upload_file"
-                        tools:ignore="HardcodedText" />
                     <item
                         android:id="@+id/nav_upload_app"
                         android:icon="@drawable/ic_menu_upload_app"
@@ -93,7 +72,7 @@
                         tools:ignore="HardcodedText" />
                 </group>
             </menu>
-        </item-->
+        </item>
         <item tools:ignore="MenuTitle">
             <menu>
                 <group android:checkableBehavior="single">
