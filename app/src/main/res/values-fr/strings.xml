@@ -174,4 +174,5 @@
 	<string name="adminitem">Cette section est destinée au développeur</string>
 	<string name="upload_app">Notification de nouvelle mise à jour</string>
 	<string name="list_user">Liste des utilisateurs</string>
+	<string name="users">utilisateurs.</string>
 </resources>

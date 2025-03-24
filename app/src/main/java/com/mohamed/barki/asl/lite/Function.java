@@ -44,8 +44,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
@@ -228,6 +234,7 @@ public class Function extends Activity {
 	public static int VersionCode;
 	public static PermissionInfo[] Permissions;
 	public static String[][] resList = ResActivity.resList();
+	private static String v1;
 	@SuppressLint({"SuspiciousIndentation", "SetTextI18n"})
 	public static void info(final Context getAppContext, final Activity myActivity) {
 		MediaPlayer click = MediaPlayer.create(getAppContext, R.raw.click);
@@ -235,10 +242,6 @@ public class Function extends Activity {
 		dialog.setContentView(R.layout.dialog_information);
 		dialog.setCanceledOnTouchOutside(false);
 		dialog.setCancelable(false);
-		dialog.findViewById(R.id.dialog_close).setOnClickListener(v -> {
-			Function.startSongs(getAppContext, click);
-			dialog.dismiss();
-		});
 		((TextView) dialog.findViewById(R.id.dialog_infox)).setText("(Copyright " + Calendar.getInstance().get(Calendar.YEAR) + " M. Barki)");
 		PackageManager manager = getAppContext.getPackageManager();
 		try {
@@ -257,7 +260,7 @@ public class Function extends Activity {
 		((TextView) dialog.findViewById(R.id.dialog_info)).setTypeface(facee);
 		String title = getApplicationName(getAppContext) +" v" + VersionName;
 		((TextView) dialog.findViewById(R.id.dialog_infoo)).setText(Html.fromHtml(title));
-		String v1 =
+		v1 =
 				"</p><p>" +
 						getAppContext.getString(R.string.title_about)
 						+ "</p><p>" +
@@ -283,6 +286,23 @@ public class Function extends Activity {
 		}
 		((TextView) dialog.findViewById(R.id.dialog_info)).setText(Html.fromHtml(v1));
 		((TextView) dialog.findViewById(R.id.dialog_info)).setMovementMethod(LinkMovementMethod.getInstance());
+		DatabaseReference emailReference = FirebaseDatabase.getInstance().getReference().child("all-users");
+		ValueEventListener valueEventListenerEmail = new ValueEventListener() {
+			@Override
+			public void onDataChange(@NonNull DataSnapshot snapshot) {
+				if (snapshot.exists()){
+					v1 = "<p>" +
+							((TextView) dialog.findViewById(R.id.dialog_info)).getText().toString().replaceAll("\n", "</p><p>")
+							+ "</p><p>"
+							+ getAppContext.getString(R.string.contient) + " " + snapshot.getChildrenCount() + " " + getAppContext.getString(R.string.users)
+							+"</p>";
+					((TextView) dialog.findViewById(R.id.dialog_info)).setText(Html.fromHtml(v1));
+				}
+			}
+			@Override
+			public void onCancelled(@NonNull DatabaseError error) {}
+		};
+		emailReference.addValueEventListener(valueEventListenerEmail);
 		Typeface face = Typeface.createFromAsset(getAppContext.getAssets(), "fonts/casual.ttf");
 		if (LanguageName.contains("rab") || LanguageName.contains("عربي")) {
 			((TextView) dialog.findViewById(R.id.dialog_info)).setGravity(Gravity.RIGHT);
@@ -362,6 +382,11 @@ public class Function extends Activity {
 				Function.info(getAppContext, myActivity);
 			}
 			Function.saveFromText(getAppContext, "bolref", String.valueOf(!bol));
+		});
+		dialog.findViewById(R.id.dialog_close).setOnClickListener(v -> {
+			Function.startSongs(getAppContext, click);
+			emailReference.removeEventListener(valueEventListenerEmail);
+			dialog.dismiss();
 		});
 		dialog.show();
 	}

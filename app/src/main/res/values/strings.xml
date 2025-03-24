@@ -231,4 +231,5 @@
 	<string name="upload_app">New update notification</string>
 	<string name="list_user">User list</string>
 	<string name="admincrach" translatable="false">CrashViewActivityLite</string>
+	<string name="users">users.</string>
 </resources>
