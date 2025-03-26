@@ -1044,7 +1044,11 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				}else{
 					switch (intExit){
 						case -1, 1: intExit++; break;
-						case 0 : Function.showToastMessage(this, getString(R.string.re_home)); intExit++; break;
+						case 0 :
+							Function.showToastMessage(this, getString(R.string.re_home));
+							intExit++;
+							new android.os.Handler().postDelayed(() -> intExit = -1, 10000);
+							break;
                         case 2 : if (intent.equals("1")) {stopHandler(); r = null;}
 							if(webView!=null) webView.stopLoading();
 							Function.startActivityFun(this, ScreenActivity.class);
@@ -1289,6 +1293,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			} else {
 				Function.showToastMessage(this, getString(R.string.re_home));
 				boolExit = true;
+				new android.os.Handler().postDelayed(() -> boolExit = true, 5000);
 			}
 		}
 	}

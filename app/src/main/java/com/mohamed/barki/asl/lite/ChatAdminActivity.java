@@ -201,6 +201,7 @@ public class ChatAdminActivity extends AppCompatActivity {
             Function.saveFromBoolean(this, "screen", false);
             Function.showToastMessage(this, activity.equals("ScreenActivity") ? getString(R.string.re_home) : getString(R.string.re_activity));
             baa = "exit";
+            new android.os.Handler().postDelayed(() -> baa = "exitt", 5000);
         }
     }
     private void goToHome(){

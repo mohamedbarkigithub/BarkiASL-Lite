@@ -638,6 +638,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		} else {
 			Function.showToastMessage(this, getString(R.string.re_exit));
 			boolExit = true;
+			new android.os.Handler().postDelayed(() -> boolExit = true, 5000);
 		}
 	}
 
