@@ -3,6 +3,7 @@ package com.mohamed.barki.asl.lite;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -195,10 +196,6 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		for (int i=0;i<itemId.length;i++) {
 			applyFontToMenuItem(nav_Menu.findItem(itemId[i]), i);
 		}
-		if(Function.isLiteFull(this))
-			nav_Menu.findItem(R.id.nav_lite).setVisible(false);
-		if(Function.isBraille(this))
-			nav_Menu.findItem(R.id.nav_braille).setVisible(false);
 		if(!Function.isAdmin(this))
 			nav_Menu.findItem(R.id.nav_admin).setVisible(false);
 	}
@@ -259,8 +256,8 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 				//R.drawable.ic_menu_telephone,
 				R.drawable.ic_menu_info,
 				R.drawable.ic_menu_update_app,
-				R.drawable.ic_menu_lite_app,
-				R.drawable.ic_menu_braille_app,
+				R.mipmap.icon_asl,
+				R.mipmap.icon_braille,
 				R.drawable.ic_menu_policy,
 		};
 	}
@@ -282,12 +279,16 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		mNewTitle.setSpan(new CustomTypefaceSpan("" , font), 0 , mNewTitle.length(),  Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 		Title.setText(mNewTitle);
 		if(Locale.getDefault().getDisplayLanguage().contains("rab") || Locale.getDefault().getDisplayLanguage().contains("عربي")){
-			IconR.setImageResource(itemDrawable[i]);
+			if(itemId[i]==R.id.nav_lite || itemId[i]==R.id.nav_braille)
+				IconR.setImageDrawable(Function.resizeImage(this, itemDrawable[i],108,108));
+			else IconR.setImageResource(itemDrawable[i]);
 			IconL.setVisibility(View.GONE);
 			IconR.setVisibility(View.VISIBLE);
 			((LinearLayout) mi.getActionView()).setGravity(Gravity.RIGHT|Gravity.CENTER_VERTICAL);
 		}else{
-			IconL.setImageResource(itemDrawable[i]);
+			if(itemId[i]==R.id.nav_lite || itemId[i]==R.id.nav_braille)
+				IconL.setImageDrawable(Function.resizeImage(this, itemDrawable[i],108,108));
+			else IconL.setImageResource(itemDrawable[i]);
 			IconR.setVisibility(View.GONE);
 			IconL.setVisibility(View.VISIBLE);
 			((LinearLayout) mi.getActionView()).setGravity(Gravity.LEFT|Gravity.CENTER_VERTICAL);
@@ -641,7 +642,6 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 			new android.os.Handler().postDelayed(() -> boolExit = true, 5000);
 		}
 	}
-
 	private void startSongs(MediaPlayer songs){
 		if(Function.getBoolean(this, "song")){
 			songs.start();
@@ -666,10 +666,18 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 			openDialog();
 		} else if (id == R.id.nav_lite) {
 			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
-			openDialogLite();
+			if(Function.isLiteFull(this)) {
+				Intent launchIntent = new Intent(Intent.ACTION_VIEW);
+				launchIntent.setComponent(new ComponentName(getString(R.string.pkgapp),getString(R.string.pkgapp)+".lite"+".LoginActivity"));
+				startActivity(launchIntent);
+			}else openDialogLite();
 		} else if (id == R.id.nav_braille) {
 			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
-			openDialogBraille();
+			if(Function.isBraille(this)) {
+				Intent launchIntent = new Intent(Intent.ACTION_VIEW);
+				launchIntent.setComponent(new ComponentName(getString(R.string.pkgBraille),getString(R.string.pkgBraille)+".LoginActivity"));
+				startActivity(launchIntent);
+			}else openDialogBraille();
 		} else if (id == R.id.nav_facebookpage) {
 			((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
 			intent.setData(Uri.parse(getString(R.string.idfacebookpageappbarki)));

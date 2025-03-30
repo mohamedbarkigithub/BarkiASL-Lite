@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="top"
+    android:gravity="top|center_horizontal"
     android:orientation="vertical">
     <LinearLayout
         android:id="@+id/dialog_lny_info"
@@ -45,22 +45,23 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.0"
-        android:gravity="top|center_horizontal">
+        android:gravity="center">
         <ImageView
             android:id="@+id/dialog_image"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="1.0"
             tools:ignore="NestedWeights" />
+
         <ImageButton
             android:id="@+id/dialog_button"
-            android:src="@drawable/ic_share"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/button_share"
             android:contentDescription="@string/share"
-            app:tint="@color/White"/>
+            android:src="@drawable/ic_share"
+            app:tint="@color/White"
+            tools:ignore="DuplicateSpeakableTextCheck" />
     </LinearLayout>
 </LinearLayout>
-

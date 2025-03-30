@@ -18,9 +18,13 @@ import android.content.pm.PermissionInfo;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.PixelFormat;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -229,6 +233,21 @@ public class Function extends Activity {
 	}
 	public static int dpToPx(int dp) {
 		return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
+	}
+	public static Drawable resizeImage(Context getAppContext, int resId, int w, int h)
+	{
+		// load the origial Bitmap
+		Bitmap BitmapOrg = BitmapFactory.decodeResource(getAppContext.getResources(), resId);
+		int width = BitmapOrg.getWidth();
+		int height = BitmapOrg.getHeight();
+		// calculate the scale
+		float scaleWidth = ((float) w) / width;
+		float scaleHeight = ((float) h) / height;
+		// create a matrix for the manipulation
+		Matrix matrix = new Matrix();
+		matrix.postScale(scaleWidth, scaleHeight);
+		Bitmap resizedBitmap = Bitmap.createBitmap(BitmapOrg, 0, 0,width, height, matrix, true);
+		return new BitmapDrawable(resizedBitmap);
 	}
 	public static String PackageName, VersionName, LanguageName;
 	public static int VersionCode;
