@@ -5,6 +5,7 @@ import android.content.Context;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class DatabaseSupport {
     private static FirebaseApp INSTANCE;
 

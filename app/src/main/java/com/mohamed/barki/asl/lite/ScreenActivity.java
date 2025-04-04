@@ -46,7 +46,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
-@SuppressWarnings({"deprecation", "RedundantSuppression"})
+@SuppressWarnings({"deprecation", "RedundantSuppression", "SpellCheckingInspection", "DuplicateExpressions", "unused", "CallToPrintStackTrace", "ReassignedVariable", "ResultOfMethodCallIgnored", "SwitchStatementWithTooFewBranches", "LocalVariableUsedAndDeclaredInDifferentSwitchBranches", "EnhancedSwitchBackwardMigration", "StatementWithEmptyBody", "rawtypes", "StatementWithEmptyBody", "ConstantConditions", "EqualsBetweenInconvertibleTypes", "SuspiciousIndentAfterControlStatement"})
+@SuppressLint({"NonConstantResourceId", "SuspiciousIndentation", "SetTextI18n", "StaticFieldLeak", "InflateParams", "MissingInflatedId", "MissingSuperCall", "NewApi", "NotifyDataSetChanged", "UseCompatTextViewDrawableApis", "SuspiciousIndentation", "ClickableViewAccessibility", "UseCompatTextViewDrawableApis", "ResourceAsColor", "CheckResult", "SetJavaScriptEnabled"})
 public class ScreenActivity extends AppCompatActivity implements OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 	private boolean boolExit;
 	private Intent intent;
@@ -57,7 +58,6 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 	ValueEventListener valueEventListener, valueEventListenerEmail;
 	DrawerLayout drawer;
 	public ScreenActivity() {}
-	@SuppressLint("NonConstantResourceId")
 	@Override
 	public void onClick(View p1)
 	{
@@ -106,7 +106,6 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		Function.saveFromText(this, "intent", p1);
 		startActivity(intent);
 	}
-	@SuppressLint("SuspiciousIndentation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -456,7 +455,6 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		return NumberUtils.isParsable(dataSnapshot.getValue(String.class));
 	}
 	private Dialog dialogMessage;
-	@SuppressLint("SetTextI18n")
 	private void openDialogMessage(String nameMessage, String emailMessage, String nameRecive) {
 		Function.startSongs(this, MediaPlayer.create(this, R.raw.new_message));
 		dialogMessage = new Dialog(ScreenActivity.this, R.style.DialogStyle);
@@ -625,7 +623,6 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 			dialog.show();
 		}
 	}
-	@SuppressLint("NewApi")
 	@Override
 	public void onBackPressed() {
 		if (boolExit) {
@@ -827,7 +824,6 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		});
 		dialog.show();
 	}
-	/** @noinspection unused*/
 	private void phoneOpen() {
 		String txt = getString(R.string.phone_admin_txt),
 				email = getString(R.string.phone_dev);

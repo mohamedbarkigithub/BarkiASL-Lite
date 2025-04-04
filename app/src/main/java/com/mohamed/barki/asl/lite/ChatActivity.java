@@ -38,8 +38,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
-/** @noinspection rawtypes*/
-@SuppressWarnings({"deprecation", "RedundantSuppression"})
+@SuppressWarnings({"deprecation", "RedundantSuppression", "SpellCheckingInspection", "DuplicateExpressions", "unused", "CallToPrintStackTrace", "ReassignedVariable", "ResultOfMethodCallIgnored", "SwitchStatementWithTooFewBranches", "LocalVariableUsedAndDeclaredInDifferentSwitchBranches", "EnhancedSwitchBackwardMigration", "StatementWithEmptyBody", "rawtypes", "StatementWithEmptyBody", "ConstantConditions", "EqualsBetweenInconvertibleTypes", "SuspiciousIndentAfterControlStatement"})
+@SuppressLint({"NonConstantResourceId", "SuspiciousIndentation", "SetTextI18n", "StaticFieldLeak", "InflateParams", "MissingInflatedId", "MissingSuperCall", "NewApi", "NotifyDataSetChanged", "UseCompatTextViewDrawableApis", "SuspiciousIndentation", "ClickableViewAccessibility", "UseCompatTextViewDrawableApis", "ResourceAsColor", "CheckResult", "SetJavaScriptEnabled"})
 public class ChatActivity extends AppCompatActivity {
     private String baa;
 
@@ -72,8 +72,6 @@ public class ChatActivity extends AppCompatActivity {
     private String activity;
     //constants
     private static final String TAG = "ChatActivity";
-    @SuppressLint("NotifyDataSetChanged")
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,7 +120,6 @@ public class ChatActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.lastseen_toolbar)).setTypeface(typeface);
         tvTime.setText("");
         valueEventListenerMessage = new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int l = messages.size();
@@ -161,7 +158,6 @@ public class ChatActivity extends AppCompatActivity {
         pullToRefresh = findViewById(R.id.pullToRefresh);
     }
     SwipeRefreshLayout pullToRefresh;
-    @SuppressLint("NotifyDataSetChanged")
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         super.dispatchTouchEvent(event);
@@ -184,7 +180,6 @@ public class ChatActivity extends AppCompatActivity {
         }
         return false;
     }
-    /** @noinspection CallToPrintStackTrace*/
     private void saveMessage(String nameSender, Map<String, Object> message){
         try{
             String key = messageReference.child("support").child(nameSender).push().getKey();
@@ -203,7 +198,6 @@ public class ChatActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-    @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {
         onBackPressedFun();
@@ -247,7 +241,6 @@ public class ChatActivity extends AppCompatActivity {
         super.onStart();
     }
 
-    /** @noinspection CallToPrintStackTrace*/
     @Override
     protected void onDestroy() {
         super.onDestroy();

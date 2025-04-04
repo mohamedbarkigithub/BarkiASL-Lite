@@ -15,10 +15,9 @@ import com.bumptech.glide.Glide;
 
 import java.util.Locale;
 
-@SuppressWarnings({"deprecation", "RedundantSuppression"})
-public class LoginActivity extends AppCompatActivity
-{
-	@SuppressLint("SuspiciousIndentation")
+@SuppressWarnings({"deprecation", "RedundantSuppression", "SpellCheckingInspection", "DuplicateExpressions", "unused", "CallToPrintStackTrace", "ReassignedVariable", "ResultOfMethodCallIgnored", "SwitchStatementWithTooFewBranches", "LocalVariableUsedAndDeclaredInDifferentSwitchBranches", "EnhancedSwitchBackwardMigration", "StatementWithEmptyBody", "rawtypes", "StatementWithEmptyBody", "ConstantConditions", "EqualsBetweenInconvertibleTypes", "SuspiciousIndentAfterControlStatement"})
+@SuppressLint({"NonConstantResourceId", "SuspiciousIndentation", "SetTextI18n", "StaticFieldLeak", "InflateParams", "MissingInflatedId", "MissingSuperCall", "NewApi", "NotifyDataSetChanged", "UseCompatTextViewDrawableApis", "SuspiciousIndentation", "ClickableViewAccessibility", "UseCompatTextViewDrawableApis", "ResourceAsColor", "CheckResult", "SetJavaScriptEnabled"})
+public class LoginActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -49,7 +48,6 @@ public class LoginActivity extends AppCompatActivity
 		super.onRestoreInstanceState(savedInstanceState);
 		initialisation();
 	}
-	/** @noinspection CallToPrintStackTrace*/
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();

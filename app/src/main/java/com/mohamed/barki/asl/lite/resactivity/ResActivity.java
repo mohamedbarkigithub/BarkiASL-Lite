@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class ResActivity extends Activity
 {
 	public static String[][][] list = new String[][][]{

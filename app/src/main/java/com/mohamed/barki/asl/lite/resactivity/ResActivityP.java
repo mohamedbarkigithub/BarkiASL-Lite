@@ -1,6 +1,8 @@
 package com.mohamed.barki.asl.lite.resactivity;
 
 import android.app.Activity;
+
+@SuppressWarnings("SpellCheckingInspection")
 public class ResActivityP extends Activity
 {
 	public static String[][] resList = new String[][]{

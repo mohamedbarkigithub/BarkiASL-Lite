@@ -76,7 +76,8 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-@SuppressWarnings({"deprecation", "RedundantSuppression"})
+@SuppressWarnings({"deprecation", "RedundantSuppression", "SpellCheckingInspection", "DuplicateExpressions", "unused", "CallToPrintStackTrace", "ReassignedVariable", "ResultOfMethodCallIgnored", "SwitchStatementWithTooFewBranches", "LocalVariableUsedAndDeclaredInDifferentSwitchBranches", "EnhancedSwitchBackwardMigration", "StatementWithEmptyBody", "rawtypes", "StatementWithEmptyBody", "ConstantConditions", "EqualsBetweenInconvertibleTypes", "SuspiciousIndentAfterControlStatement"})
+@SuppressLint({"NonConstantResourceId", "SuspiciousIndentation", "SetTextI18n", "StaticFieldLeak", "InflateParams", "MissingInflatedId", "MissingSuperCall", "NewApi", "NotifyDataSetChanged", "UseCompatTextViewDrawableApis", "SuspiciousIndentation", "ClickableViewAccessibility", "UseCompatTextViewDrawableApis", "ResourceAsColor", "CheckResult", "SetJavaScriptEnabled"})
 public class Function extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +115,6 @@ public class Function extends Activity {
 	public static boolean validateApplicationName(Context getAppContext) {
 		return (!getApplicationName(getAppContext).equals(Function.sttttt));
 	}
-	@SuppressLint("SuspiciousIndentation")
 	public static boolean validate(Activity getActivity, final String text, final AutoCompleteTextView edt) {
 		boolean valid = true;
 		if (text.isEmpty()) {
@@ -143,7 +143,6 @@ public class Function extends Activity {
 	}
 	public static String st = "com.moh", stt = "amed.ba", sttt = "rki.as", stttt = "l.lite", sttttt = "BarkiASL Lite";
 	public static Toast toast;
-	@SuppressLint({"InflateParams", "MissingInflatedId"})
 	public static void showToastMessage(Context getContext, String message) {
 		LayoutInflater inflater = (LayoutInflater) getContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View layout = inflater.inflate(R.layout.toast, null);
@@ -254,7 +253,6 @@ public class Function extends Activity {
 	public static PermissionInfo[] Permissions;
 	public static String[][] resList = ResActivity.resList();
 	private static String v1;
-	@SuppressLint({"SuspiciousIndentation", "SetTextI18n"})
 	public static void info(final Context getAppContext, final Activity myActivity) {
 		MediaPlayer click = MediaPlayer.create(getAppContext, R.raw.click);
 		final Dialog dialog = new Dialog(getAppContext, R.style.DialogStyle);
@@ -441,9 +439,6 @@ public class Function extends Activity {
 		((TextView) dialog.findViewById(R.id.dialog_share)).setTypeface(face);
 		dialog.show();
 	}
-	/**
-	 * @noinspection CallToPrintStackTrace
-	 */
 	public static void qr_code(final Context getAppContext, final ImageView img) {
 		Hashtable<EncodeHintType, ErrorCorrectionLevel> hintMap = new Hashtable<>();
 		hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H); // H = 30% damage
@@ -574,9 +569,6 @@ public class Function extends Activity {
 		}
 		return nameFoler[i + 1];
 	}
-	/**
-	 * @noinspection CallToPrintStackTrace
-	 */
 	public static void startSongs(Context getAppContext, MediaPlayer songs) {
 		if (Function.getBoolean(getAppContext, "song")) {
 			try {
@@ -588,9 +580,6 @@ public class Function extends Activity {
 			songs.start();
 		}
 	}
-	/**
-	 * @noinspection CallToPrintStackTrace
-	 */
 	public static void stopSongs(Context getAppContext, MediaPlayer songs) {
 		if (Function.getBoolean(getAppContext, "song")) {
 			songs.pause();
@@ -602,7 +591,6 @@ public class Function extends Activity {
 			songs.seekTo(0);
 		}
 	}
-	@SuppressWarnings("rawtypes")
 	public static void startActivityFun(Context getAppContext, final Class ActivityClass) {
 		getAppContext.startActivity(new Intent(getAppContext, ActivityClass));
 	}
@@ -636,9 +624,6 @@ public class Function extends Activity {
 	public static String toNoPalArrayFr(String original) {
 		return Normalizer.normalize(original, Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
 	}
-	/**
-	 * @noinspection CallToPrintStackTrace
-	 */
 	public static void trimCache(Context getAppContext) {
 		try {
 			File dir = getAppContext.getCacheDir();

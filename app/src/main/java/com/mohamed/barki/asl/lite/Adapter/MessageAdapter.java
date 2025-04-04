@@ -34,7 +34,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-@SuppressWarnings({"deprecation", "RedundantSuppression"})
+@SuppressWarnings({"deprecation", "RedundantSuppression", "SpellCheckingInspection", "DuplicateExpressions", "unused", "CallToPrintStackTrace", "ReassignedVariable", "ResultOfMethodCallIgnored", "SwitchStatementWithTooFewBranches", "LocalVariableUsedAndDeclaredInDifferentSwitchBranches", "EnhancedSwitchBackwardMigration", "StatementWithEmptyBody", "rawtypes", "StatementWithEmptyBody", "ConstantConditions", "EqualsBetweenInconvertibleTypes", "SuspiciousIndentAfterControlStatement"})
+@SuppressLint({"NonConstantResourceId", "SuspiciousIndentation", "SetTextI18n", "StaticFieldLeak", "InflateParams", "MissingInflatedId", "MissingSuperCall", "NewApi", "NotifyDataSetChanged", "UseCompatTextViewDrawableApis", "SuspiciousIndentation", "ClickableViewAccessibility", "UseCompatTextViewDrawableApis", "ResourceAsColor", "CheckResult", "SetJavaScriptEnabled"})
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.myViewHolder> {
     Context context;
     ArrayList<Message> messages;
@@ -51,7 +52,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.myViewHo
     private static final int ITEM_LEFT = 1;
     private static final int ITEM_RIGHT = 2;
 
-    @SuppressWarnings({"EqualsBetweenInconvertibleTypes", "SuspiciousIndentAfterControlStatement"})
     @Override
     public int getItemViewType(int position) {
         if(messages == null) return 0;
@@ -68,7 +68,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.myViewHo
                 return 2;
         }
     }
-    @SuppressWarnings("ConstantConditions")
     @NonNull
     @Override
     public MessageAdapter.myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -79,7 +78,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.myViewHo
         }else return null;
     }
     private int viewTypeInt;
-    @SuppressLint({"SetTextI18n", "CheckResult"})
     @Override
     public void onBindViewHolder(@NonNull myViewHolder holder, final int position) {
         Function.saveFromText(getActivity, "message", Function.setTime());
@@ -203,7 +201,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.myViewHo
         });
         if(!getActivity.isFinishing()) dialog.show();
     }
-    @SuppressLint("NotifyDataSetChanged")
     private void saveRemovefile(Dialog dialog, String refKey){
         int[] intString = new int[]{R.string.support_remove_succes, R.string.support_remove_failde};
         FirebaseDatabase SupportDatabase = FirebaseDatabase.getInstance(DatabaseSupport.getInstance(getActivity));
@@ -254,7 +251,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.myViewHo
         });
         dialog.show();
     }
-    @SuppressLint("NotifyDataSetChanged")
     private void saveEditFile(Dialog dialog, String refKey, String namee, String time, String newmessage){
         int[] intString = new int[]{R.string.support_edit_succes, R.string.support_edit_failde};
 

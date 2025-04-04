@@ -84,7 +84,8 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 
-@SuppressWarnings({"deprecation", "RedundantSuppression"})
+@SuppressWarnings({"deprecation", "RedundantSuppression", "SpellCheckingInspection", "DuplicateExpressions", "unused", "CallToPrintStackTrace", "ReassignedVariable", "ResultOfMethodCallIgnored", "SwitchStatementWithTooFewBranches", "LocalVariableUsedAndDeclaredInDifferentSwitchBranches", "EnhancedSwitchBackwardMigration", "StatementWithEmptyBody", "rawtypes", "StatementWithEmptyBody", "ConstantConditions", "EqualsBetweenInconvertibleTypes", "SuspiciousIndentAfterControlStatement"})
+@SuppressLint({"NonConstantResourceId", "SuspiciousIndentation", "SetTextI18n", "StaticFieldLeak", "InflateParams", "MissingInflatedId", "MissingSuperCall", "NewApi", "NotifyDataSetChanged", "UseCompatTextViewDrawableApis", "SuspiciousIndentation", "ClickableViewAccessibility", "UseCompatTextViewDrawableApis", "ResourceAsColor", "CheckResult", "SetJavaScriptEnabled"})
 public class ASLActivity extends AppCompatActivity implements OnClickListener, OnLongClickListener{
 	private AutoCompleteEditText edt;
 	private boolean autoLeftcrement = false, autoRightcrement = false, bool, boolSelect = true, boolExit, boolClose = false, boolFocus = false;
@@ -187,7 +188,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		}
 		return false;
 	}
-	@SuppressLint("UseCompatTextViewDrawableApis")
 	private void restartEditText(){
 		int colorInt = ContextCompat.getColor(ASLActivity.this, R.color.textPrimaryInverse);
 		edt.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_menu_search, 0);
@@ -196,7 +196,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		edt.setText(null);
 		edt.addTextChangedListener(textWatcher);
 	}
-	@SuppressLint("ClickableViewAccessibility")
 	private void searchFun(String text, String type) {
 		if(bool){
 			bool = false;
@@ -354,7 +353,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			btnVideo.setBackgroundResource(R.drawable.button_p);
 		}
 	}
-	@SuppressLint({"SetJavaScriptEnabled", "ClickableViewAccessibility"})
 	private void setWebView() {
 		boolFinish = false;
 		String colorFram = "black";
@@ -499,7 +497,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		});
 		dialog.show();
 	}
-	@SuppressLint({"ClickableViewAccessibility", "SuspiciousIndentation"})
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -638,7 +635,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		}
 		searchFun(search, Function.getValue(this, "type"));
 	}
-	/** @noinspection SpellCheckingInspection*/
 	class repetiveLeftRight implements Runnable {
 		public void run() {
 			long REPEAT_LR_DELAY = 100;
@@ -667,7 +663,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		timerepond = MediaPlayer.create(this, R.raw.timerepond);
 		clickSpinner = MediaPlayer.create(this, R.raw.click_spinner);
 	}
-	@SuppressLint("ResourceAsColor")
 	private void gameFun() {
 		Function.showToastMessage(this, getString(R.string.welcom_game)+" 😊😊");
 		photoView.setVisibility(View.GONE);
@@ -746,7 +741,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		}
 	}
 	private String wordGenerated;
-	@SuppressLint("SuspiciousIndentation")
 	private void randomDeaf() {
 		int min = 1;
 		int max = resList.length - 1;
@@ -802,7 +796,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		}
 		return s.equals(w);
 	}
-	@SuppressLint({"SetTextI18n", "ResourceAsColor"})
 	private void scorFun(String p0) {
 		photoView.setVisibility(View.VISIBLE);
 		switch(p0){
@@ -875,7 +868,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			nameArFrNoPal[i] = Function.toNoPalWord(nameArFr[i]);
 		}
 	}
-	@SuppressLint("NewApi")
 	private void autoSpinnerAdapter(){
 		s1 = findViewById(R.id.maindSpinner1);
 		s1.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -955,7 +947,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			s.setSpan(new TypefaceSpan(typeface), start, end, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
 		}
 	}
-	@SuppressLint({"UseCompatTextViewDrawableApis", "SuspiciousIndentation"})
 	private void autoCompleteAdapter(String[] nam, String[] namNoPal){
 		ArrayList<String> stringList = new ArrayList<>(Arrays.asList(nam));
 		ArrayList<String> stringListNoPal = new ArrayList<>(Arrays.asList(namNoPal));
@@ -985,7 +976,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			public void onTextChanged(CharSequence s, int start, int before, int count) {}
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-			@SuppressLint("UseCompatTextViewDrawableApis")
 			@Override
 			public void afterTextChanged(Editable e) {
 				int d, colorInt;
@@ -1174,13 +1164,10 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		else
 			e.setSpan(typeface, start, end, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
 	}
-	/** @noinspection CallToPrintStackTrace*/
-	@SuppressWarnings("rawtypes")
 	public class AutoSuggestAdapter extends ArrayAdapter {
 		private final Context      context;
 		private final int          resource;
 		private final ArrayList<String> items, tempItems, tempItemsNoPl, suggestions;
-		@SuppressWarnings("unchecked")
 		public AutoSuggestAdapter(Context context, int resource, ArrayList<String> items, ArrayList<String> itemsNoPal)
 		{
 			super(context, resource, items);
@@ -1192,7 +1179,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			suggestions = new ArrayList<>();
 		}
 		@NonNull
-		@SuppressLint({"ClickableViewAccessibility", "SuspiciousIndentation"})
 		@Override
 		public View getView(int position, View convertView, @NonNull ViewGroup parent)
 		{
@@ -1267,7 +1253,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				filterResults.count = suggestions.size();
 				return filterResults;
 			}
-			@SuppressWarnings("unchecked")
 			@Override
 			protected void publishResults(CharSequence constraint, FilterResults results) {
 				if (results != null && results.count > 0) {
@@ -1387,7 +1372,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		return NumberUtils.isParsable(dataSnapshot.getValue(String.class));
 	}
 	private Dialog dialogMessage;
-	@SuppressLint("SetTextI18n")
 	private void openDialogMessage(String nameMessage, String emailMessage, String nameRecive) {
 		Function.startSongs(this, MediaPlayer.create(this, R.raw.new_message));
 		dialogMessage = new Dialog(ASLActivity.this, R.style.DialogStyle);
@@ -1452,7 +1436,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 	protected void onRestart() {
 		super.onRestart();
 	}
-	/** @noinspection CallToPrintStackTrace*/
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
@@ -1468,7 +1451,6 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		super.onSaveInstanceState(outState);
 	}
 
-	@SuppressLint("SetTextI18n")
 	@Override
 	protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
