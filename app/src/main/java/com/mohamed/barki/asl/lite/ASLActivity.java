@@ -212,6 +212,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			if(webView!=null) webView.stopLoading();
 			findViewById(R.id.maindWebView).setVisibility(View.GONE);
 			if(intent.equals("1")) btnImage.setEnabled(true);
+			btnShare.setVisibility(View.VISIBLE);
 			btnVideo.setEnabled(true);
 			lnyBig.setBackgroundColor(Color.BLACK);
 		}else{
@@ -220,6 +221,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 			findViewById(R.id.maindImageView).setVisibility(View.GONE);
 			btnImage.setEnabled(true);
 			btnVideo.setEnabled(true);
+			btnShare.setVisibility(View.GONE);
 			lnyBig.setBackgroundColor(Color.WHITE);
 		}
 		if(intent.equals("2")) btnVideo.setImageResource(R.drawable.ic_video);
