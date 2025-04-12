@@ -176,4 +176,7 @@
 	<string name="upload_app">التنبيه بوجود تحديث جديد</string>
 	<string name="list_user">قائمة المستخدمين</string>
 	<string name="users">مستخدم.</string>
+	<string name="sorry_your_phone">عفوا !!! هاتفك لا يدعم هذا الخاصية …</string>
+	<string name="share_image">مشاركة الصورة</string>
+	<string name="share_text">مشاركة النص</string>
 </resources>

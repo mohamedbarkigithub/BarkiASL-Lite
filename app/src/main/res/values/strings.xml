@@ -232,4 +232,7 @@
 	<string name="list_user">User list</string>
 	<string name="admincrach" translatable="false">CrashViewActivityLite</string>
 	<string name="users">users.</string>
+	<string name="sorry_your_phone">Sorry!!! Your phone does not support this feature…</string>
+	<string name="share_image">Share image</string>
+	<string name="share_text">Share text</string>
 </resources>

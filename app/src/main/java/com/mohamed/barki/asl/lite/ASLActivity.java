@@ -91,7 +91,7 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 	private boolean autoLeftcrement = false, autoRightcrement = false, bool, boolSelect = true, boolExit, boolClose = false, boolFocus = false;
 	private Handler handler;
 	private final Handler repeatLeftRightHandler = new Handler();
-	private ImageButton btnShow, btnImage, btnVideo, btnLeft, btnRight;
+	private ImageButton btnShow, btnImage, btnVideo, btnLeft, btnRight, btnShare;
 	private ImageView imageView, photoView;
 	private int position = 0, scor, scor10, nbrFalse;
 	private LinearLayout lnyBig;
@@ -168,6 +168,8 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 				break;
 			case (R.id.maindButtonRight): Function.startSongs(this, redo_undo);
 				slideFun(2);
+				break;
+			case (R.id.maindButtonShare): Function.takeScreenshot(ASLActivity.this, this, findViewById(R.id.maindLinearLayout1Big));
 				break;
 		}
 	}
@@ -560,6 +562,8 @@ public class ASLActivity extends AppCompatActivity implements OnClickListener, O
 		btnVideo.setOnClickListener(this);
 		btnImage.setEnabled(false);
 		btnVideo.setEnabled(true);
+		btnShare = findViewById(R.id.maindButtonShare);
+		btnShare.setOnClickListener(this);
 		addStringArray();
 		autoSpinnerAdapter();
 		autoCompleteAdapter(nameArFr, nameArFrNoPal);

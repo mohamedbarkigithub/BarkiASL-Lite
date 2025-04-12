@@ -175,4 +175,7 @@
 	<string name="upload_app">Notification de nouvelle mise à jour</string>
 	<string name="list_user">Liste des utilisateurs</string>
 	<string name="users">utilisateurs.</string>
+	<string name="sorry_your_phone">Désolé !!! Votre téléphone ne prend pas en charge cette fonctionnalité…</string>
+	<string name="share_image">Partager l\'image</string>
+	<string name="share_text">Partager du texte</string>
 </resources>

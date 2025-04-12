@@ -114,6 +114,8 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		if(Function.getBoolean(this, "dark")) Function.setThemeDark(this, R.layout.screen);
 		else Function.setThemeLight(this, R.layout.screen);
 
+		Function.removeTakeScreenshot(this);
+
 		if(Function.getBoolean(this, "screen"))
 			Function.showToastMessage(this, getString(R.string.ahlenWsahlen)+" 😊😊");
 		Function.saveFromBoolean(this, "screen", false);

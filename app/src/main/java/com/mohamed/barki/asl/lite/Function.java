@@ -19,6 +19,7 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.PixelFormat;
@@ -28,8 +29,11 @@ import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -65,6 +69,7 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.mohamed.barki.asl.lite.resactivity.ResActivity;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.Normalizer;
@@ -224,6 +229,58 @@ public class Function extends Activity {
 	}
 	public static boolean isSoftKeyboardShown(final Context getAppContext) {
 		return Function.getBoolean(getAppContext, "keyboard");
+	}
+	public static void takeScreenshot(final Activity activity, final Activity cntx, LinearLayout lnyBig) {
+		try {
+			File rootDataDir = cntx.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+			assert rootDataDir != null;
+			if (!rootDataDir.exists()) {
+				rootDataDir.mkdir();
+			}
+			String nameFile = setTime() + ".jpg";
+			File yourFile = new File(rootDataDir, nameFile);
+			Bitmap bitmap = loadBitmapFromView(lnyBig);
+
+			FileOutputStream outputStream = new FileOutputStream(yourFile);
+			int quality = 100;
+			bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
+			outputStream.flush();
+			outputStream.close();
+
+			new android.os.Handler().postDelayed(() -> shareImage(cntx, rootDataDir, nameFile), 2000);
+		} catch (Throwable e) {
+			// Several error may come out with file handling or DOM
+			showToastMessage(cntx, cntx.getString(R.string.sorry_your_phone));
+			e.printStackTrace();
+		}
+	}
+	private static void shareImage(Context cntx, File rootDataDir, String nameFile) {
+		File fileImage = new File(rootDataDir, nameFile);
+		Bitmap bitmap = BitmapFactory.decodeFile(fileImage.getPath());
+		String stringPath = MediaStore.Images.Media.insertImage(cntx.getContentResolver(), bitmap, cntx.getString(R.string.share_image), null);
+
+		Intent intent = new Intent(Intent.ACTION_SEND);
+		intent.setType("image/*");
+		intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(stringPath));
+
+		cntx.startActivity(Intent.createChooser(intent, cntx.getString(R.string.share_image)));
+	}
+	public static Bitmap loadBitmapFromView(View v) {
+		Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
+		Canvas c = new Canvas(b);
+		v.draw(c);
+		return b;
+	}
+	public static void removeTakeScreenshot(final Activity cntx) {
+		File rootDataDir = cntx.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+		assert rootDataDir != null;
+		if (rootDataDir.exists()) {
+			String[] children = rootDataDir.list();
+			assert children != null;
+			for (String child : children) {
+				new File(rootDataDir, child).delete();
+			}
+		}
 	}
 	public static String getApplicationName(Context getAppContext) {
 		ApplicationInfo applicationInfo = getAppContext.getApplicationInfo();

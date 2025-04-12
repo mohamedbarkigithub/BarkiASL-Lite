@@ -275,98 +275,106 @@
 						tools:ignore="SpeakableTextPresentCheck" />
 				</LinearLayout>
 				<LinearLayout
-					android:id="@+id/maindLinearLayout1"
+					android:id="@+id/maindLinearLayout1Big"
 					android:layout_width="match_parent"
 					android:layout_height="0dp"
 					android:layout_weight="0.75"
-					tools:ignore="Orientation">
-					<ImageView
-						android:id="@+id/maindImageView"
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:visibility="gone"
-						android:clickable="false"
-						android:saveEnabled="false"
-						android:focusable="false"
-						android:focusableInTouchMode="false"
-						android:focusedByDefault="false"
-						android:touchscreenBlocksFocus="false"
-						android:screenReaderFocusable="false"
-						android:layout_gravity="center"
-						android:scaleType="fitXY"
-						android:contentDescription="@string/image_view"
-						tools:ignore="SpeakableTextPresentCheck,UnusedAttribute" />
-					<WebView
-						android:id="@+id/maindWebView"
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:visibility="gone"
-						android:minWidth="50dp"
-						android:minHeight="100dp"
-						android:contentDescription="@string/video_view"
-						tools:ignore="SpeakableTextPresentCheck" />
-				</LinearLayout>
-			</LinearLayout>
-			<LinearLayout
-				android:id="@+id/maindLinearLayoutTop"
-				android:gravity="center"
-				android:orientation="horizontal"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				tools:ignore="DisableBaselineAlignment">
-				<LinearLayout
-					android:background="@drawable/background_bottom"
 					android:orientation="vertical"
-					android:gravity="center"
-					android:id="@+id/maindLinearLayout3"
-					android:layout_width="0dp"
-					android:layout_height="wrap_content"
-					android:layout_weight="1.0"
-					tools:ignore="UselessParent">
+					android:gravity="bottom">
 					<LinearLayout
-						android:gravity="left"
-						android:orientation="vertical"
-						android:id="@+id/maindTextViewL1"
-						android:background="@android:color/transparent"
-						android:paddingLeft="5.0dp"
-						android:paddingRight="5.0dp"
+						android:id="@+id/maindLinearLayout1"
 						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						tools:ignore="RtlHardcoded">
-						<TextView
-							android:textAppearance="?android:textAppearanceMedium"
-							android:id="@+id/maindTextView1"
-							android:gravity="right"
-							android:background="@android:color/transparent"
-							android:textColor="#ff000000"
-							android:paddingLeft="2.0dip"
-							android:paddingRight="2.0dip"
+						android:layout_height="0dp"
+						android:layout_weight="1.0"
+						tools:ignore="Orientation">
+						<ImageView
+							android:id="@+id/maindImageView"
 							android:layout_width="match_parent"
-							android:layout_height="wrap_content"
-							android:textIsSelectable="false"
-							tools:ignore="VisualLintBounds" />
+							android:layout_height="match_parent"
+							android:visibility="gone"
+							android:clickable="false"
+							android:saveEnabled="false"
+							android:focusable="false"
+							android:focusableInTouchMode="false"
+							android:focusedByDefault="false"
+							android:touchscreenBlocksFocus="false"
+							android:screenReaderFocusable="false"
+							android:layout_gravity="center"
+							android:scaleType="fitXY"
+							android:contentDescription="@string/image_view"
+							tools:ignore="SpeakableTextPresentCheck,UnusedAttribute" />
+						<WebView
+							android:id="@+id/maindWebView"
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:visibility="gone"
+							android:minWidth="50dp"
+							android:minHeight="100dp"
+							android:contentDescription="@string/video_view"
+							tools:ignore="SpeakableTextPresentCheck" />
 					</LinearLayout>
 					<LinearLayout
-						android:gravity="right"
-						android:orientation="vertical"
-						android:id="@+id/maindTextViewL2"
-						android:background="@android:color/transparent"
-						android:paddingLeft="5.0dp"
-						android:paddingBottom="2.0dip"
-						android:paddingRight="5.0dp"
+						android:id="@+id/maindLinearLayoutTop"
+						android:gravity="center"
+						android:orientation="horizontal"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						tools:ignore="RtlHardcoded">
-						<TextView
-							android:textAppearance="?android:textAppearanceMedium"
-							android:id="@+id/maindTextView2"
-							android:gravity="left"
-							android:background="@android:color/transparent"
-							android:textColor="#ff000000"
-							android:padding="2.0dp"
-							android:layout_width="match_parent"
+						tools:ignore="DisableBaselineAlignment">
+						<LinearLayout
+							android:background="@drawable/background_bottom"
+							android:orientation="vertical"
+							android:gravity="center"
+							android:id="@+id/maindLinearLayout3"
+							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:textIsSelectable="false"/>
+							android:layout_weight="1.0"
+							tools:ignore="UselessParent">
+							<LinearLayout
+								android:gravity="left"
+								android:orientation="vertical"
+								android:id="@+id/maindTextViewL1"
+								android:background="@android:color/transparent"
+								android:paddingLeft="5.0dp"
+								android:paddingRight="5.0dp"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								tools:ignore="RtlHardcoded">
+								<TextView
+									android:textAppearance="?android:textAppearanceMedium"
+									android:id="@+id/maindTextView1"
+									android:gravity="right"
+									android:background="@android:color/transparent"
+									android:textColor="#ff000000"
+									android:paddingLeft="2.0dip"
+									android:paddingRight="2.0dip"
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:textIsSelectable="false"
+									tools:ignore="VisualLintBounds" />
+							</LinearLayout>
+							<LinearLayout
+								android:gravity="right"
+								android:orientation="vertical"
+								android:id="@+id/maindTextViewL2"
+								android:background="@android:color/transparent"
+								android:paddingLeft="5.0dp"
+								android:paddingBottom="2.0dip"
+								android:paddingRight="5.0dp"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								tools:ignore="RtlHardcoded">
+								<TextView
+									android:textAppearance="?android:textAppearanceMedium"
+									android:id="@+id/maindTextView2"
+									android:gravity="left"
+									android:background="@android:color/transparent"
+									android:textColor="#ff000000"
+									android:padding="2.0dp"
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:textIsSelectable="false"/>
+							</LinearLayout>
+						</LinearLayout>
 					</LinearLayout>
 				</LinearLayout>
 			</LinearLayout>
@@ -410,6 +418,18 @@
 			app:tint="@color/button_slide"
 			tools:ignore="ImageContrastCheck,RtlHardcoded,SpeakableTextPresentCheck"
 			android:importantForAccessibility="no" />
+
+		<ImageButton
+			android:id="@+id/maindButtonShare"
+			android:layout_width="50.0dp"
+			android:layout_height="50.0dp"
+			android:layout_marginLeft="1.0dip"
+			android:layout_marginRight="1.0dip"
+			android:background="@drawable/button_share_inverse"
+			android:src="@drawable/ic_share"
+			android:contentDescription="@string/video"
+			app:tint="@color/textPrimaryInverse"
+			tools:ignore="ImageContrastCheck,RtlHardcoded,SpeakableTextPresentCheck" />
 
 		<ImageButton
 			android:id="@+id/maindButtonRight"
