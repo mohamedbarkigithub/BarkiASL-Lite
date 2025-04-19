@@ -57,6 +57,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 	DatabaseReference updateReference, emailReference;
 	ValueEventListener valueEventListener, valueEventListenerEmail;
 	DrawerLayout drawer;
+	private String LanguageName;
 	public ScreenActivity() {}
 	@Override
 	public void onClick(View p1)
@@ -93,7 +94,7 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 				startActivityFun(intent, "2"); break;
 			case R.id.screenButton4:
 				startSongs(click);
-				drawer.openDrawer(GravityCompat.START);
+				drawer.openDrawer((LanguageName.contains("rab") || LanguageName.contains("عربي")) ? GravityCompat.END : GravityCompat.START);
 				break;
 			case R.id.screenButton5:
 				startSongs(click);
@@ -185,7 +186,8 @@ public class ScreenActivity extends AppCompatActivity implements OnClickListener
 		drawer = findViewById(R.id.drawer_layout);
 		drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
-		NavigationView navigationView = findViewById(R.id.nav_view);
+		LanguageName = Locale.getDefault().getDisplayLanguage();
+		NavigationView navigationView = findViewById((LanguageName.contains("rab") || LanguageName.contains("عربي")) ? R.id.nav_viewR : R.id.nav_view);
 		navigationView.setNavigationItemSelectedListener(this);
 		hideItem(navigationView);
 		View headerView = navigationView.getHeaderView(0);
